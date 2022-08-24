@@ -45,6 +45,9 @@ const SignupForm = () => {
         },
         validate,
         onSubmit: values => {
+            /*
+                TODO change with saving information in the database
+             */
             alert(JSON.stringify(values, null, 2));
         },
     });
