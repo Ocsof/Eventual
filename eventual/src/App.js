@@ -1,5 +1,5 @@
 import './App.css';
-import Login from "./cmp/Login";
+import SignUp from "./cmp/SignUp";
 
 function App() {
   return (
@@ -10,12 +10,9 @@ function App() {
             <h1>Sign Up</h1>
         </nav>
         <header className="App-header">
-            <Login />
+            {/*<Login />*/}
+            <SignUp />
         </header>
-          <div>
-              <p>Ho dimenticato la password</p>
-              <p>Clicca qui se non sei ancora iscritto</p>
-          </div>
     </div>
   );
 }
