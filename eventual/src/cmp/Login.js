@@ -24,7 +24,9 @@ class Login extends React.Component {
 
     handleSubmit(event) {
         if( this.state.password !== '' && this.state.email !== ''){
-            // TO-DO: change with control function on database subscribes
+            /*
+                TODO: change with control function on database subscribes
+             */
             alert('Login effettuato con successo: ' + this.state.email);
             this.setState({
                 isLogged: true
@@ -37,17 +39,23 @@ class Login extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    Email:
-                    <input type="text" alt="email" value={this.state.email} onChange={this.handleEmailChange} />
-                </label>
-                <label>
-                    Password:
-                    <input type="text" alt="password" value={this.state.password} onChange={this.handlePasswordChange} />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        Email:
+                        <input type="text" alt="email" value={this.state.email} onChange={this.handleEmailChange} />
+                    </label>
+                    <br/>
+                    <label>
+                        Password:
+                        <input type="text" alt="password" value={this.state.password} onChange={this.handlePasswordChange} />
+                    </label>
+                    <br/>
+                    <input type="submit" value="Submit" />
+                </form>
+                <p>Ho dimenticato la password</p>
+                <p>Clicca qui se non sei ancora iscritto</p>
+            </div>
         );
     }
 }
