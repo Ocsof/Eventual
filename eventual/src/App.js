@@ -13,16 +13,17 @@ function App() {
       <div className="App">
           <aside>Eventual</aside>
           <Router>
-              <NavLink to="/login">Login</NavLink>
-              <br/>
-              <NavLink to="/signup">Sign Up</NavLink>
-              <br/>
-              <hr />
-              <Routes>
-                  <Route exact path="/login" element={<Login/>} />
-                  <Route exact path="/signup" element={<SignUp />} />
-              </Routes>
+              <NavLink to="/login">Login </NavLink>
+              <NavLink to="/signup">Sign Up </NavLink>
+              <header className="App-header">
+                  <Routes>
+                      <Route exact path="/login" element={<Login/>} />
+                      <Route exact path="/signup" element={<SignUp />} />
+                  </Routes>
+              </header>
           </Router>
+
+
     </div>
   );
 }

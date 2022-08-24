@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 class Login extends React.Component {
     constructor(props) {
@@ -54,7 +55,7 @@ class Login extends React.Component {
                     <input type="submit" value="Submit" />
                 </form>
                 <p>Ho dimenticato la password</p>
-                <p>Clicca qui se non sei ancora iscritto</p>
+                <Link to="/signup">Clicca qui se non sei ancora iscritto</Link>
             </div>
         );
     }

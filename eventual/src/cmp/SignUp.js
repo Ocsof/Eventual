@@ -1,5 +1,6 @@
 import React from 'react';
 import {useFormik} from 'formik';
+import {Link} from "react-router-dom";
 
 // A custom validation function. This must return an object
 // which keys are symmetrical to our values/initialValues
@@ -117,6 +118,8 @@ const SignupForm = () => {
             <br/>
             <button type="reset">Reset</button>
             <button type="submit">Submit</button>
+            <br/>
+            <Link to="/login">Sei già iscritto?</Link>
         </form>
     );
 };
