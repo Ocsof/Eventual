@@ -22,8 +22,6 @@ function App() {
                   </Routes>
               </header>
           </Router>
-
-
     </div>
   );
 }
