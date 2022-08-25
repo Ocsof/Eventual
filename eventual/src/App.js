@@ -12,19 +12,33 @@ import {
 
 
 function App() {
+    let inputHandler = () => {
+        /*
+        TODO: change with research on the database
+         */
+    };
+
   return (
       <div className="App">
           <Router>
-              <aside><Link to="/" className="aside">Eventual </Link></aside>
-              <NavLink to="/login">Login </NavLink>
-              <NavLink to="/signup">Sign Up </NavLink>
-              <header className="App-header">
+              <nav className={"App-nav"}>
+                  <Link to="/" className="logo">Eventual </Link>
+                  <NavLink to="/login">Login </NavLink>
+                  <NavLink to="/signup">Sign Up </NavLink>
+                  <input
+                      className="search"
+                      type="text"
+                      placeholder="search..."
+                      onChange={inputHandler}
+                  />
+              </nav>
+              <div className="App-content">
                   <Routes>
                       <Route path="/" element={<Home/>} />
                       <Route exact path="/login" element={<Login/>} />
                       <Route exact path="/signup" element={<SignUp />} />
                   </Routes>
-              </header>
+              </div>
           </Router>
     </div>
   );

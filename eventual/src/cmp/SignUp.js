@@ -62,7 +62,7 @@ const SignupForm = () => {
                 onChange={formik.handleChange}
                 value={formik.values.firstName}
             />
-            {formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
+            {formik.errors.firstName ? <div className="error">{formik.errors.firstName}</div> : null}
             <br/>
             <label htmlFor="lastName">Cognome </label>
             <input
@@ -72,7 +72,7 @@ const SignupForm = () => {
                 onChange={formik.handleChange}
                 value={formik.values.lastName}
             />
-            {formik.errors.lastName ? <div>{formik.errors.lastName}</div> : null}
+            {formik.errors.lastName ? <div className="error">{formik.errors.lastName}</div> : null}
             <br/>
             <label htmlFor="email">Email </label>
             <input
@@ -82,7 +82,7 @@ const SignupForm = () => {
                 onChange={formik.handleChange}
                 value={formik.values.email}
             />
-            {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+            {formik.errors.email ? <div className="error">{formik.errors.email}</div> : null}
             <br/>
             <label htmlFor="phone">Telefono </label>
             <input
@@ -92,7 +92,7 @@ const SignupForm = () => {
                 onChange={formik.handleChange}
                 value={formik.values.phone}
             />
-            {formik.errors.phone ? <div>{formik.errors.phone}</div> : null}
+            {formik.errors.phone ? <div className="error">{formik.errors.phone}</div> : null}
             <br/>
             <label htmlFor="password">Password </label>
             <input
@@ -102,7 +102,7 @@ const SignupForm = () => {
                 onChange={formik.handleChange}
                 value={formik.values.password}
             />
-            {formik.errors.password ? <div>{formik.errors.password}</div> : null}
+            {formik.errors.password ? <div className="error">{formik.errors.password}</div> : null}
             <br/>
             <label htmlFor="category">Categoria: </label>
             <select

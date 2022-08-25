@@ -1,4 +1,4 @@
-.App {
+.App-nav {
   text-align: center;
 }
 
@@ -13,7 +13,7 @@
   }
 }
 
-.App-header {
+.App-content {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -37,8 +37,16 @@
   }
 }
 
-.aside {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  font-size: medium;
+.search {
+  width: 30%;
+}
+
+.logo {
+  font-size: larger;
   text-decoration: none;
+}
+
+.error {
+  color: darkred;
+  font-size: x-small;
 }
