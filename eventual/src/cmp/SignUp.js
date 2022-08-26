@@ -1,6 +1,7 @@
 import React from 'react';
 import {useFormik} from 'formik';
 import {Link} from "react-router-dom";
+import {NotificationManager, NotificationContainer} from "react-notifications";
 
 // A custom validation function. This must return an object
 // which keys are symmetrical to our values/initialValues
@@ -50,6 +51,7 @@ const SignupForm = () => {
                 TODO change with saving information in the database
              */
             alert(JSON.stringify(values, null, 2));
+            NotificationManager.success('Signing up successfully!');
         },
     });
     return (
@@ -120,6 +122,8 @@ const SignupForm = () => {
             <button type="submit">Submit</button>
             <br/>
             <Link to="/login">Sei già iscritto?</Link>
+
+            <NotificationContainer />
         </form>
     );
 };
