@@ -39,6 +39,7 @@
 
 .search {
   width: 30%;
+  height: 25px;
 }
 
 .logo {
@@ -49,4 +50,12 @@
 .error {
   color: darkred;
   font-size: x-small;
+}
+
+.icon {
+  alignment: center;
+}
+
+.link-icon {
+  text-decoration: none;
 }
