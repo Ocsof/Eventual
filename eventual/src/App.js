@@ -12,6 +12,8 @@ import Login from "./cmp/Login";
 import Notifications from "./cmp/Notifications";
 import ShoppingCart from "./cmp/ShoppingCart";
 import Contacts from "./cmp/Contacts";
+import Events from "./cmp/Events";
+import Admin from "./cmp/intern/Admin";
 
 function App() {
     let inputHandler = () => {
@@ -28,6 +30,7 @@ function App() {
                   <NavLink to="/login">Login </NavLink>
                   <NavLink to="/signup">Sign Up </NavLink>
                   <NavLink to="/contacts">Contatti </NavLink>
+                  <NavLink to="/events">Eventi </NavLink>
                   <input
                       className="search"
                       type="text"
@@ -45,9 +48,14 @@ function App() {
                       <Route exact path="/notify" element={<Notifications />} />
                       <Route exact path="/cart" element={<ShoppingCart />} />
                       <Route exact path="/contacts" element={<Contacts />} />
+                      <Route exact path="/events" element={<Events />} />
+                      <Route exact path="/admin" element={<Admin />} />
                   </Routes>
               </div>
           </Router>
+          <footer>
+              Copyright 2022 - Francesco Foschini, Alessia Rocco
+          </footer>
     </div>
   );
 }
