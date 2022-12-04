@@ -1,0 +1,61 @@
+@font-face {
+  font-family: myFirstFont;
+}
+
+$primary-color: #707171;
+$second-color: #FFFF;
+$third-color: #F57536;
+$text-color: black;
+
+.App {
+  color: $text-color;
+}
+
+.App-nav, footer {
+  text-align: center;
+  background-color: $primary-color;
+  color: $second-color;
+}
+
+.App-nav > * {
+  text-decoration: none;
+  color: $second-color;
+  &:hover {
+    color: $third-color;
+  }
+  .search {
+    width: 30%;
+    height: 25px;
+  }
+  padding: 1px;
+}
+
+.App-content {
+  min-height: 85vh;
+  margin: auto;
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+a.link-icon img {
+  height: 3vh;
+  padding-top: 5px;
+}
+
+.logo {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.error {
+  color: darkred;
+  font-size: x-small;
+}
+
+.icon {
+  alignment: center;
+}

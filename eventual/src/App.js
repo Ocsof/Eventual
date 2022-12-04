@@ -1,4 +1,3 @@
-import './App.css';
 import {
     BrowserRouter as Router,
     Route,
@@ -26,19 +25,19 @@ function App() {
       <div className="App">
           <Router>
               <nav className={"App-nav"}>
-                  <Link to="/" className="logo">Eventual </Link>
+                  <NavLink to="/" className="logo">Eventual </NavLink>
                   <NavLink to="/login">Login </NavLink>
                   <NavLink to="/signup">Sign Up </NavLink>
-                  <NavLink to="/contacts">Contatti </NavLink>
                   <NavLink to="/events">Eventi </NavLink>
+                  <NavLink to="/contacts">Contatti </NavLink>
                   <input
                       className="search"
                       type="text"
                       placeholder="search..."
                       onChange={inputHandler}
                   />
-                  <Link to="/notify" className="link-icon"> <img src="img/notification.png" alt="notifications" className="icon" /> </Link>
-                  <Link to="/cart" className="link-icon"> <img src="img/shopping-cart.png" alt="shopping cart" className="icon" /> </Link>
+                  <Link to="/notify" className="link-icon"> <img src="img/notification.svg" alt="notifications" className="icon" /> </Link>
+                  <Link to="/cart" className="link-icon"> <img src="img/shopping-cart.svg" alt="shopping cart" className="icon" /> </Link>
               </nav>
               <div className="App-content">
                   <Routes>
