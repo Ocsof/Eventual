@@ -13,12 +13,22 @@ import ShoppingCart from "./cmp/ShoppingCart";
 import Contacts from "./cmp/Contacts";
 import Events from "./cmp/Events";
 import Admin from "./cmp/intern/Admin";
+import List from "./cmp/search/List";
+import React, {useState} from "react";
 
 function App() {
-    let inputHandler = () => {
+    const [inputText, setInputText] = useState("");
+    let inputHandler = (e) => {
+        //convert input text to lower case
+        const lowerCase = e.target.value.toLowerCase();
+        setInputText(lowerCase);
+    };
+
+    let handleChange = () => {
         /*
         TODO: change with research on the database
          */
+
     };
 
   return (
@@ -31,9 +41,10 @@ function App() {
                   <NavLink to="/events">Eventi </NavLink>
                   <NavLink to="/contacts">Contatti </NavLink>
                   <input
-                      className="search"
-                      type="text"
-                      placeholder="search..."
+                      id="outlined-basic"
+                      variant="outlined"
+                      fullWidth
+                      label="Search"
                       onChange={inputHandler}
                   />
                   <Link to="/notify" className="link-icon"> <img src="img/notification.svg" alt="notifications" className="icon" /> </Link>
@@ -50,6 +61,7 @@ function App() {
                       <Route exact path="/events" element={<Events />} />
                       <Route exact path="/admin" element={<Admin />} />
                   </Routes>
+                  <List input={inputText}/>
               </div>
           </Router>
           <footer>
