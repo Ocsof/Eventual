@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import Home from "./Home";
 
 class Login extends React.Component {
     constructor(props) {
@@ -39,25 +40,34 @@ class Login extends React.Component {
     }
 
     render() {
-        return (
+        if(!this.state.isLogged) {
+            return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Email:
-                        <input type="text" alt="email" value={this.state.email} onChange={this.handleEmailChange} />
+                        <input type="text" alt="email" autoComplete="email" value={this.state.email} onChange={this.handleEmailChange} />
                     </label>
                     <br/>
                     <label>
                         Password:
-                        <input type="password" alt="password" value={this.state.password} onChange={this.handlePasswordChange} />
+                        <input type="password" alt="password" autoComplete="current-password" value={this.state.password} onChange={this.handlePasswordChange} />
                     </label>
                     <br/>
                     <input type="submit" value="Submit" />
                 </form>
-                <p>Ho dimenticato la password</p>
+                <Link to="/passwordRecover">Ho dimenticato la password</Link>
+                <br/>
                 <Link to="/signup">Clicca qui se non sei ancora iscritto</Link>
             </div>
-        );
+            )
+        } else {
+            return (
+                <div>
+                    <Home />
+                </div>
+            )
+        }
     }
 }
 

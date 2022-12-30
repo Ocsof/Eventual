@@ -1,11 +1,9 @@
+@import 'variables';
+@import 'mixins';
+
 @font-face {
   font-family: myFirstFont;
 }
-
-$primary-color: #707171;
-$second-color: #FFFF;
-$third-color: #F57536;
-$text-color: black;
 
 .App {
   color: $text-color;
@@ -20,6 +18,8 @@ $text-color: black;
 .App-nav > * {
   text-decoration: none;
   color: $second-color;
+  margin: 0 auto;
+  padding: 1%;
   &:hover {
     color: $third-color;
   }
@@ -27,13 +27,11 @@ $text-color: black;
     width: 30%;
     height: 25px;
   }
-  padding: 1px;
 }
 
 .App-content {
   min-height: 85vh;
-  margin: auto;
-  padding: 1%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,4 +56,9 @@ a.link-icon img {
 
 .icon {
   alignment: center;
+}
+
+.cover {
+  @include background-cover("../../public/img/download.jpg");
+  @include responsive-height(16,9);
 }

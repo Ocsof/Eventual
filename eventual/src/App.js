@@ -1,3 +1,4 @@
+// noinspection ES6CheckImport
 import {
     BrowserRouter as Router,
     Route,
@@ -13,13 +14,15 @@ import ShoppingCart from "./cmp/ShoppingCart";
 import Contacts from "./cmp/Contacts";
 import Events from "./cmp/Events";
 import Admin from "./cmp/intern/Admin";
-import List from "./cmp/search/List";
 import React, {useState} from "react";
+import * as PropTypes from 'prop-types';
+import PasswordRecover from "./cmp/PasswordRecover";
+
+Routes.propTypes = {children: PropTypes.node};
 
 function App() {
     const [inputText, setInputText] = useState("");
     let inputHandler = (e) => {
-        //convert input text to lower case
         const lowerCase = e.target.value.toLowerCase();
         setInputText(lowerCase);
     };
@@ -33,7 +36,7 @@ function App() {
 
   return (
       <div className="App">
-          <Router>
+          <Router >
               <nav className={"App-nav"}>
                   <NavLink to="/" className="logo">Eventual </NavLink>
                   <NavLink to="/login">Login </NavLink>
@@ -52,7 +55,7 @@ function App() {
               </nav>
               <div className="App-content">
                   <Routes>
-                      <Route path="/" element={<Home/>} />
+                      <Route exact path="/" element={<Home/>} />
                       <Route exact path="/login" element={<Login/>} />
                       <Route exact path="/signup" element={<SignUp />} />
                       <Route exact path="/notify" element={<Notifications />} />
@@ -60,8 +63,9 @@ function App() {
                       <Route exact path="/contacts" element={<Contacts />} />
                       <Route exact path="/events" element={<Events />} />
                       <Route exact path="/admin" element={<Admin />} />
+                      <Route exact path="/passwordRecover" element={<PasswordRecover />} />
                   </Routes>
-                  <List input={inputText}/>
+                  {/*<List input={inputText}/>*/}
               </div>
           </Router>
           <footer>
