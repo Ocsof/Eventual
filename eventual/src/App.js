@@ -65,7 +65,6 @@ function App() {
                       <Route exact path="/admin" element={<Admin />} />
                       <Route exact path="/passwordRecover" element={<PasswordRecover />} />
                   </Routes>
-                  {/*<List input={inputText}/>*/}
               </div>
           </Router>
           <footer>

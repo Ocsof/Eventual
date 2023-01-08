@@ -1,10 +1,9 @@
-/* Error: Undefined function.
- *    ,
- * 13 |   padding-bottom: math.div($y, $x) * 77%;
- *    |                   ^^^^^^^^^^^^^^^^
- *    '
- *   _mixins.scss 13:19  responsive-height()
- *   index.scss 63:3     root stylesheet */
+/* Error: Can't find stylesheet to import.
+ *   ,
+ * 3 | @import 'events';
+ *   |         ^^^^^^^^
+ *   '
+ *   index.scss 3:9  root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -14,5 +13,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: Undefined function.\a    \2577 \a 13 \2502    padding-bottom: math.div($y, $x) * 77%;\d\a    \2502                    ^^^^^^^^^^^^^^^^\a    \2575 \a   _mixins.scss 13:19  responsive-height()\a   index.scss 63:3     root stylesheet";
+  content: "Error: Can't find stylesheet to import.\a   \2577 \a 3 \2502  @import 'events';\d\a   \2502          ^^^^^^^^\a   \2575 \a   index.scss 3:9  root stylesheet";
 }
