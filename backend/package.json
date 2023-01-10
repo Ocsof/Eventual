@@ -1,0 +1,16 @@
+{
+  "name": "hit-counter-service",
+  "version": "0.1.0",
+  "description": "A simple Web serivice which simply counts how many requests it has received",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "type": "module",
+  "author": "Giovanni Ciatto",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^4.1.3"
+  }
+}

@@ -29,15 +29,15 @@ services:
   hc-frontend:
     depends_on:
       - mongo
-    image: foscofra/hit-counter2
+    image: foscofra/node-eventual
     #image: foscofra/nodejs
     environment:
       MONGO_USER: admin
       MONGO_PASSWORD: admin
       MONGO_HOST: mongo #nome immagine che corrisponde all'IP grazie al dns di docker
     ports:
-      - "8080:80"
+      - "8082:8080"
     restart: always
-    #deploy:
-      #mode: replicated
-      #replicas: 3
+    deploy:
+      mode: replicated
+      replicas: 3
