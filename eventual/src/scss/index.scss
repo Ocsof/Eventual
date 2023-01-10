@@ -1,0 +1,65 @@
+@import 'variables';
+@import 'mixins';
+@import 'events';
+
+@font-face {
+  font-family: myFirstFont;
+}
+
+.App {
+  color: $text-color;
+}
+
+.App-nav, footer {
+  text-align: center;
+  background-color: $primary-color;
+  color: $second-color;
+}
+
+.App-nav > * {
+  text-decoration: none;
+  color: $second-color;
+  margin: 0 auto;
+  padding: 1%;
+  &:hover {
+    color: $third-color;
+  }
+  .search {
+    width: 30%;
+    height: 25px;
+  }
+}
+
+.App-content {
+  min-height: 85vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+a.link-icon img {
+  height: 3vh;
+  padding-top: 5px;
+}
+
+.logo {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.error {
+  color: darkred;
+  font-size: x-small;
+}
+
+.icon {
+  alignment: center;
+}
+
+.cover {
+  @include background-cover("../../public/img/download.jpg");
+  @include responsive-height(16,9);
+}

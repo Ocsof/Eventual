@@ -1,0 +1,14 @@
+// main: index.scss
+@use "sass:math";
+
+@mixin background-cover($img_url) {
+  background: url($img_url) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+}
+
+@mixin responsive-height($x, $y) {
+  height: 0;
+  padding-bottom: math.div($y, $x) * 77%;
+}
