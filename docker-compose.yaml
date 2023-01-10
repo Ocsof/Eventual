@@ -1,3 +1,8 @@
+#docker swarm init
+#docker stack deploy eventual -c docker-compose.yaml
+#docker service ls
+#docker swarm leave --force
+
 version: '3.1'
 
 services:
@@ -26,7 +31,7 @@ services:
       ME_CONFIG_MONGODB_PORT: 27017  #mongodb port
       ME_CONFIG_MONGODB_URL: mongodb://${ME_CONFIG_MONGODB_ADMINUSERNAME}:${ME_CONFIG_MONGODB_ADMINPASSWORD}@${ME_CONFIG_MONGODB_SERVER}:${ME_CONFIG_MONGODB_PORT}/
 
-  hc-frontend:
+  eventual-backend:
     depends_on:
       - mongo
     image: foscofra/node-eventual
@@ -41,3 +46,11 @@ services:
     deploy:
       mode: replicated
       replicas: 3
+
+  eventual-frontend:
+    depends_on:
+      - foscofra/node-eventual
+    image: foscofra/react-eventual
+    ports:
+      - "3000:3000"
+    restart: always
