@@ -45,7 +45,7 @@ Matteo e Lorenzo sono due imprenditori adulti e affermati nel loro settore che v
 - M & L si iscrivono come organizzatori, registrando i dati della loro organizzazione
 - M & L creano un nuovo evento 
 - M & L hanno la necessità di modificare gli eventi o eliminarli
-- M & L hanno la possibilità di comunicare delle notifiche sull'evento tramiche notifiche broadcast a tutti i partecipanti di un loro evento 
+- M & L hanno la possibilità di comunicare delle notifiche sull'evento tramite notifiche broadcast a tutti i partecipanti di un loro evento 
 - M & L incassano poi il ricavato dalla vendita dei biglietti di un evento
 
 ## Personas: Andrea
