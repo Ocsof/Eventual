@@ -46,7 +46,6 @@ function App() {
                   <input
                       id="outlined-basic"
                       variant="outlined"
-                      fullWidth
                       label="Search"
                       onChange={inputHandler}
                   />

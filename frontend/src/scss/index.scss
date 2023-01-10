@@ -1,6 +1,7 @@
 @import 'variables';
 @import 'mixins';
 @import 'events';
+@import 'include-media';
 
 @font-face {
   font-family: myFirstFont;
@@ -8,6 +9,15 @@
 
 .App {
   color: $text-color;
+  @include responsive-height(16,9);
+  /* Inclusive and exclusive operators for a finer control over the intervals */
+  @include media(">phone", "<=tablet") {
+    width: 50%;
+  }
+  /* Use ligatured operators if you fancy a slicker declaration */
+  @include media("≥phone", "≤tablet") {
+    line-height: 1.5;
+  }
 }
 
 .App-nav, footer {
