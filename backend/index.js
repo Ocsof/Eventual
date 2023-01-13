@@ -3,7 +3,7 @@ import express from 'express'
 import { randomBytes } from 'crypto'
 import { MongoClient } from 'mongodb'
 
-const port = 'HIT_COUNTER_PORT' in env ? env.HIT_COUNTER_PORT : 8080
+const port = 'HIT_COUNTER_PORT' in env ? env.EVENTUAL_NODE_PORT : 8080
 const hostname = 'HOSTNAME' in env ? env.HOSTNAME : 'localhost'
 const serverName = randomBytes(8).toString('hex') // 8-char random string
 const serverID = `${serverName}@${hostname}:${port}`
