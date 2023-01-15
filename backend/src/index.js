@@ -35,4 +35,6 @@ server.get('/', async (req, res) => {
 })
  
 console.log(`Service ${serverID} listening on ${hostname}:${port}`)
-server.listen(port)
+server.listen(port, ()=>{
+  console.log('Listening on port: ' + port)
+})
