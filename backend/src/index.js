@@ -1,40 +1,34 @@
-import { env } from 'process'
-import express from 'express'
-import { randomBytes } from 'crypto'
-import { MongoClient } from 'mongodb'
+//import { env } from 'process'
+const port = 8080//'HIT_COUNTER_PORT' in env ? env.EVENTUAL_NODE_PORT : 8080
+const hostname = 'localhost'//'HOSTNAME' in env ? env.HOSTNAME : 'localhost'
 
-const port = 'HIT_COUNTER_PORT' in env ? env.EVENTUAL_NODE_PORT : 8080
-const hostname = 'HOSTNAME' in env ? env.HOSTNAME : 'localhost'
-const serverName = randomBytes(8).toString('hex') // 8-char random string
-const serverID = `${serverName}@${hostname}:${port}`
-
-const mongoHost = 'MONGO_HOST' in env ? env.MONGO_HOST : "localhost"
-const mongoPort = 'MONGO_PORT' in env ? env.MONGO_PORT : 27017
-const mongoUser = 'MONGO_USER' in env ? env.MONGO_USER : "admin"
-const mongoPassword = 'MONGO_PASSWORD' in env ? env.MONGO_PASSWORD : "admin"
+const mongoHost = "localhost"//'MONGO_HOST' in env ? env.MONGO_HOST : "localhost"
+const mongoPort = 27017 //'MONGO_PORT' in env ? env.MONGO_PORT : 27017
+const mongoUser = "admin" //'MONGO_USER' in env ? env.MONGO_USER : "admin"
+const mongoPassword = "admin" //'MONGO_PASSWORD' in env ? env.MONGO_PASSWORD : "admin"
 const mongoConnection = `mongodb://${mongoUser}:${mongoPassword}@${mongoHost}:${mongoPort}`;
-const mongClient = new MongoClient(mongoConnection);
 
+//const mongClient = new MongoClient(mongoConnection);
+const mongoose = require('mongoose');
+//import mongoose from 'mongoose';
+mongoose.connect(mongoConnection)
+    .then(() => console.log('Connected to MongoDB.'))
+    .catch(err => console.error('Error connecting to MongoDB:', err));
+
+const express = require('express');
 const server = express()
- 
-server.get('/', async (req, res) => {
-  try {
-    await mongClient.connect()
-    let database = mongClient.db("hit-counter2")
-    let hits = database.collection('hits')
 
-    await hits.insertOne({hitby: serverID})
-    let count = await hits.countDocuments()
+const routesEvent = require('./routes/eventRoute.js');
+routesEvent(server);
+const routesUser = require('./routes/userRoute.js')
+routesUser(server)
 
-    res.send(`[${serverID}] Hit ${count} times`)
-  } catch (e) {
-    res.send(e.toString())
-  } finally {
-    await mongClient.close()
-  }
+server.get('/', (req, res) => {
+  res.send("ciaooooo")
 })
- 
-console.log(`Service ${serverID} listening on ${hostname}:${port}`)
+
+
+console.log(`Service listening on ${hostname}:${port}`)
 server.listen(port, ()=>{
   console.log('Listening on port: ' + port)
 })
