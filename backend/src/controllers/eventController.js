@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const eventModel = require('../models/eventModel')(mongoose)
+const EventModel = require('../models/eventModel')(mongoose)
 
 exports.new_event = (req,res)=>{
-    const Event = new eventModel(req.body);
+    const Event = new EventModel(req.body);
     Event.save((err,doc)=>{
         if(err){
             res.send(err);
@@ -18,7 +18,7 @@ Se vengono trovati documenti, vengono restituiti all'utente, altrimenti viene re
 Questo query restituirà tutti gli eventi appartenenti alla categoria desiderata e con data maggiore  o uguale alla data attuale
 */
 exports.read_eventsByCategory = (req, res) => {
-    eventModel.find({category: req.params.category, date:{$gte: new Date()}},
+    EventModel.find({category: req.params.category, date:{$gte: new Date()}},
         (err, events) => {
             if (err) {
                 res.status(500).json({error: err});
@@ -26,4 +26,14 @@ exports.read_eventsByCategory = (req, res) => {
                 res.json(events);
             }
         })
+}
+
+exports.read_tenMostRecentEvents = (req, res) => {
+    EventModel.find({}).sort({ date: -1 }).limit(10).exec((err, events) => {
+        if (err) {
+            res.status(500).json({ error: 'Errore del server' });
+        } else {
+            res.json(events);
+        }
+    });
 }
