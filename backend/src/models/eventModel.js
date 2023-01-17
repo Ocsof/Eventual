@@ -7,5 +7,5 @@ module.exports =  (mongoose)=>{
         date: Date,
         description: String
     })
-    return mongoose.model('Event',eventSchema)
+    return mongoose.model('Events',eventSchema)
 }
