@@ -15,6 +15,5 @@ ENV EVENTUAL_NODE_PORT 8080
 RUN npm install
 RUN npm install express
 CMD npm run start
-#cosi quando il container runna popolo il db events con eventi di partenza
-#CMD npm run seed
+
 
