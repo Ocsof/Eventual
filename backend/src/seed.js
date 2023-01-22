@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 const EventModel = require('./models/eventModel')(mongoose); // import Event model
+const UserModel = require('./models/userModel')(mongoose); // import Event model
 
 const randomEvents = [
     {
         title: 'Event 1',
         author: 'Author 1',
         image: '',
-        category: 'Category 1',
+        category: 'Category1',
         date: new Date(),
         description: 'Description'
     },
@@ -14,7 +15,7 @@ const randomEvents = [
         title: 'Event 2',
         author: 'Author 2',
         image: '',
-        category: 'Category 2',
+        category: 'Category2',
         date: new Date(),
         description: 'Description'
     },
@@ -23,7 +24,7 @@ const randomEvents = [
         title: 'Event 3',
         author: 'Author 1',
         image: '',
-        category: 'Category 1',
+        category: 'Category1',
         date: new Date(),
         description: 'Description'
     },
@@ -31,7 +32,7 @@ const randomEvents = [
         title: 'Event 4',
         author: 'Author 2',
         image: '',
-        category: 'Category 2',
+        category: 'Category2',
         date: new Date(),
         description: 'Description'
     },
@@ -40,7 +41,7 @@ const randomEvents = [
         title: 'Event 5',
         author: 'Author 1',
         image: '',
-        category: 'Category 1',
+        category: 'Category1',
         date: new Date(),
         description: 'Description'
     },
@@ -48,7 +49,7 @@ const randomEvents = [
         title: 'Event 6',
         author: 'Author 2',
         image: '',
-        category: 'Category 2',
+        category: 'Category2',
         date: new Date(),
         description: 'Description'
     },
@@ -57,7 +58,7 @@ const randomEvents = [
         title: 'Event 7',
         author: 'Author 1',
         image: '',
-        category: 'Category 1',
+        category: 'Category1',
         date: new Date(),
         description: 'Description'
     },
@@ -65,7 +66,7 @@ const randomEvents = [
         title: 'Event 8',
         author: 'Author 2',
         image: '',
-        category: 'Category 2',
+        category: 'Category2',
         date: new Date(),
         description: 'Description'
     },
@@ -74,7 +75,7 @@ const randomEvents = [
         title: 'Event 9',
         author: 'Author 1',
         image: '',
-        category: 'Category 1',
+        category: 'Category1',
         date: new Date(),
         description: 'Description'
     },
@@ -82,7 +83,7 @@ const randomEvents = [
         title: 'Event 10',
         author: 'Author 2',
         image: '',
-        category: 'Category 2',
+        category: 'Category2',
         date: new Date(),
         description: 'Description'
     },
@@ -91,7 +92,7 @@ const randomEvents = [
         title: 'Event 11',
         author: 'Author 1',
         image: '',
-        category: 'Category 1',
+        category: 'Category1',
         date: new Date(),
         description: 'Description'
     },
@@ -99,11 +100,31 @@ const randomEvents = [
         title: 'Event 12',
         author: 'Author 2',
         image: '',
-        category: 'Category 2',
+        category: 'Category2',
         date: new Date(),
         description: 'Description'
     },
     // Add more events here
+];
+
+const admins = [
+    {
+        name: 'Francesco',
+        surname: 'Foschini',
+        email: 'fra@admin.it',
+        phone: 364474,
+        password: "password",
+        category: 'Admin',
+    },
+    {
+        name: 'Alessia',
+        surname: 'Rocco',
+        email: 'ale@admin.it',
+        phone: 322456,
+        password: "password",
+        category: 'Admin',
+    },
+
 ];
 
 async function seedEvents() {
@@ -118,13 +139,21 @@ async function seedEvents() {
         await mongoose.connect(mongoConnection)
         console.log('Connected to MongoDB');
 
-        // Clear existing events
+        // elimino gli eventi esistenti
         await EventModel.deleteMany({});
         console.log('Existing events removed');
 
-        // Insert new events
+        // popolo la collezione eventi
         await EventModel.insertMany(randomEvents);
         console.log('Events seeded successfully');
+
+        //elimino gli user esistenti
+        await UserModel.deleteMany({})
+        console.log('Existing users removed');
+
+        // popolo la collezione users con i due admin
+        await UserModel.insertMany(admins);
+        console.log('Admins inserted successfully');
 
         mongoose.connection.close();
     } catch (err) {
