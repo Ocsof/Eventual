@@ -7,12 +7,15 @@ version: '3.1'
 
 services:
   # cf. https://hub.docker.com/_/mongo
-  mongo:
+  mongodb:
     image: mongo
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin # mongo admin username
-      MONGO_INITDB_ROOT_PASSWORD: admin # mongo admin password
+      #MONGO_INITDB_ROOT_USERNAME: admin # mongo admin username
+      #MONGO_INITDB_ROOT_PASSWORD: admin # mongo admin password
+      #MONGO_USER: myuser
+      #MONGO_PASSWORD: mypassword
+      MONGO_INITDB_DATABASE: test
     ports:
       - 27017:27017 # mongo default port
 
@@ -25,21 +28,20 @@ services:
     ports:
       - 8081:8081 # mongo bashboard port
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: admin # same mongo username as above
-      ME_CONFIG_MONGODB_ADMINPASSWORD: admin # same mongo password as above
-      ME_CONFIG_MONGODB_SERVER: mongo #nome immagine che corrisponde all'IP grazie al dns di docker
+      #ME_CONFIG_MONGODB_ADMINUSERNAME: admin # same mongo username as above
+      #ME_CONFIG_MONGODB_ADMINPASSWORD: admin # same mongo password as above
+      ME_CONFIG_MONGODB_SERVER: mongodb #nome immagine che corrisponde all'IP grazie al dns di docker
       ME_CONFIG_MONGODB_PORT: 27017  #mongodb port
-      ME_CONFIG_MONGODB_URL: mongodb://${ME_CONFIG_MONGODB_ADMINUSERNAME}:${ME_CONFIG_MONGODB_ADMINPASSWORD}@${ME_CONFIG_MONGODB_SERVER}:${ME_CONFIG_MONGODB_PORT}/
+      ME_CONFIG_MONGODB_URL: mongodb://${ME_CONFIG_MONGODB_SERVER}:${ME_CONFIG_MONGODB_PORT}/
 
   eventual-backend:
     depends_on:
       - mongo
     image: foscofra/node-eventual
-    #image: foscofra/nodejs
     environment:
-      MONGO_USER: admin
-      MONGO_PASSWORD: admin
-      MONGO_HOST: mongo #nome immagine che corrisponde all'IP grazie al dns di docker
+      #MONGO_USER: admin
+      #MONGO_PASSWORD: admin
+      MONGO_HOST: mongodb #nome immagine che corrisponde all'IP grazie al dns di docker
     ports:
       - "8082:8080"
     restart: always
