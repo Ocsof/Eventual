@@ -17,7 +17,7 @@ services:
       #MONGO_PASSWORD: mypassword
       MONGO_INITDB_DATABASE: test
     ports:
-      - 27017:27017 # mongo default port
+      - "27017:27017" # mongo default port
 
   # cf. https://hub.docker.com/_/mongo-express
   mongo-dashboard:
@@ -26,7 +26,7 @@ services:
     image: mongo-express
     restart: always
     ports:
-      - 8081:8081 # mongo bashboard port
+      - "8081:8081" # mongo bashboard port
     environment:
       #ME_CONFIG_MONGODB_ADMINUSERNAME: admin # same mongo username as above
       #ME_CONFIG_MONGODB_ADMINPASSWORD: admin # same mongo password as above

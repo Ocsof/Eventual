@@ -8,7 +8,7 @@ const randomEvents = [
         author: 'Author 1',
         image: '',
         category: 'Category1',
-        date: new Date(),
+        date: new Date(2023, 1, 12),
         description: 'Description'
     },
     {
@@ -16,7 +16,7 @@ const randomEvents = [
         author: 'Author 2',
         image: '',
         category: 'Category2',
-        date: new Date(),
+        date: new Date(2023, 2, 12),
         description: 'Description'
     },
 
@@ -25,7 +25,7 @@ const randomEvents = [
         author: 'Author 1',
         image: '',
         category: 'Category1',
-        date: new Date(),
+        date: new Date(2023, 3, 12),
         description: 'Description'
     },
     {
@@ -33,7 +33,7 @@ const randomEvents = [
         author: 'Author 2',
         image: '',
         category: 'Category2',
-        date: new Date(),
+        date: new Date(2023, 4, 12),
         description: 'Description'
     },
 
@@ -42,7 +42,7 @@ const randomEvents = [
         author: 'Author 1',
         image: '',
         category: 'Category1',
-        date: new Date(),
+        date: new Date(2023, 5, 12),
         description: 'Description'
     },
     {
@@ -50,7 +50,7 @@ const randomEvents = [
         author: 'Author 2',
         image: '',
         category: 'Category2',
-        date: new Date(),
+        date: new Date(2023, 6, 12),
         description: 'Description'
     },
 
@@ -59,7 +59,7 @@ const randomEvents = [
         author: 'Author 1',
         image: '',
         category: 'Category1',
-        date: new Date(),
+        date: new Date(2023, 7, 12),
         description: 'Description'
     },
     {
@@ -67,7 +67,7 @@ const randomEvents = [
         author: 'Author 2',
         image: '',
         category: 'Category2',
-        date: new Date(),
+        date: new Date(2023, 8, 12),
         description: 'Description'
     },
 
@@ -76,7 +76,7 @@ const randomEvents = [
         author: 'Author 1',
         image: '',
         category: 'Category1',
-        date: new Date(),
+        date: new Date(2023, 9, 12),
         description: 'Description'
     },
     {
@@ -84,7 +84,7 @@ const randomEvents = [
         author: 'Author 2',
         image: '',
         category: 'Category2',
-        date: new Date(),
+        date: new Date(2023, 10, 12),
         description: 'Description'
     },
 
@@ -93,7 +93,7 @@ const randomEvents = [
         author: 'Author 1',
         image: '',
         category: 'Category1',
-        date: new Date(),
+        date: new Date(2023, 11, 12),
         description: 'Description'
     },
     {
@@ -101,7 +101,7 @@ const randomEvents = [
         author: 'Author 2',
         image: '',
         category: 'Category2',
-        date: new Date(),
+        date: new Date(2023, 12, 12),
         description: 'Description'
     },
     // Add more events here
@@ -129,13 +129,14 @@ const admins = [
 
 async function seedEvents() {
     try {
-        const mongoHost = "mongodb"//'MONGO_HOST' in env ? env.MONGO_HOST : "localhost"
+        const mongoHost = "localhost"//'MONGO_HOST' in env ? env.MONGO_HOST : "localhost"
         const mongoPort = 27017 //'MONGO_PORT' in env ? env.MONGO_PORT : 27017
-        const mongoUser = "admin" //'MONGO_USER' in env ? env.MONGO_USER : "admin"
-        const mongoPassword = "admin" //'MONGO_PASSWORD' in env ? env.MONGO_PASSWORD : "admin"
+        //const mongoUser = "admin" //'MONGO_USER' in env ? env.MONGO_USER : "admin"
+        //const mongoPassword = "admin" //'MONGO_PASSWORD' in env ? env.MONGO_PASSWORD : "admin"
         //const mongoConnection = `mongodb://${mongoUser}:${mongoPassword}@${mongoHost}:${mongoPort}/test`;
         const mongoConnection = `mongodb://${mongoHost}:${mongoPort}/test`
 
+        console.log(mongoConnection)
         await mongoose.connect(mongoConnection)
         console.log('Connected to MongoDB');
 
@@ -161,4 +162,4 @@ async function seedEvents() {
     }
 }
 
-seedEvents();
+seedEvents()
