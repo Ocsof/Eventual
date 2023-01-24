@@ -8,7 +8,7 @@ const randomEvents = [
         author: 'Author 1',
         image: '',
         category: 'Category1',
-        date: new Date(2023, 1, 12),
+        date: new Date(2023, 0, 12),
         description: 'Description'
     },
     {
@@ -16,7 +16,7 @@ const randomEvents = [
         author: 'Author 2',
         image: '',
         category: 'Category2',
-        date: new Date(2023, 2, 12),
+        date: new Date(2023, 0, 12),
         description: 'Description'
     },
 
@@ -25,7 +25,7 @@ const randomEvents = [
         author: 'Author 1',
         image: '',
         category: 'Category1',
-        date: new Date(2023, 3, 12),
+        date: new Date(2023, 0, 12),
         description: 'Description'
     },
     {
@@ -33,7 +33,7 @@ const randomEvents = [
         author: 'Author 2',
         image: '',
         category: 'Category2',
-        date: new Date(2023, 4, 12),
+        date: new Date(2023, 1, 12),
         description: 'Description'
     },
 
@@ -42,7 +42,7 @@ const randomEvents = [
         author: 'Author 1',
         image: '',
         category: 'Category1',
-        date: new Date(2023, 5, 12),
+        date: new Date(2023, 1, 12),
         description: 'Description'
     },
     {
@@ -50,7 +50,7 @@ const randomEvents = [
         author: 'Author 2',
         image: '',
         category: 'Category2',
-        date: new Date(2023, 6, 12),
+        date: new Date(2023, 2, 12),
         description: 'Description'
     },
 
@@ -59,7 +59,7 @@ const randomEvents = [
         author: 'Author 1',
         image: '',
         category: 'Category1',
-        date: new Date(2023, 7, 12),
+        date: new Date(2023, 2, 12),
         description: 'Description'
     },
     {
@@ -67,7 +67,7 @@ const randomEvents = [
         author: 'Author 2',
         image: '',
         category: 'Category2',
-        date: new Date(2023, 8, 12),
+        date: new Date(2023, 2, 12),
         description: 'Description'
     },
 
@@ -76,7 +76,7 @@ const randomEvents = [
         author: 'Author 1',
         image: '',
         category: 'Category1',
-        date: new Date(2023, 9, 12),
+        date: new Date(2023, 3, 12),
         description: 'Description'
     },
     {
@@ -84,7 +84,7 @@ const randomEvents = [
         author: 'Author 2',
         image: '',
         category: 'Category2',
-        date: new Date(2023, 10, 12),
+        date: new Date(2023, 4, 12),
         description: 'Description'
     },
 
@@ -93,7 +93,7 @@ const randomEvents = [
         author: 'Author 1',
         image: '',
         category: 'Category1',
-        date: new Date(2023, 11, 12),
+        date: new Date(2023, 5, 12),
         description: 'Description'
     },
     {
@@ -101,7 +101,7 @@ const randomEvents = [
         author: 'Author 2',
         image: '',
         category: 'Category2',
-        date: new Date(2023, 12, 12),
+        date: new Date(2023, 5, 12),
         description: 'Description'
     },
     // Add more events here
