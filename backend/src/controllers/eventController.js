@@ -29,7 +29,7 @@ exports.read_eventsByCategory = (req, res) => {
 }
 
 exports.read_tenMostRecentEvents = (req, res) => {
-    EventModel.find({}).sort({ date: -1 }).limit(10).exec((err, events) => {
+    EventModel.find({date:{$gte: new Date()}}).sort({ date: -1 }).limit(10).exec((err, events) => {
         if (err) {
             res.status(500).json({ error: 'Errore del server' });
         } else {
