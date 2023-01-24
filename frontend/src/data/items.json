@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Event 1",
+    "price": 100,
+    "imgUrl": "/img/event1.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Event 2",
+    "price": 50,
+    "imgUrl": "/img/event2.jpg"
+  }
+]

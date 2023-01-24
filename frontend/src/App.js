@@ -1,27 +1,23 @@
-// noinspection ES6CheckImport
-import {
-    BrowserRouter as Router,
-    Route,
-    Routes,
-    NavLink,
-    Link
-} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes, NavLink, Link} from "react-router-dom";
 import SignUp from "./cmp/SignUp";
 import Home from "./cmp/Home";
 import Login from "./cmp/Login";
 import Notifications from "./cmp/Notifications";
-import ShoppingCart from "./cmp/ShoppingCart";
+import {ShoppingCart} from "./cmp/events/ShoppingCart";
 import Contacts from "./cmp/Contacts";
-import Events from "./cmp/Events";
 import Admin from "./cmp/intern/Admin";
 import React, {useState} from "react";
 import * as PropTypes from 'prop-types';
 import PasswordRecover from "./cmp/PasswordRecover";
+import {Button, Nav} from "react-bootstrap";
+import {ShoppingCartProvider, useShoppingCart} from "./cmp/events/ShoppingCartContext";
 
 Routes.propTypes = {children: PropTypes.node};
 
 function App() {
     const [inputText, setInputText] = useState("");
+    const { openCart, cartQuantity } = useShoppingCart();
+
     let inputHandler = (e) => {
         const lowerCase = e.target.value.toLowerCase();
         setInputText(lowerCase);
@@ -35,9 +31,10 @@ function App() {
     };
 
   return (
+      <ShoppingCartProvider>
       <div className="App">
           <Router >
-              <nav className={"App-nav"}>
+              <Nav className="App-nav">
                   <NavLink to="/" className="logo">Eventual </NavLink>
                   <NavLink to="/login">Login </NavLink>
                   <NavLink to="/signup">Sign Up </NavLink>
@@ -49,18 +46,24 @@ function App() {
                       label="Search"
                       onChange={inputHandler}
                   />
-                  <Link to="/notify" className="link-icon"> <img src="img/notification.svg" alt="notifications" className="icon" /> </Link>
-                  <Link to="/cart" className="link-icon"> <img src="img/shopping-cart.svg" alt="shopping cart" className="icon" /> </Link>
-              </nav>
+                  <Link to="/notify" className="link-icon"> <img src={"img/notification.svg"} alt="notifications" className="link-icon" /> </Link>
+                  <Button
+                      onClick={openCart}
+                      className="rounded-circle"
+                      variant="outline-primary"
+                      style={{width: "3rem", height:"3rem", position:"relative"}}
+                  >
+                      <img  src={"img/shopping-cart.svg"} alt="shopping cart" className="link-icon" />
+                  </Button>
+              </Nav>
               <div className="App-content">
                   <Routes>
                       <Route exact path="/" element={<Home/>} />
                       <Route exact path="/login" element={<Login/>} />
                       <Route exact path="/signup" element={<SignUp />} />
                       <Route exact path="/notify" element={<Notifications />} />
-                      <Route exact path="/cart" element={<ShoppingCart />} />
                       <Route exact path="/contacts" element={<Contacts />} />
-                      <Route exact path="/events" element={<Events />} />
+                      <Route exact path="/events" element={<ShoppingCart />} />
                       <Route exact path="/admin" element={<Admin />} />
                       <Route exact path="/passwordRecover" element={<PasswordRecover />} />
                   </Routes>
@@ -70,6 +73,7 @@ function App() {
               Copyright 2022 - Francesco Foschini, Alessia Rocco
           </footer>
     </div>
+      </ShoppingCartProvider>
   );
 }
 

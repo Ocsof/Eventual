@@ -50,11 +50,6 @@
   font-size: calc(10px + 2vmin);
 }
 
-a.link-icon img {
-  height: 3vh;
-  padding-top: 5px;
-}
-
 .logo {
   font-size: larger;
   font-weight: bold;
@@ -65,7 +60,8 @@ a.link-icon img {
   font-size: x-small;
 }
 
-.icon {
+.link-icon {
+  height: 3vh;
   alignment: center;
 }
 
