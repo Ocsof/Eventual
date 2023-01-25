@@ -3,13 +3,14 @@ const bcrypt = require('bcryptjs');
 // const jwt = require('jsonwebtoken'); //todo: valutarne l'utilizzo -> token di autenticazione e autorizzazione
 
 const UserModel = require('../models/userModel')(mongoose)
+const EventModel = mongoose.model("Events")
 
 exports.sign_user = (req,res)=>{
     const email = req.body.email
     const username = req.body.username
 
     // controllo se l'email o il nome utente sono già presenti nel database
-    User.findOne({ $or: [{ email }, { username }] }, (err, user) => {
+    UserModel.findOne({ $or: [{ email }, { username }] }, (err, user) => {
         if (err) {
             res.status(500).json({error: 'Errore del server'});
         } else if (user) {
@@ -52,5 +53,28 @@ exports.log_user = (req, res)=>{
                 message: 'Autenticazione fallita'
             });
         });
+}
+
+/*** per aggiornare l'utente, es: iscrizione ad un evento **/
+exports.update_user = (req,res)=>{
+    UserModel.findByIdAndUpdate(req.params.id,req.body,{new: true},(err,doc)=>{
+        if(err){
+            res.send(err);
+        }
+        res.json(doc);
+    })
+}
+
+/** leggere gli eventi a cui si è registrato un utente **/
+exports.read_myEvent = (req, res) => {
+    UserModel.findOne({email: "fra@admin.it"})
+        .populate('events')
+        .exec((err, users) => {
+            if(err){
+                res.send(err);
+            }
+            console.log(users.events[0].title)
+            res.json(users.events);
+        })
 }
 

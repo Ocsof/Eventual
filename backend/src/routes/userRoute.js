@@ -6,4 +6,7 @@ module.exports =  (server)=>{
 
     server.route('/login')
         .get(controller.log_user)
+
+    server.route('/myevent')
+        .get(controller.read_myEvent)
 }

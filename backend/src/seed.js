@@ -4,20 +4,24 @@ const UserModel = require('./models/userModel')(mongoose); // import Event model
 
 const randomEvents = [
     {
+        _id: new mongoose.mongo.ObjectId(),
         title: 'Event 1',
         author: 'Author 1',
         image: '',
         category: 'Category1',
         date: new Date(2023, 0, 12),
-        description: 'Description'
+        description: 'Description',
+        users: []
     },
     {
+        _id: new mongoose.mongo.ObjectId(),
         title: 'Event 2',
         author: 'Author 2',
         image: '',
         category: 'Category2',
         date: new Date(2023, 0, 12),
-        description: 'Description'
+        description: 'Description',
+        users: []
     },
 
     {
@@ -26,103 +30,126 @@ const randomEvents = [
         image: '',
         category: 'Category1',
         date: new Date(2023, 0, 12),
-        description: 'Description'
+        description: 'Description',
+        users: []
     },
     {
+        _id: new mongoose.mongo.ObjectId(),
         title: 'Event 4',
         author: 'Author 2',
         image: '',
         category: 'Category2',
         date: new Date(2023, 1, 12),
-        description: 'Description'
+        description: 'Description',
+        users: []
     },
 
     {
+        _id: new mongoose.mongo.ObjectId(),
         title: 'Event 5',
         author: 'Author 1',
         image: '',
         category: 'Category1',
         date: new Date(2023, 1, 12),
-        description: 'Description'
+        description: 'Description',
+        users: []
     },
     {
+        _id: new mongoose.mongo.ObjectId(),
         title: 'Event 6',
         author: 'Author 2',
         image: '',
         category: 'Category2',
         date: new Date(2023, 2, 12),
-        description: 'Description'
+        description: 'Description',
+        users: []
     },
 
     {
+        _id: new mongoose.mongo.ObjectId(),
         title: 'Event 7',
         author: 'Author 1',
         image: '',
         category: 'Category1',
         date: new Date(2023, 2, 12),
-        description: 'Description'
+        description: 'Description',
+        users: []
     },
     {
+        _id: new mongoose.mongo.ObjectId(),
         title: 'Event 8',
         author: 'Author 2',
         image: '',
         category: 'Category2',
         date: new Date(2023, 2, 12),
-        description: 'Description'
+        description: 'Description',
+        users: []
     },
 
     {
+        _id: new mongoose.mongo.ObjectId(),
         title: 'Event 9',
         author: 'Author 1',
         image: '',
         category: 'Category1',
         date: new Date(2023, 3, 12),
-        description: 'Description'
+        description: 'Description',
+        users: []
     },
     {
+        _id: new mongoose.mongo.ObjectId(),
         title: 'Event 10',
         author: 'Author 2',
         image: '',
         category: 'Category2',
         date: new Date(2023, 4, 12),
-        description: 'Description'
+        description: 'Description',
+        users: []
     },
 
     {
+        _id: new mongoose.mongo.ObjectId(),
         title: 'Event 11',
         author: 'Author 1',
         image: '',
         category: 'Category1',
         date: new Date(2023, 5, 12),
-        description: 'Description'
+        description: 'Description',
+        users: []
     },
     {
+        _id: new mongoose.mongo.ObjectId(),
         title: 'Event 12',
         author: 'Author 2',
         image: '',
         category: 'Category2',
         date: new Date(2023, 5, 12),
-        description: 'Description'
+        description: 'Description',
+        users: []
     },
     // Add more events here
 ];
 
 const admins = [
     {
+        _id: new mongoose.mongo.ObjectId(),
         name: 'Francesco',
         surname: 'Foschini',
         email: 'fra@admin.it',
         phone: 364474,
         password: "password",
         category: 'Admin',
+        events: [randomEvents[0]._id, randomEvents[1]._id]
     },
     {
+        _id: new mongoose.mongo.ObjectId(),
         name: 'Alessia',
         surname: 'Rocco',
         email: 'ale@admin.it',
         phone: 322456,
         password: "password",
         category: 'Admin',
+        events: []
     },
 
 ];
