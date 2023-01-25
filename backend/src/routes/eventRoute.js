@@ -10,4 +10,7 @@ module.exports =  (server)=>{
     server.route('/home')
         .get(controller.read_tenMostRecentEvents)
 
+    server.route('/myusers')
+        .get(controller.read_myUsers)
+
 }

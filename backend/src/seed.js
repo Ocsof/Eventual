@@ -154,6 +154,9 @@ const admins = [
 
 ];
 
+randomEvents[0].users = [admins[0]._id]
+randomEvents[1].users = [admins[0]._id]
+
 async function seedEvents() {
     try {
         const mongoHost = "localhost"//'MONGO_HOST' in env ? env.MONGO_HOST : "localhost"

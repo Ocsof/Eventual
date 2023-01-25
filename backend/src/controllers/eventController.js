@@ -38,6 +38,19 @@ exports.read_tenMostRecentEvents = (req, res) => {
     });
 }
 
+/** leggere gli utenti registrati all'evento **/
+exports.read_myUsers = (req, res) => {
+    EventModel.findOne({title: "Event 1"})
+        .populate('users')
+        .exec((err, event) => {
+            if(err){
+                res.send(err);
+            }
+            res.json(event.users);
+        })
+}
+
+
 
 
 

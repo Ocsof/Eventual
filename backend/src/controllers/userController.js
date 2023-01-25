@@ -67,14 +67,14 @@ exports.update_user = (req,res)=>{
 
 /** leggere gli eventi a cui si è registrato un utente **/
 exports.read_myEvent = (req, res) => {
-    UserModel.findOne({email: "fra@admin.it"})
+    UserModel.findOne({email: "fra@admin.it"}) //todo, da cambiare con req.params.id
         .populate('events')
-        .exec((err, users) => {
+        .exec((err, user) => {
             if(err){
                 res.send(err);
             }
-            console.log(users.events[0].title)
-            res.json(users.events);
+            console.log(user.events[0].title)
+            res.json(user.events);
         })
 }
 
