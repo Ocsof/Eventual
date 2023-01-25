@@ -4,11 +4,14 @@ import './scss/index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
+import {ShoppingCartProvider} from "./cmp/store/ShoppingCartContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+      <ShoppingCartProvider>
+          <App />
+      </ShoppingCartProvider>
   </React.StrictMode>
 );
 

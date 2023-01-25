@@ -11,7 +11,12 @@ type StoreItemProps = {
 }
 
 export function StoreItem({ id, name, price, imgUrl} : StoreItemProps) {
-    const {getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart} = useShoppingCart()
+    const {
+        getItemQuantity,
+        increaseCartQuantity,
+        decreaseCartQuantity,
+        removeFromCart
+    } = useShoppingCart()
     const quantity = getItemQuantity(id)
 
     return (
