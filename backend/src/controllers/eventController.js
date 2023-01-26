@@ -1,6 +1,16 @@
 const mongoose = require('mongoose');
 const EventModel = require('../models/eventModel')(mongoose)
 
+exports.read_tenMostRecentEvents = (req, res) => {
+    EventModel.find({date:{$gte: new Date()}}).sort({ date: -1 }).limit(10).exec((err, events) => {
+        if (err) {
+            res.status(500).json({ error: 'Errore del server' });
+        } else {
+            res.json(events);
+        }
+    });
+}
+
 exports.new_event = (req,res)=>{
     const Event = new EventModel(req.body);
     Event.save((err,doc)=>{
@@ -8,6 +18,33 @@ exports.new_event = (req,res)=>{
             res.send(err);
         }
         res.send(doc)
+    })
+}
+
+exports.read_event = (req, res)=>{
+    EventModel.findById(req.params.id).exec((err,doc)=>{
+        if(err){
+            res.send(err);
+        }
+        res.json(doc);
+    })
+}
+
+exports.update_event = (req, res)=>{
+    EventModel.findByIdAndUpdate(req.params.id,req.body,{new: true},(err,doc)=>{
+        if(err){
+            res.send(err);
+        }
+        res.json(doc);
+    })
+}
+
+exports.delete_event = (req, res)=>{
+    EventModel.findByIdAndDelete(req.params.id,(err,doc)=>{
+        if(err){
+            res.send(err);
+        }
+        res.json("movie deleted");
     })
 }
 
@@ -28,15 +65,6 @@ exports.read_eventsByCategory = (req, res) => {
         })
 }
 
-exports.read_tenMostRecentEvents = (req, res) => {
-    EventModel.find({date:{$gte: new Date()}}).sort({ date: -1 }).limit(10).exec((err, events) => {
-        if (err) {
-            res.status(500).json({ error: 'Errore del server' });
-        } else {
-            res.json(events);
-        }
-    });
-}
 
 /** leggere gli utenti registrati all'evento **/
 exports.read_myUsers = (req, res) => {
