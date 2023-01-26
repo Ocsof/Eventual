@@ -2,7 +2,7 @@ const {Schema} = require("mongoose");
 module.exports =  (mongoose)=>{
     const eventSchema = new mongoose.Schema({
         title:  {
-            type: String
+            type: String,
             required: true
         },
         author: {
