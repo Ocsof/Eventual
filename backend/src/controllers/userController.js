@@ -70,9 +70,21 @@ exports.update_user = (req,res)=>{
 }
 
 /** leggere gli eventi a cui si è registrato un utente **/
-exports.read_myEvent = (req, res) => {
+exports.read_myinscriptions = (req, res) => {
     UserModel.findOne({id: req.params.id})
-        .populate('events')
+        .populate('inscriptions')
+        .exec((err, user) => {
+            if(err){
+                res.send(err);
+            }
+            console.log(user.events[0].title)
+            res.json(user.events);
+        })
+}
+
+exports.read_myorganizations = (req, res) => {
+    UserModel.findOne({id: req.params.id})
+        .populate('my_organizations')
         .exec((err, user) => {
             if(err){
                 res.send(err);
