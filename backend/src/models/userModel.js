@@ -21,12 +21,13 @@ module.exports =  (mongoose)=>{
             type: String,
             required: true
         },
+        birthday: Date,
         category: {
             type: String,
             required: true
         },
-        //events: [Schema.Types.ObjectId]
-        events: [{ type: Schema.Types.ObjectId, ref: 'Events' }] //todo come speicificare ObjectID degli eventi?
+        inscriptions: [{ type: Schema.Types.ObjectId, ref: 'Events' }],
+        my_organizations: [{ type: Schema.Types.ObjectId, ref: 'Events' }]
     })
     return mongoose.model('Users',userSchema)
 }

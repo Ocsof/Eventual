@@ -6,11 +6,8 @@ module.exports =  (mongoose)=>{
             required: true
         },
         author: {
-            type: String,
+            type: Schema.Types.ObjectId, ref: 'Users',
             required: true
-        },
-        image: {
-            type: String
         },
         category: {
             type: String,
