@@ -1,10 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('Navigation Bar', () => {
+test('App', () => {
     render(<App />);
-    /*
-    const linkElement = screen.getByText(/learn react/i);
+
+    const linkElement = screen.getByText(/Francesco/i);
     expect(linkElement).toBeInTheDocument();
-    */
 });
