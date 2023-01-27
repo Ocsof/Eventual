@@ -21,6 +21,17 @@ exports.new_event = (req,res)=>{
     })
 }
 
+/***Sempre dal più recente (da adesso in poi)***/
+exports.read_allevents = (req, res)=>{
+    EventModel.find({date:{$gte: new Date()}}).sort({ date: -1 }).exec((err, events) => {
+        if (err) {
+            res.status(500).json({ error: 'Errore del server' });
+        } else {
+            res.json(events);
+        }
+    });
+}
+
 exports.read_event = (req, res)=>{
     EventModel.findById(req.params.id).exec((err,doc)=>{
         if(err){

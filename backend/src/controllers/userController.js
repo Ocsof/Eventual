@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const UserModel = require('../models/userModel')(mongoose)
 
 exports.sign_user = (req,res)=>{
-    const { name, surname, email, phone, password, category} = req.body;
+    const { name, surname, email, phone, password, birthday, category} = req.body;
     // controllo se l'email è già presente nel database
     UserModel.findOne(email, (err, user) => {
         if (err) {
@@ -23,6 +23,7 @@ exports.sign_user = (req,res)=>{
                 email,
                 phone,
                 password: hash,
+                birthday,
                 category,
                 events: []
             });
