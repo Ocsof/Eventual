@@ -7,7 +7,7 @@ const randomEvents = [
         _id: new mongoose.mongo.ObjectId(),
         title: 'Event 1',
         author: '',
-        category: 'Category1',
+        category: 'concert',
         date: new Date(2023, 0, 12),
         description: 'Description',
         users: []
@@ -16,7 +16,7 @@ const randomEvents = [
         _id: new mongoose.mongo.ObjectId(),
         title: 'Event 2',
         author: '',
-        category: 'Category2',
+        category: 'birthday',
         date: new Date(2023, 0, 12),
         description: 'Description',
         users: []
@@ -26,7 +26,7 @@ const randomEvents = [
         _id: new mongoose.mongo.ObjectId(),
         title: 'Event 3',
         author: '',
-        category: 'Category1',
+        category: 'party',
         date: new Date(2023, 0, 12),
         description: 'Description',
         users: []
@@ -35,7 +35,7 @@ const randomEvents = [
         _id: new mongoose.mongo.ObjectId(),
         title: 'Event 4',
         author: '',
-        category: 'Category2',
+        category: 'concert',
         date: new Date(2023, 1, 12),
         description: 'Description',
         users: []
@@ -45,7 +45,7 @@ const randomEvents = [
         _id: new mongoose.mongo.ObjectId(),
         title: 'Event 5',
         author: '',
-        category: 'Category1',
+        category: 'birthday',
         date: new Date(2023, 1, 12),
         description: 'Description',
         users: []
@@ -54,7 +54,7 @@ const randomEvents = [
         _id: new mongoose.mongo.ObjectId(),
         title: 'Event 6',
         author: '',
-        category: 'Category2',
+        category: 'party',
         date: new Date(2023, 2, 12),
         description: 'Description',
         users: []
@@ -64,7 +64,7 @@ const randomEvents = [
         _id: new mongoose.mongo.ObjectId(),
         title: 'Event 7',
         author: '',
-        category: 'Category1',
+        category: 'concert',
         date: new Date(2023, 2, 12),
         description: 'Description',
         users: []
@@ -73,7 +73,7 @@ const randomEvents = [
         _id: new mongoose.mongo.ObjectId(),
         title: 'Event 8',
         author: '',
-        category: 'Category2',
+        category: 'birthday',
         date: new Date(2023, 2, 12),
         description: 'Description',
         users: []
@@ -83,7 +83,7 @@ const randomEvents = [
         _id: new mongoose.mongo.ObjectId(),
         title: 'Event 9',
         author: '',
-        category: 'Category1',
+        category: 'concert',
         date: new Date(2023, 3, 12),
         description: 'Description',
         users: []
@@ -92,7 +92,7 @@ const randomEvents = [
         _id: new mongoose.mongo.ObjectId(),
         title: 'Event 10',
         author: '',
-        category: 'Category2',
+        category: 'party',
         date: new Date(2023, 4, 12),
         description: 'Description',
         users: []
@@ -102,7 +102,7 @@ const randomEvents = [
         _id: new mongoose.mongo.ObjectId(),
         title: 'Event 11',
         author: '',
-        category: 'Category1',
+        category: 'birthday',
         date: new Date(2023, 5, 12),
         description: 'Description',
         users: []
@@ -111,7 +111,7 @@ const randomEvents = [
         _id: new mongoose.mongo.ObjectId(),
         title: 'Event 12',
         author: '',
-        category: 'Category2',
+        category: 'party',
         date: new Date(2023, 5, 12),
         description: 'Description',
         users: []
