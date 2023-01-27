@@ -11,7 +11,7 @@ class SignupForm extends React.Component {
             email: '',
             phone: '',
             password: '',
-            birthday: '01/01/2000',
+            birthday: '2000-01-01',
             category: 'p',
             inscriptions: [],
             my_organizations: []
@@ -27,6 +27,7 @@ class SignupForm extends React.Component {
         this.handlePhoneChange = this.handlePhoneChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
+        this.handleBirthdayChange = this.handleBirthdayChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleReset = this.handleReset.bind(this);
     }
@@ -58,6 +59,10 @@ class SignupForm extends React.Component {
 
     handleCategoryChange(event) {
         this.setState({category: event.target.value})
+    }
+
+    handleBirthdayChange(event){
+        this.setState({birthday: event.target.value})
     }
 
     handleSubmit(e) {
@@ -181,7 +186,8 @@ class SignupForm extends React.Component {
                                                     <input type="date"
                                                            id="SignUpBirthday"
                                                            className="form-control"
-                                                           defaultValue="01/01/2000"
+                                                           defaultValue="2000-01-01"
+                                                           onChange={this.handleBirthdayChange}
                                                     />
                                                     <label className="form-label" htmlFor="SignUpBirthday">Birthday</label>
                                                 </div>

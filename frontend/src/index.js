@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import {ShoppingCartProvider} from "./cmp/events/ShoppingCartContext";
 
-const bootstrap = require('bootstrap');
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(

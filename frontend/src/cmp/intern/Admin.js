@@ -58,6 +58,6 @@ class Admin extends React.Component {
             </div>
         );
     }
-};
+}
 
 export default Admin;

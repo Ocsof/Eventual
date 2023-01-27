@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 // @ts-ignore
 import events from "../data/events.json"
-import {EventCard} from "./events/Event";
+import {Event} from "./events/Event";
 
 export function MyEvents() {
     return (
@@ -22,7 +22,7 @@ export function MyEvents() {
                         imgUrl: string
                     }) => (
                     <Col key={item.id}>
-                        <EventCard {...item}/>
+                        <Event {...item}/>
                     </Col>
                     ))}
                 </Row>

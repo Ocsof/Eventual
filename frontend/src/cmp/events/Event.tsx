@@ -10,7 +10,7 @@ type EventCardProps = {
     imgUrl: string
 }
 
-export function EventCard({title, author, category, date, description, imgUrl}:EventCardProps){
+export function Event({title, author, category, date, description, imgUrl}:EventCardProps){
 
     return (
         <Card className="h-100">

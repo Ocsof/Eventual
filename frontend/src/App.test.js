@@ -4,6 +4,8 @@ import App from './App';
 test('App', () => {
     render(<App />);
 
-    const linkElement = screen.getByText(/Francesco/i);
-    expect(linkElement).toBeInTheDocument();
+    const footerElementA = screen.getByText(/Alessia/i);
+    const footerElementF = screen.getByText(/Francesco/i);
+    expect(footerElementA).toBeInTheDocument();
+    expect(footerElementF).toBeInTheDocument();
 });
