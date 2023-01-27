@@ -1,22 +1,20 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {NotificationManager, NotificationContainer} from "react-notifications";
-import {ERROR_LETTERS, MAX_LETTERS} from "../../utilities/validator";
-
-
-
 
 class SignupForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             name: '',
-            surName: '',
+            surname: '',
             email: '',
             phone: '',
             password: '',
             birthday: '01/01/2000',
-            category: 'p'
+            category: 'p',
+            inscriptions: [],
+            my_organizations: []
         };
 
         this.errors = {
@@ -28,6 +26,7 @@ class SignupForm extends React.Component {
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePhoneChange = this.handlePhoneChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleReset = this.handleReset.bind(this);
     }
@@ -37,7 +36,7 @@ class SignupForm extends React.Component {
     }
 
     handleSurnameChange(event) {
-        this.setState({surName: event.target.value});
+        this.setState({surname: event.target.value});
     }
 
     handleEmailChange(event) {
@@ -57,20 +56,31 @@ class SignupForm extends React.Component {
         this.setState({password: event.target.value});
     }
 
-    handleSubmit() {
-        alert(JSON.stringify(this.state, null, 2));
-        NotificationManager.on("Signup ok!")
+    handleCategoryChange(event) {
+        this.setState({category: event.target.value})
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        console.log(JSON.stringify(this.state, null, 2));
+        NotificationManager.info("Signup ok!")
+        /*TODO: inviare con post "/signup" il json */
     }
 
     handleReset() {
         this.setState({
             name: '',
-            surName: '',
+            surname: '',
             email: '',
             phone: '',
             password: '',
             birthday: '01/01/2000',
-            category: 'p'
+            category: 'p',
+            inscriptions: [],
+            my_organizations: []
+        })
+        this.setErrors({
+            email: ''
         })
     }
 
@@ -85,6 +95,7 @@ class SignupForm extends React.Component {
                                     <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
                                         <p className="text-center h1 fw-bold mb-2 mx-1 mx-md-2 mt-2">Sign up</p>
+
 
                                         <form className="small" onSubmit={this.handleSubmit} onReset={this.handleReset} >
 
@@ -110,7 +121,7 @@ class SignupForm extends React.Component {
                                                         type="text"
                                                         id="SignUpSurname"
                                                         className="form-control"
-                                                        value={this.state.surName}
+                                                        value={this.state.surname}
                                                         onChange={this.handleSurnameChange}
                                                         required={true}
                                                     />
@@ -135,7 +146,7 @@ class SignupForm extends React.Component {
                                             </div>
 
                                             <div className="d-flex flex-row align-items-center mb-4">
-                                                <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                                <i className="fas fa-phone fa-lg me-3 fa-fw"></i>
                                                 <div className="form-outline flex-fill mb-0">
                                                     <input
                                                         type="tel"
@@ -165,7 +176,7 @@ class SignupForm extends React.Component {
                                             </div>
 
                                             <div className="d-flex flex-row align-items-center mb-4">
-                                                <i className="fas fa-key fa-lg me-3 fa-fw"></i>
+                                                <i className="fas fa-cake-candles fa-lg me-3 fa-fw"></i>
                                                 <div className="form-outline flex-fill mb-0">
                                                     <input type="date"
                                                            id="SignUpBirthday"
@@ -177,32 +188,36 @@ class SignupForm extends React.Component {
                                             </div>
 
                                             <div className="d-flex flex-row align-items-center mb-4">
-                                                <i className="fas fa-key fa-lg me-3 fa-fw"></i>
+                                                <i className="fas fa-user-secret fa-lg me-3 fa-fw"></i>
                                                 <div className="form-outline flex-fill mb-0">
                                                     <select
                                                         id="category"
                                                         name="category"
+                                                        onChange={this.handleCategoryChange}
+                                                        value={this.state.category}
                                                     >
                                                         <option value="p">Client / Participant</option>
                                                         <option value="o">Organizer</option>
                                                     </select>
-                                                    <label className="form-label" htmlFor="SignUpBirthday">Category</label>
+                                                    <br />
+                                                    <label className="form-label" htmlFor="category">Category</label>
                                                 </div>
                                             </div>
 
 
                                             <div className="form-check d-flex justify-content-center mb-5">
-                                                <input className="form-check-input me-2" type="checkbox" value="" id="terms"/>
+                                                <input className="form-check-input me-2" type="checkbox" id="terms" required={true}/>
                                                 <label className="form-check-label" htmlFor="terms">
                                                     I agree all statements in <a href="https://www.google.com">Terms of service</a>
                                                 </label>
                                             </div>
 
-                                            <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                                <button type="reset" className="btn btn-primary btn-lg">Reset</button>
-                                                <button type="submit" className="btn btn-primary btn-lg">Submit</button>
-                                                <Link to="/login" className="small m-2">Already registered?</Link>
+                                            <div className="d-flex justify-content-center">
+                                                <button type="reset" className="btn btn-primary btn-lg m-2">Reset</button>
+                                                <button type="submit" className="btn btn-primary btn-lg m-2">Submit</button>
+                                                <Link to="/login" className="small mt-4">Already registered?</Link>
                                             </div>
+
                                             <NotificationContainer />
                                         </form>
 
@@ -213,7 +228,6 @@ class SignupForm extends React.Component {
                                         <img
                                             src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
                                             className="img-fluid" alt="Sample image" />
-
                                     </div>
                                 </div>
                             </div>
