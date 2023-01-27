@@ -1,37 +1,10 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {NotificationManager, NotificationContainer} from "react-notifications";
-import {useFormik} from "formik";
 import {ERROR_LETTERS, MAX_LETTERS} from "../../utilities/validator";
 
 
-const validate = values => {
-    const errors = {
-        name: '',
-        surName: '',
-        password: '',
-        email: ''
-    };
 
-    if (values.name.length === 0 || values.name.length > MAX_LETTERS) {
-        errors.name = ERROR_LETTERS;
-    }
-
-    if (values.surName.length === 0 || values.surName.length > MAX_LETTERS) {
-        errors.surName = ERROR_LETTERS;
-    }
-
-    if (!values.email) {
-        errors.email = 'Required';
-    } else if (!/^[A-Z\d._%+-]+@[A-Z\d.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address';
-    }
-
-    if (!values.password) {
-        errors.password = 'Required';
-    }
-    return errors;
-};
 
 class SignupForm extends React.Component {
     constructor(props) {
@@ -46,14 +19,18 @@ class SignupForm extends React.Component {
             category: 'p'
         };
 
+        this.errors = {
+            email: ''
+        };
+
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleSurnameChange = this.handleSurnameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePhoneChange = this.handlePhoneChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleReset = this.handleReset.bind(this);
     }
-
 
     handleNameChange(event) {
         this.setState({name: event.target.value});
@@ -65,6 +42,11 @@ class SignupForm extends React.Component {
 
     handleEmailChange(event) {
         this.setState({email: event.target.value});
+        if (!this.state.email) {
+            this.setErrors({email: 'Required'})
+        } else if (!/^[A-Z\d._%+-]+@[A-Z\d.-]+\.[A-Z]{2,4}$/i.test(this.state.email)) {
+            this.setErrors({email: 'Invalid email address'})
+        }
     }
 
     handlePhoneChange(event) {
@@ -80,6 +62,18 @@ class SignupForm extends React.Component {
         NotificationManager.on("Signup ok!")
     }
 
+    handleReset() {
+        this.setState({
+            name: '',
+            surName: '',
+            email: '',
+            phone: '',
+            password: '',
+            birthday: '01/01/2000',
+            category: 'p'
+        })
+    }
+
     render () { return(
         <section className="gradient-custom m-2">
             <div className="container">
@@ -92,7 +86,7 @@ class SignupForm extends React.Component {
 
                                         <p className="text-center h1 fw-bold mb-2 mx-1 mx-md-2 mt-2">Sign up</p>
 
-                                        <form className="small" onSubmit={this.handleSubmit} >
+                                        <form className="small" onSubmit={this.handleSubmit} onReset={this.handleReset} >
 
                                             <div className="d-flex flex-row align-items-center mb-4">
                                                 <i className="fas fa-user fa-lg me-3 fa-fw"></i>
@@ -106,7 +100,6 @@ class SignupForm extends React.Component {
                                                         required={true}
                                                     />
                                                     <label className="form-label" htmlFor="SignUpName">Name</label>
-                                                    {/*this.formik.errors.name ? <div className="error">{this.formik.errors.name}</div> : null*/}
                                                 </div>
                                             </div>
 
@@ -122,7 +115,6 @@ class SignupForm extends React.Component {
                                                         required={true}
                                                     />
                                                     <label className="form-label" htmlFor="SignUpSurname">Surname</label>
-                                                    {/*this.formik.errors.surName ? <div className="error">{this.formik.errors.surName}</div> : null*/}
                                                 </div>
                                             </div>
 
@@ -138,7 +130,7 @@ class SignupForm extends React.Component {
                                                         required={true}
                                                     />
                                                     <label className="form-label" htmlFor="SignupEmail">Email</label>
-                                                    {/*this.errors.email ? <div className="error">{this.formik.errors.email}</div> : null*/}
+                                                    {this.errors.email ? <div className="error">{this.errors.email}</div> : null}
                                                 </div>
                                             </div>
 
@@ -169,7 +161,6 @@ class SignupForm extends React.Component {
                                                         required={true}
                                                     />
                                                     <label className="form-label" htmlFor="SignUpPassword">Password</label>
-                                                    {/*this.formik.errors.password ? <div className="error">{this.formik.errors.password}</div> : null*/}
                                                 </div>
                                             </div>
 
