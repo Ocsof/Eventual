@@ -55,8 +55,8 @@ const SignupForm = () => {
         },
     });
     return (
-        <form onSubmit={formik.handleSubmit} onReset={formik.resetForm}>
-            <label htmlFor="firstName">Nome </label>
+        <form onSubmit={formik.handleSubmit} onReset={formik.resetForm} >
+            <label htmlFor="firstName" className="m-2">Nome: </label>
             <input
                 id="firstName"
                 name="firstName"
@@ -66,7 +66,7 @@ const SignupForm = () => {
             />
             {formik.errors.firstName ? <div className="error">{formik.errors.firstName}</div> : null}
             <br/>
-            <label htmlFor="lastName">Cognome </label>
+            <label htmlFor="lastName" className="m-2">Cognome: </label>
             <input
                 id="lastName"
                 name="lastName"
@@ -76,7 +76,7 @@ const SignupForm = () => {
             />
             {formik.errors.lastName ? <div className="error">{formik.errors.lastName}</div> : null}
             <br/>
-            <label htmlFor="email">Email </label>
+            <label htmlFor="email" className="m-2">Email: </label>
             <input
                 id="email"
                 name="email"
@@ -86,7 +86,7 @@ const SignupForm = () => {
             />
             {formik.errors.email ? <div className="error">{formik.errors.email}</div> : null}
             <br/>
-            <label htmlFor="phone">Telefono </label>
+            <label htmlFor="phone" className="m-2">Telefono: </label>
             <input
                 id="phone"
                 name="phone"
@@ -96,7 +96,7 @@ const SignupForm = () => {
             />
             {formik.errors.phone ? <div className="error">{formik.errors.phone}</div> : null}
             <br/>
-            <label htmlFor="password">Password </label>
+            <label htmlFor="password" className="m-2">Password </label>
             <input
                 id="password"
                 name="password"
@@ -106,7 +106,7 @@ const SignupForm = () => {
             />
             {formik.errors.password ? <div className="error">{formik.errors.password}</div> : null}
             <br/>
-            <label htmlFor="category">Categoria: </label>
+            <label htmlFor="category" className="m-2">Categoria: </label>
             <select
                 id="category"
                 name="category"
@@ -118,11 +118,10 @@ const SignupForm = () => {
                 <option value="amm">Amministratore</option>
             </select>
             <br/>
-            <button type="reset">Reset</button>
-            <button type="submit">Submit</button>
+            <button type="reset" className="m-2">Reset</button>
+            <button type="submit" className="m-2">Submit</button>
             <br/>
-            <Link to="/login">Sei già iscritto?</Link>
-
+            <Link to="/login" className="small m-2">Sei già iscritto?</Link>
             <NotificationContainer />
         </form>
     );
