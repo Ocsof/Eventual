@@ -1,6 +1,7 @@
 @import 'variables';
 @import 'mixins';
 @import 'events';
+@import 'include-media';
 
 @font-face {
   font-family: myFirstFont;
@@ -8,6 +9,15 @@
 
 .App {
   color: $text-color;
+  @include responsive-height(16,9);
+  /* Inclusive and exclusive operators for a finer control over the intervals */
+  @include media(">phone", "<=tablet") {
+    width: 50%;
+  }
+  /* Use ligatured operators if you fancy a slicker declaration */
+  @include media("≥phone", "≤tablet") {
+    line-height: 1.5;
+  }
 }
 
 .App-nav, footer {
@@ -31,18 +41,13 @@
 }
 
 .App-content {
-  min-height: 85vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-}
-
-a.link-icon img {
-  height: 3vh;
-  padding-top: 5px;
+  min-height: 85vh;
 }
 
 .logo {
@@ -55,11 +60,40 @@ a.link-icon img {
   font-size: x-small;
 }
 
-.icon {
+.link-icon {
+  height: 3vh;
   alignment: center;
+}
+
+.divider:after, .divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+.h-custom {
+  height: calc(100% - 73px);
+}
+
+@media (max-width: 450px) {
+  .h-custom {
+    height: 100%;
+  }
 }
 
 .cover {
   @include background-cover("../../public/img/download.jpg");
   @include responsive-height(16,9);
+}
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: $primary-color;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, $primary-color, $second-color);
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, $primary-color, $second-color)
 }

@@ -1,43 +1,31 @@
-// noinspection ES6CheckImport
-import {
-    BrowserRouter as Router,
-    Route,
-    Routes,
-    NavLink,
-    Link
-} from "react-router-dom";
-import SignUp from "./cmp/SignUp";
+import {BrowserRouter as Router, Route, Routes, NavLink, Link} from "react-router-dom";
+import SignUp from "./cmp/access/SignUp";
 import Home from "./cmp/Home";
-import Login from "./cmp/Login";
+import Login from "./cmp/access/Login";
 import Notifications from "./cmp/Notifications";
-import ShoppingCart from "./cmp/ShoppingCart";
 import Contacts from "./cmp/Contacts";
-import Events from "./cmp/Events";
 import Admin from "./cmp/intern/Admin";
 import React, {useState} from "react";
 import * as PropTypes from 'prop-types';
-import PasswordRecover from "./cmp/PasswordRecover";
-
+import {Button, Navbar} from "react-bootstrap";
+import {useShoppingCart} from "./cmp/store/ShoppingCartContext";
+import {Store} from "./cmp/store/Store";
+import {ShoppingCart} from "./cmp/store/ShoppingCart";
 Routes.propTypes = {children: PropTypes.node};
 
 function App() {
-    const [inputText, setInputText] = useState("");
-    let inputHandler = (e) => {
-        const lowerCase = e.target.value.toLowerCase();
-        setInputText(lowerCase);
+    const { openCart, cartQuantity } = useShoppingCart();
+    const [searchInput, setSearchInput] = useState();
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        /*chiamata al database*/
     };
-
-    let handleChange = () => {
-        /*
-        TODO: change with research on the database
-         */
-
-    };
-
-  return (
+    
+    return (
       <div className="App">
           <Router >
-              <nav className={"App-nav"}>
+              <Navbar className="App-nav position-sticky">
                   <NavLink to="/" className="logo">Eventual </NavLink>
                   <NavLink to="/login">Login </NavLink>
                   <NavLink to="/signup">Sign Up </NavLink>
@@ -46,31 +34,46 @@ function App() {
                   <input
                       id="outlined-basic"
                       variant="outlined"
-                      fullWidth
                       label="Search"
-                      onChange={inputHandler}
+                      onChange={handleChange}
+                      value={searchInput}
+                      placeholder="Search..."
                   />
-                  <Link to="/notify" className="link-icon"> <img src="img/notification.svg" alt="notifications" className="icon" /> </Link>
-                  <Link to="/cart" className="link-icon"> <img src="img/shopping-cart.svg" alt="shopping cart" className="icon" /> </Link>
-              </nav>
+                  <Link to="/notify" >
+                      <img src={"img/notification.svg"} alt="notifications" className="link-icon" />
+                  </Link>
+                  <Button
+                      onClick={openCart}
+                      className="rounded-circle border border-white btn btn-outline-light"
+                      variant="outline-primary"
+                      style={{width: "3rem", height:"3rem", position:"relative"}}
+                  >
+                      <img  src={"img/shopping-cart.svg"} alt="shopping cart" className="link-icon" />
+                      <div className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
+                      style={{color: "white", width:"1.5rem", height: "1.5rem", position: "absolute", bottom: 0, right: 0,
+                      transform:"translate(25%, 25%)"}}>
+                          {cartQuantity}
+                      </div>
+                  </Button>
+              </Navbar>
               <div className="App-content">
                   <Routes>
-                      <Route exact path="/" element={<Home/>} />
-                      <Route exact path="/login" element={<Login/>} />
+                      <Route exact path="/" element={<Home />} />
+                      <Route exact path="/login" element={<Login />} />
                       <Route exact path="/signup" element={<SignUp />} />
                       <Route exact path="/notify" element={<Notifications />} />
-                      <Route exact path="/cart" element={<ShoppingCart />} />
                       <Route exact path="/contacts" element={<Contacts />} />
-                      <Route exact path="/events" element={<Events />} />
+                      <Route exact path="/events" element={<Store />} />
                       <Route exact path="/admin" element={<Admin />} />
-                      <Route exact path="/passwordRecover" element={<PasswordRecover />} />
+                      {/*<Route exact path="/passwordRecover" element={<PasswordRecover />} />*/}
+                      <Route exact path="/cart" element={<ShoppingCart  isOpen/>} />
                   </Routes>
               </div>
           </Router>
           <footer>
               Copyright 2022 - Francesco Foschini, Alessia Rocco
           </footer>
-    </div>
+      </div>
   );
 }
 
