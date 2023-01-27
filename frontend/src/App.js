@@ -11,6 +11,8 @@ import {Button, Navbar} from "react-bootstrap";
 import {useShoppingCart} from "./cmp/store/ShoppingCartContext";
 import {Store} from "./cmp/store/Store";
 import {ShoppingCart} from "./cmp/store/ShoppingCart";
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer} from "react-notifications";
 Routes.propTypes = {children: PropTypes.node};
 
 function App() {
@@ -68,6 +70,7 @@ function App() {
                       {/*<Route exact path="/passwordRecover" element={<PasswordRecover />} />*/}
                       <Route exact path="/cart" element={<ShoppingCart  isOpen/>} />
                   </Routes>
+                  <NotificationContainer />
               </div>
           </Router>
           <footer>
