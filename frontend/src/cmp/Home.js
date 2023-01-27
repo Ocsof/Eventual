@@ -4,7 +4,7 @@ const Home = () => {
 
     return (
         <div>
-            <p>PAGINA HOME</p>
+            <p>TOP 10 EVENTS</p>
         </div>
     );
 };

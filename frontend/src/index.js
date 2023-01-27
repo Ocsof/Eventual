@@ -4,7 +4,7 @@ import './scss/index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
-import {ShoppingCartProvider} from "./cmp/store/ShoppingCartContext";
+import {ShoppingCartProvider} from "./cmp/events/ShoppingCartContext";
 
 const bootstrap = require('bootstrap');
 const root = ReactDOM.createRoot(document.getElementById('root'));
