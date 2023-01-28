@@ -38,6 +38,7 @@ export function StoreItem({ id, title, author, category, date, description, imgU
                 </Card.Title>
                 <Card.Text className="justify-content-between">
                     <span className="small">{author}</span>
+                    <br/>
                     <span className="small">{category}</span>
                     <br/>
                     <span className="small">{description}</span>

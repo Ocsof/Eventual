@@ -16,5 +16,14 @@
     "date": "2000-01-01",
     "description": "description party",
     "imgUrl": "/img/event2.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Event 3",
+    "author": "Ale",
+    "category": "private event",
+    "date": "2023-01-01",
+    "description": "description private event",
+    "imgUrl": "/img/event3.jpg"
   }
 ]
