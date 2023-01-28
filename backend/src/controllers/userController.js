@@ -25,7 +25,8 @@ exports.sign_user = (req,res)=>{
                 password: hash,
                 birthday,
                 category,
-                events: []
+                inscriptions: [],
+                my_organizations: []
             });
             newUser.save((err) => {
                 if (err) {
@@ -77,8 +78,8 @@ exports.read_myinscriptions = (req, res) => {
             if(err){
                 res.send(err);
             }
-            console.log(user.events[0].title)
-            res.json(user.events);
+            console.log(user.inscriptions[0].title)
+            res.json(user.inscriptions);
         })
 }
 
@@ -89,8 +90,8 @@ exports.read_myorganizations = (req, res) => {
             if(err){
                 res.send(err);
             }
-            console.log(user.events[0].title)
-            res.json(user.events);
+            console.log(user.my_organizations[0].title)
+            res.json(user.my_organizations);
         })
 }
 
