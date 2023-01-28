@@ -3,26 +3,27 @@
 #docker service ls
 #docker swarm leave --force
 
-version: '3.1'
+version: '3'
 
 services:
   # cf. https://hub.docker.com/_/mongo
   mongodb:
     image: mongo
     restart: always
+    volumes:
+      - ./data/db:/data/db
+      - ./data/configdb:/data/configdb
     environment:
-      #MONGO_INITDB_ROOT_USERNAME: admin # mongo admin username
-      #MONGO_INITDB_ROOT_PASSWORD: admin # mongo admin password
-      #MONGO_USER: myuser
-      #MONGO_PASSWORD: mypassword
       MONGO_INITDB_DATABASE: test
     ports:
       - "27017:27017" # mongo default port
+    command: --journal
+    user: "1000:1000"
 
   # cf. https://hub.docker.com/_/mongo-express
   mongo-dashboard:
     depends_on:
-      - mongo
+      - mongodb
     image: mongo-express
     restart: always
     ports:
@@ -36,7 +37,7 @@ services:
 
   eventual-backend:
     depends_on:
-      - mongo
+      - mongodb
     image: foscofra/node-eventual
     environment:
       #MONGO_USER: admin
@@ -51,7 +52,7 @@ services:
 
   eventual-frontend:
     depends_on:
-      - foscofra/node-eventual
+      - eventual-backend
     image: foscofra/react-eventual
     ports:
       - "3000:3000"
