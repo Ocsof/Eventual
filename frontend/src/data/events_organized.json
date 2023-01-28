@@ -1,0 +1,20 @@
+[
+    {
+        "id": 3,
+        "title": "Event 3",
+        "author": "me",
+        "category": "concert",
+        "date": "2022-01-01",
+        "description": "description concert organized by me",
+        "imgUrl": "/img/event1.jpg"
+    },
+    {
+        "id": 4,
+        "title": "Event 4",
+        "author": "me",
+        "category": "party",
+        "date": "2023-10-10",
+        "description": "description party",
+        "imgUrl": "/img/event2.jpg"
+    }
+]

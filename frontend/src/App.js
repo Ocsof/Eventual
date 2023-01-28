@@ -12,7 +12,9 @@ import {Store} from "./cmp/events/Store";
 import {ShoppingCart} from "./cmp/events/ShoppingCart";
 import 'react-notifications/lib/notifications.css';
 import {NotificationContainer} from "react-notifications";
-import {MyEvents} from "./cmp/MyEvents";
+import {MyEvents} from "./cmp/events/MyEvents";
+import {MyOrganizedEvents} from "./cmp/events/MyOrganizedEvents";
+import {Events} from "./cmp/Events";
 Routes.propTypes = {children: PropTypes.node};
 
 function App() {
@@ -31,8 +33,8 @@ function App() {
                   <NavLink to="/" className="logo">Eventual </NavLink>
                   <NavLink to="/login">Login </NavLink>
                   <NavLink to="/signup">Sign Up </NavLink>
-                  <NavLink to="/events">Events </NavLink>
-                  <NavLink to="/myevents">My Events </NavLink>
+                  <NavLink to="/store_events">Events </NavLink>
+                  <NavLink to="/events">My Events </NavLink>
                   <input
                       id="outlined-basic"
                       variant="outlined"
@@ -63,13 +65,13 @@ function App() {
                       <Route exact path="/" element={<Home />} />
                       <Route exact path="/login" element={<Login />} />
                       <Route exact path="/signup" element={<SignUp />} />
-                      <Route exact path="/events" element={<Store />} />
-                      <Route exact path="/myevents" element={<MyEvents />} />
+                      <Route exact path="/store_events" element={<Store />} />
+                      <Route exact path="/events" element={<Events />} />
                       <Route exact path="/notify" element={<Notifications />} />
 
                       <Route exact path="/admin" element={<Admin />} />
                       {/*<Route exact path="/passwordRecover" element={<PasswordRecover />} />*/}
-                      <Route exact path="/cart" element={<ShoppingCart  isOpen/>} />
+                      {/*<Route exact path="/cart" element={<ShoppingCart  isOpen/>} />*/}
                   </Routes>
                   <NotificationContainer />
               </div>
