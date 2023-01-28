@@ -1,7 +1,8 @@
 import {Card} from "react-bootstrap";
 import * as React from "react";
 
-type EventCardProps = {
+export type EventCardProps = {
+    id: number,
     title: string,
     author: string,
     category: string,
@@ -10,7 +11,7 @@ type EventCardProps = {
     imgUrl: string
 }
 
-export function Event({title, author, category, date, description, imgUrl}:EventCardProps){
+export function Event({id, title, author, category, date, description, imgUrl}:EventCardProps){
 
     return (
         <Card>

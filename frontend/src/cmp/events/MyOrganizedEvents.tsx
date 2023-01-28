@@ -4,20 +4,30 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 // @ts-ignore
 import events from "../../data/events_organized.json"
-import {Event} from "./Event";
-import {Button, Offcanvas} from "react-bootstrap";
+import {Event, EventCardProps} from "./Event";
+import {Button} from "react-bootstrap";
+import {ModifyEvent} from "./ModifyEvent";
+import {useState} from "react";
 
 export function MyOrganizedEvents() {
+    const [eventToModify, setEventToModify] = useState(-1);
 
-    function modifyEvent(e: any){
-        alert("modified: " + e);
+    function modifyEvent(id: number){
+        setEventToModify(id);
     }
 
     function deleteEvent(e: any){
+        /* todo: delete in the database */
+        let newEvents = events.filter((event: { id: any }) => event.id !== e);
+        console.log(newEvents)
         alert("deleted: " + e);
     }
 
+    function resetEvent() {
+        setEventToModify(-1)
+    }
     return (
+        eventToModify === -1 ? (
         <>
             <h1>My Organized Events</h1>
             <Container className="m-auto mb-2">
@@ -41,6 +51,13 @@ export function MyOrganizedEvents() {
                     ))}
                 </Row>
             </Container>
-        </>
+        </> ) : (
+            <>
+                <h1>Modify Event: {eventToModify}</h1>
+                <Container className="m-auto mb-2">
+                    <ModifyEvent {...events.find((e: EventCardProps)=> e.id === eventToModify)}/>
+                </Container>
+            </>
+            )
 );
 }
