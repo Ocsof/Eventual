@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col'
 // @ts-ignore
 import events from "../../data/events_organized.json"
 import {Event} from "./Event";
-import {Button} from "react-bootstrap";
+import {Button, Offcanvas} from "react-bootstrap";
 
 export function MyOrganizedEvents() {
 
@@ -32,11 +32,11 @@ export function MyOrganizedEvents() {
                         imgUrl: string
                     }) => (
                     <Col key={item.id}>
-                        <div className="m-2">
-                            <Button className="btn btn-light" onClick={() => modifyEvent(item.id)}><i className="fa-solid fa-pen-to-square" /></Button>
-                            <Button className="btn btn-light" onClick={() => deleteEvent(item.id)}><i className="fa-solid fa-trash" /></Button>
-                        </div>
                         <Event {...item}/>
+                        <div className="align-items-center editing-buttons">
+                            <Button className="btn btn-warning mx-1" onClick={() => modifyEvent(item.id)}><i className="fa-solid fa-pen-to-square" /></Button>
+                            <Button className="btn btn-danger mx-1" onClick={() => deleteEvent(item.id)}><i className="fa-solid fa-trash" /></Button>
+                        </div>
                     </Col>
                     ))}
                 </Row>
