@@ -2,6 +2,7 @@
   "short_name": "Eventual",
   "name": "Eventual",
   "icons": [
+    "favicon.ico"
   ],
   "start_url": ".",
   "display": "standalone",

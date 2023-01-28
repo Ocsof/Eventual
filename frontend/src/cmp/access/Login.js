@@ -6,8 +6,7 @@ class Login extends React.Component {
         super(props);
         this.state = {
             email: '',
-            password: '',
-            isLogged: false
+            password: ''
         };
 
         this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -29,9 +28,6 @@ class Login extends React.Component {
                 TODO: change with control function on database subscribes
             */
             alert('Login effettuato con successo: ' + this.state.email);
-            this.setState({
-                isLogged: true
-            })
         } else {
             alert('Email o password non corretta');
         }
@@ -88,22 +84,19 @@ class Login extends React.Component {
                                     <div className="form-check mb-0">
                                         <input className="form-check-input me-2" type="checkbox" value=""
                                                id="form2Example3"/>
-                                        <label className="form-check-label" htmlFor="form2Example3">
-                                            Remember me
-                                        </label>
+                                        <label className="form-check-label" htmlFor="form2Example3">Remember me</label>
                                     </div>
                                     <Link to="/passwordRecover" className="link-danger small">Forgot password?</Link>
                                 </div>
 
                                 <div className="text-center text-lg-start mt-4 pt-2">
-                                    <button type="submit" className="btn btn-primary btn-lg"
-                                            style={{paddingLeft: "2.5rem", paddingRight: "2.5rem"}} >Login
+                                    <button type="submit" className="btn btn-primary btn-lg" style={{paddingLeft: "2.5rem", paddingRight: "2.5rem"}} >
+                                        Login
                                     </button>
-                                    <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <Link to="/signup"
-                                                                                                          className="text-body">Register</Link>
+                                    <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account?
+                                        <Link to="/signup" className="text-body">Register</Link>
                                     </p>
                                 </div>
-
                             </form>
                         </div>
                     </div>

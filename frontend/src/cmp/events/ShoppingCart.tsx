@@ -3,7 +3,7 @@ import {useShoppingCart} from "./ShoppingCartContext";
 import {CartItem} from "./CartItem";
 import {formatCurrency} from "../../utilities/formatCurrency";
 // @ts-ignore
-import storeItems from '../../data/items.json'
+import storeItems from '../../data/events_onsell.json'
 
 type ShoppingCartProps = {
     isOpen: boolean

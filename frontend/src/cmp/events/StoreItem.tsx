@@ -5,12 +5,16 @@ import {useShoppingCart} from "./ShoppingCartContext";
 
 type StoreItemProps = {
     id: number,
-    name: string,
-    price: number,
-    imgUrl: string
+    title: string,
+    author: string,
+    category: string,
+    date: string,
+    description: string,
+    imgUrl: string,
+    price: number
 }
 
-export function StoreItem({ id, name, price, imgUrl} : StoreItemProps) {
+export function StoreItem({ id, title, author, category, date, description, imgUrl, price} : StoreItemProps) {
     const {
         getItemQuantity,
         increaseCartQuantity,
@@ -28,10 +32,18 @@ export function StoreItem({ id, name, price, imgUrl} : StoreItemProps) {
                 style={{ objectFit: "cover" }}
             />
             <Card.Body className="d-flex flex-column">
-                <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
-                    <span className="fs-2">{name}</span>
+                <Card.Title className="d-flex justify-content-between align-items-baseline mb-2">
+                    <span className="fs-2">{title}</span>
                     <span className="ms-2 text-muted">{formatCurrency(price)}</span>
                 </Card.Title>
+                <Card.Text className="justify-content-between">
+                    <span className="small">{author}</span>
+                    <br/>
+                    <span className="small">{category}</span>
+                    <br/>
+                    <span className="small">{description}</span>
+                    <input type="date" value={date} disabled={true} />
+                </Card.Text>
                 <div className="mt-auto">
                     {
                         quantity === 0 ? (

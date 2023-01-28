@@ -4,8 +4,8 @@ Come target principale del sistema sono state individuate due tipologie di utent
 
 Di seguito si sono identificate diverse *personas* differenziate da ciò che si aspettano dal sistema e servizio che esso gli offre. L'idea di business è rivolta infatti a uno specifico gruppo di potenziali clienti, ovvero coloro interessati a eventi come concerti, serate, lauree e compleanni; in quanto si reputa il più adatto a recepire e desiderare l'applicativo.
 
-Si è deciso di identificare e segmentare il pubblico ad una cerchia di potenziali utilizzatori dell'applicazione che avessero esigenze in comune alle caratteristiche dell'applicazione. L'analisi è stata per tanto condotta tenendo in considerazione le seguenti guidelines:
-- contenuti specifici: comunicare al pubblico contenuti mirati e appropriati, come per esempio gli eventi vicini all'utente o delle categorie di interesse;
+Si è deciso d'identificare e segmentare il pubblico a una cerchia di potenziali utilizzatori dell'applicazione che avessero esigenze in comune alle caratteristiche dell'applicazione. L'analisi è stata per tanto condotta tenendo in considerazione le seguenti guidelines:
+- contenuti specifici: comunicare al pubblico contenuti mirati e appropriati, come per esempio gli eventi vicini all'utente o delle categorie d'interesse;
 - ottimizzare il sito: considerare come il target naviga il sito, se da mobile, tablet e pc e se il target ha o meno dimestichezza nel farlo. Favorire l'esperienza ai nuovi clienti attraverso un design intuitivo, pratico e accattivante.
 - concentrazione sul potenziale: il focus sarà principalmente su utenti e organizzatori di eventi quali privati e aziende del settore dei concerti, nel futuro l'espansione potrà comprendere anche la considerazione di ristoranti e locali.
 - strategie di successo: scegliere quali media e quali tecniche usare per la promozione del prodotto finale.
@@ -21,7 +21,7 @@ Sofia ha appena scoperto un nuovo artista nella sua zona che gli piace molto.
 - Sofia accede alla piattaforma
 - Sofia si iscrive come utente, registrando i suoi dati
 - Sofia cerca l'artista e il concerto a cui vuole partecipare
-- Sofia mette nel carrello l'evento e eventualmente lo acquista
+- Sofia mette nel carrello l'evento ed eventualmente lo acquista
 - Sofia tramite la dashboard e le notifiche rimane aggiornata sulle ultime news relative al concerto prenotato
 - Sofia può contattare l'organizzatore e controllare/modificare il suo evento prenotato 
 

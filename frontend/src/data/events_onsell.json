@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Event 1",
+    "author": "test",
+    "category": "concert",
+    "date": "2000-01-01",
+    "description": "description concert",
+    "imgUrl": "/img/event1.jpg",
+    "price": 75
+  },
+  {
+    "id": 2,
+    "title": "Event 2",
+    "author": "test",
+    "category": "party",
+    "date": "2000-01-01",
+    "description": "description party",
+    "imgUrl": "/img/event2.jpg",
+    "price": 90.50
+  },
+  {
+    "id": 3,
+    "title": "Event 3",
+    "author": "Ale",
+    "category": "private event",
+    "date": "2023-01-01",
+    "description": "description private event",
+    "imgUrl": "/img/event3.jpg",
+    "price": 0
+  }
+]
