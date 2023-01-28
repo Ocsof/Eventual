@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Alessia",
+    "surname": "Rocco",
+    "email": "alessia.rocco@studio.unibo.it",
+    "phone": "+39123456789",
+    "password": "******",
+    "birthday": "1998-09-26",
+    "category": "a"
+  },
+  {
+    "id": 2,
+    "name": "Francesco",
+    "surname": "Foschini",
+    "email": "francesco.foschini2@studio.unibo.it",
+    "phone": "+39123456789",
+    "password": "******",
+    "birthday": "1998-10-17",
+    "category": "a"
+  }
+]

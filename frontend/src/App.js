@@ -3,7 +3,7 @@ import SignUp from "./cmp/access/SignUp";
 import Home from "./cmp/Home";
 import Login from "./cmp/access/Login";
 import Notifications from "./cmp/Notifications";
-import Admin from "./cmp/intern/Admin";
+import {Admin} from "./cmp/intern/Admin";
 import React, {useState} from "react";
 import * as PropTypes from 'prop-types';
 import {Button, Navbar} from "react-bootstrap";
@@ -71,7 +71,6 @@ function App() {
 
                       <Route exact path="/admin" element={<Admin />} />
                       {/*<Route exact path="/passwordRecover" element={<PasswordRecover />} />*/}
-                      {/*<Route exact path="/cart" element={<ShoppingCart  isOpen/>} />*/}
                   </Routes>
                   <NotificationContainer />
               </div>

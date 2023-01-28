@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col'
 import events from "../../data/events_organized.json"
 import {Event, EventCardProps} from "./Event";
 import {Button} from "react-bootstrap";
-import {ModifyEvent} from "./ModifyEvent";
+import {EditEvent} from "./EditEvent";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
@@ -59,7 +59,7 @@ export function MyOrganizedEvents() {
             <>
                 <h1>Modify Event: {eventToModify}</h1>
                 <Container className="m-auto mb-2">
-                    <ModifyEvent {...events.find((e: EventCardProps)=> e.id === eventToModify)}/>
+                    <EditEvent {...events.find((e: EventCardProps)=> e.id === eventToModify)}/>
                 </Container>
             </>
             )

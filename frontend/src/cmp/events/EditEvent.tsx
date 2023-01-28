@@ -4,7 +4,7 @@ import {useState} from "react";
 import {EventCardProps} from "./Event";
 import {useNavigate} from "react-router-dom";
 
-export function ModifyEvent({id, title, author, category, date, description, imgUrl}:EventCardProps) {
+export function EditEvent({id, title, author, category, date, description, imgUrl}:EventCardProps) {
     const navigate = useNavigate();
 
     const [event, setEvent] = useState({

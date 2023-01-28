@@ -1,4 +1,22 @@
 // A custom validation macros.
-export const MAX_LETTERS = 20;
+export function categoryGenerator(category: string){
+    switch (category) {
+        case 'o':
+            return "organizer"
+        case 'p':
+            return "participant"
+        case 'a':
+            return "admin"
+    }
+}
 
-export const ERROR_LETTERS = 'Must be ' + MAX_LETTERS + ' characters or less';
+export function categoryGeneratorForDatabase(category: string){
+    switch (category) {
+        case "organizer":
+            return "o"
+        case "participant":
+            return "p"
+        case "admin":
+            return "a"
+    }
+}
