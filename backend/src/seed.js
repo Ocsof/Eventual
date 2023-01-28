@@ -10,7 +10,7 @@ const randomEvents = [
         title: 'Event 1',
         author: '',
         category: 'concert',
-        date: new Date(2023, 0, 12),
+        date: new Date(2023, 0, 11),
         description: 'Description',
         users: []
     },
@@ -29,7 +29,7 @@ const randomEvents = [
         title: 'Event 3',
         author: '',
         category: 'party',
-        date: new Date(2023, 0, 12),
+        date: new Date(2023, 0, 13),
         description: 'Description',
         users: []
     },
@@ -38,7 +38,7 @@ const randomEvents = [
         title: 'Event 4',
         author: '',
         category: 'concert',
-        date: new Date(2023, 1, 12),
+        date: new Date(2023, 1, 14),
         description: 'Description',
         users: []
     },
@@ -48,7 +48,7 @@ const randomEvents = [
         title: 'Event 5',
         author: '',
         category: 'birthday',
-        date: new Date(2023, 1, 12),
+        date: new Date(2023, 1, 15),
         description: 'Description',
         users: []
     },
@@ -57,7 +57,7 @@ const randomEvents = [
         title: 'Event 6',
         author: '',
         category: 'party',
-        date: new Date(2023, 2, 12),
+        date: new Date(2023, 2, 16),
         description: 'Description',
         users: []
     },
@@ -67,7 +67,7 @@ const randomEvents = [
         title: 'Event 7',
         author: '',
         category: 'concert',
-        date: new Date(2023, 2, 12),
+        date: new Date(2023, 2, 17),
         description: 'Description',
         users: []
     },
@@ -76,7 +76,7 @@ const randomEvents = [
         title: 'Event 8',
         author: '',
         category: 'birthday',
-        date: new Date(2023, 2, 12),
+        date: new Date(2023, 2, 18),
         description: 'Description',
         users: []
     },
@@ -86,7 +86,7 @@ const randomEvents = [
         title: 'Event 9',
         author: '',
         category: 'concert',
-        date: new Date(2023, 3, 12),
+        date: new Date(2023, 3, 19),
         description: 'Description',
         users: []
     },
@@ -95,7 +95,7 @@ const randomEvents = [
         title: 'Event 10',
         author: '',
         category: 'party',
-        date: new Date(2023, 4, 12),
+        date: new Date(2023, 4, 20),
         description: 'Description',
         users: []
     },
@@ -105,7 +105,7 @@ const randomEvents = [
         title: 'Event 11',
         author: '',
         category: 'birthday',
-        date: new Date(2023, 5, 12),
+        date: new Date(2023, 5, 21),
         description: 'Description',
         users: []
     },
@@ -114,7 +114,52 @@ const randomEvents = [
         title: 'Event 12',
         author: '',
         category: 'party',
-        date: new Date(2023, 5, 12),
+        date: new Date(2023, 6, 22),
+        description: 'Description',
+        users: []
+    },
+    {
+        _id: new mongoose.mongo.ObjectId(),
+        title: 'Event 13',
+        author: '',
+        category: 'birthday',
+        date: new Date(2023, 7, 22),
+        description: 'Description',
+        users: []
+    },
+    {
+        _id: new mongoose.mongo.ObjectId(),
+        title: 'Event 14',
+        author: '',
+        category: 'concert',
+        date: new Date(2023, 8, 12),
+        description: 'Description',
+        users: []
+    },
+    {
+        _id: new mongoose.mongo.ObjectId(),
+        title: 'Event 15',
+        author: '',
+        category: 'concert',
+        date: new Date(2023, 8, 8),
+        description: 'Description',
+        users: []
+    },
+    {
+        _id: new mongoose.mongo.ObjectId(),
+        title: 'Event 16',
+        author: '',
+        category: 'birthday',
+        date: new Date(2023, 4, 9),
+        description: 'Description',
+        users: []
+    },
+    {
+        _id: new mongoose.mongo.ObjectId(),
+        title: 'Event 17',
+        author: '',
+        category: 'party',
+        date: new Date(2023, 5, 11),
         description: 'Description',
         users: []
     },
@@ -217,9 +262,11 @@ randomEvents[8].author = initial_users[3]._id
 randomEvents[9].author = initial_users[4]._id
 randomEvents[10].author = initial_users[3]._id
 randomEvents[11].author = initial_users[4]._id
-
-
-
+randomEvents[12].author = initial_users[3]._id
+randomEvents[13].author = initial_users[4]._id
+randomEvents[14].author = initial_users[3]._id
+randomEvents[15].author = initial_users[4]._id
+randomEvents[16].author = initial_users[3]._id
 
 
 async function seedEvents() {
