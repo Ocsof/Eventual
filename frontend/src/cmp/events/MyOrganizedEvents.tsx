@@ -8,9 +8,11 @@ import {Event, EventCardProps} from "./Event";
 import {Button} from "react-bootstrap";
 import {ModifyEvent} from "./ModifyEvent";
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 export function MyOrganizedEvents() {
     const [eventToModify, setEventToModify] = useState(-1);
+    const navigate = useNavigate();
 
     function modifyEvent(id: number){
         setEventToModify(id);
@@ -23,13 +25,15 @@ export function MyOrganizedEvents() {
         alert("deleted: " + e);
     }
 
-    function resetEvent() {
-        setEventToModify(-1)
-    }
     return (
         eventToModify === -1 ? (
         <>
-            <h1>My Organized Events</h1>
+            <div className="align-items-center d-flex">
+                <h1>My Organized Events</h1>
+                <Button className="btn btn-secondary btn-outline-dark mx-4"  onClick={() => navigate("/new_event")}>
+                    <i className="fa-solid fa-square-plus" />
+                </Button>
+            </div>
             <Container className="m-auto mb-2">
                 <Row md={2} xs={1} lg={3} className="g-3">
                     {events.map((item: JSX.IntrinsicAttributes & {

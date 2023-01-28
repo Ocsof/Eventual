@@ -2,12 +2,13 @@ import {Button, Card} from "react-bootstrap";
 import * as React from "react";
 import {useState} from "react";
 import {EventCardProps} from "./Event";
-import {redirect, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 export function ModifyEvent({id, title, author, category, date, description, imgUrl}:EventCardProps) {
     const navigate = useNavigate();
 
     const [event, setEvent] = useState({
+        id: id,
         title: title,
         author: author,
         category: category,
@@ -32,7 +33,7 @@ export function ModifyEvent({id, title, author, category, date, description, img
             />
             <Card.Body className="d-flex flex-column">
                 <Card.Title className="d-flex justify-content-between align-items-baseline">
-                    <input style={{width: "50%"}} className="fs-2 m-1"type="text"  placeholder={event.title} value={event.title} onChange={(e) => setEvent({...event, title: e.target.value})} />
+                    <input style={{width: "50%"}} className="fs-2 m-1" type="text"  placeholder={event.title} value={event.title} onChange={(e) => setEvent({...event, title: e.target.value})} />
                     <input style={{width: "50%"}} className="fs-2 m-1" type="text" placeholder={event.author} value={event.author} onChange={(e) => setEvent({...event, author: e.target.value})} />
                 </Card.Title>
                 <Card.Text className="mt-auto" >

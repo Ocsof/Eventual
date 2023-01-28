@@ -9,12 +9,10 @@ import * as PropTypes from 'prop-types';
 import {Button, Navbar} from "react-bootstrap";
 import {useShoppingCart} from "./cmp/events/ShoppingCartContext";
 import {Store} from "./cmp/events/Store";
-import {ShoppingCart} from "./cmp/events/ShoppingCart";
 import 'react-notifications/lib/notifications.css';
 import {NotificationContainer} from "react-notifications";
-import {MyEvents} from "./cmp/events/MyEvents";
-import {MyOrganizedEvents} from "./cmp/events/MyOrganizedEvents";
 import {Events} from "./cmp/Events";
+import {NewEvent} from "./cmp/events/NewEvent";
 Routes.propTypes = {children: PropTypes.node};
 
 function App() {
@@ -67,6 +65,7 @@ function App() {
                       <Route exact path="/signup" element={<SignUp />} />
                       <Route exact path="/store_events" element={<Store />} />
                       <Route exact path="/events" element={<Events />} />
+                      <Route exact path="/new_event" element={<NewEvent />} />
                       <Route exact path="/notify" element={<Notifications />} />
 
                       <Route exact path="/admin" element={<Admin />} />
