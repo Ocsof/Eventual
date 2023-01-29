@@ -4,7 +4,7 @@ import Home from "./cmp/Home";
 import {Login} from "./cmp/access/Login";
 import Notifications from "./cmp/Notifications";
 import {Admin} from "./cmp/intern/Admin";
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import * as PropTypes from 'prop-types';
 import {Button, Navbar} from "react-bootstrap";
 import {useShoppingCart} from "./cmp/events/ShoppingCartContext";
@@ -13,9 +13,11 @@ import 'react-notifications/lib/notifications.css';
 import {NotificationContainer, NotificationManager} from "react-notifications";
 import {Events} from "./cmp/Events";
 import {NewEvent} from "./cmp/events/NewEvent";
+import {EditProfile} from "./cmp/access/EditProfile";
 Routes.propTypes = {children: PropTypes.node};
 
 function App() {
+    const ref= useRef(null);
     const { openCart, cartQuantity } = useShoppingCart();
     const [searchInput, setSearchInput] = useState("");
 
@@ -26,7 +28,7 @@ function App() {
     };
     
     return (
-      <div className="App">
+      <div className="App" ref={ref}>
           <Router >
               <Navbar className="App-nav position-sticky">
                   <NavLink to="/" className="logo">Eventual </NavLink>
@@ -68,6 +70,7 @@ function App() {
                       <Route exact path="/events" element={<Events />} />
                       <Route exact path="/new_event" element={<NewEvent />} />
                       <Route exact path="/notify" element={<Notifications />} />
+                      <Route exact path="/edit_profile" element={<EditProfile />} />
 
                       <Route exact path="/admin" element={<Admin />} />
                       {/*<Route exact path="/passwordRecover" element={<PasswordRecover />} />*/}

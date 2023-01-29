@@ -21,7 +21,7 @@ export function CartItem({ id, quantity }:CartItemProps){
             <img src={item.imgUrl} style={{ width: "125px", height: "75px", objectFit:"cover"}} alt={"image " + id}/>
             <div className="me-auto">
                 <div>
-                    {item.name}
+                    {item.title}
                     {quantity > 0 && <span className="text-muted" style={{fontSize: ".65rem"}}>x{quantity}</span> }
                 </div>
                 <div className="text-muted" style={{fontSize: ".75rem"}}>

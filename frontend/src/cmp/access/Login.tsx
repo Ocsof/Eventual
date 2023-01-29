@@ -48,6 +48,7 @@ export function Login(){
                     </div>
                     <div className="row d-flex justify-content-center align-items-center">
                         <h3 className="row d-flex justify-content-center align-items-center">Benvenuto: {localStorage.getItem('username')}</h3>
+                        <Button className="btn btn-primary btn-lg m-2" style={{width:"50%"}} onClick={() => navigate("/edit_profile")}>Edit profile <i className="fa-solid fa-user-pen"></i></Button>
                         <Button className="btn btn-primary btn-lg m-2" style={{width:"50%"}} onClick={(e) => handleLogout(e)}>Logout <i className="fa-solid fa-right-from-bracket" /></Button>
                     </div>
                 </section>

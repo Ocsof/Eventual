@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {NotificationManager, NotificationContainer} from "react-notifications";
+import {NotificationManager} from "react-notifications";
 
 class SignupForm extends React.Component {
     constructor(props) {
@@ -221,7 +221,6 @@ class SignupForm extends React.Component {
                                                 <Link to="/login" className="small mt-4">Already registered?</Link>
                                             </div>
 
-                                            <NotificationContainer />
                                         </form>
 
                                     </div>

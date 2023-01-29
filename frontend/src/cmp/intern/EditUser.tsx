@@ -63,7 +63,7 @@ export function EditUser({id, name, surname, email, phone, password, birthday, c
             <div className="d-flex align-items-center">
                 <input className="mb-1" placeholder={categoryGenerator(user.category)} value={categoryGenerator(user.category)} onChange={(e) => setUser({...user, category: categoryGeneratorForDatabase(e.target.value)})} />
             </div>
-            <Button style={{marginLeft: "90%"}} className="btn btn-success" onClick={handleSave}>Save</Button>
+            <Button className="btn btn-success" onClick={handleSave}>Save</Button>
         </>
     )
 }
