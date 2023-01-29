@@ -2,6 +2,7 @@ import {Button, Card} from "react-bootstrap";
 import * as React from "react";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import { NotificationManager } from "react-notifications";
 
 export function NewEvent() {
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ export function NewEvent() {
     })
 
     function handleSave(){
-        alert("Event created");
+        NotificationManager.success("Event created");
         console.log(event);
         navigate("/events");
     }

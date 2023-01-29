@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {NotificationManager} from "react-notifications";
 
 class Login extends React.Component {
     constructor(props) {
@@ -27,9 +28,9 @@ class Login extends React.Component {
             /*
                 TODO: change with control function on database subscribes
             */
-            alert('Login effettuato con successo: ' + this.state.email);
+            NotificationManager.success('Login effettuato con successo: ' + this.state.email);
         } else {
-            alert('Email o password non corretta');
+            NotificationManager.error('Email o password non corretta');
         }
         event.preventDefault();
     }
@@ -41,7 +42,7 @@ class Login extends React.Component {
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col-md-9 col-lg-6 col-xl-5">
                             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                                 className="img-fluid" alt="Sample image" />
+                                 className="img-fluid" alt="Sample login" />
                         </div>
                         <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                             <form onSubmit={this.handleSubmit}>
@@ -94,7 +95,7 @@ class Login extends React.Component {
                                         Login
                                     </button>
                                     <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account?
-                                        <Link to="/signup" className="text-body">Register</Link>
+                                        <Link to="/signup" className="text-body mx-1">Register</Link>
                                     </p>
                                 </div>
                             </form>

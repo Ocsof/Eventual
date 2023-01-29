@@ -3,6 +3,7 @@ import * as React from "react";
 import {useState} from "react";
 import {EventCardProps} from "./Event";
 import {useNavigate} from "react-router-dom";
+import { NotificationManager } from "react-notifications";
 
 export function EditEvent({id, title, author, category, date, description, imgUrl}:EventCardProps) {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ export function EditEvent({id, title, author, category, date, description, imgUr
     })
 
     function handleSave(){
-        alert("Event modified");
+        NotificationManager.success("Event modified!");
         console.log(event);
         navigate(0);
     }
