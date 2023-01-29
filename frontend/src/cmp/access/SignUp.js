@@ -68,7 +68,7 @@ class SignupForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         console.log(JSON.stringify(this.state, null, 2));
-        NotificationManager.info("Signup ok!")
+        NotificationManager.success("Signup ok!")
         /*TODO: inviare con post "/signup" il json */
     }
 
@@ -230,10 +230,9 @@ class SignupForm extends React.Component {
                                     </div>
                                     <div
                                         className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
                                         <img
                                             src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                                            className="img-fluid" alt="Sample image" />
+                                            className="img-fluid" alt="Sample signup" />
                                     </div>
                                 </div>
                             </div>

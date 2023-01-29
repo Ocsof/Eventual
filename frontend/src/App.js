@@ -10,7 +10,7 @@ import {Button, Navbar} from "react-bootstrap";
 import {useShoppingCart} from "./cmp/events/ShoppingCartContext";
 import {Store} from "./cmp/events/Store";
 import 'react-notifications/lib/notifications.css';
-import {NotificationContainer} from "react-notifications";
+import {NotificationContainer, NotificationManager} from "react-notifications";
 import {Events} from "./cmp/Events";
 import {NewEvent} from "./cmp/events/NewEvent";
 Routes.propTypes = {children: PropTypes.node};
@@ -21,8 +21,8 @@ function App() {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        /*chiamata al database*/
-        alert("Research for: " + searchInput);
+        NotificationManager.info("Research for: " + searchInput);
+        /*todo: chiamata al database*/
     };
     
     return (

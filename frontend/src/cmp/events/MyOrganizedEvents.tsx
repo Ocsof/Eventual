@@ -9,6 +9,7 @@ import {Button} from "react-bootstrap";
 import {EditEvent} from "./EditEvent";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {NotificationManager} from "react-notifications";
 
 export function MyOrganizedEvents() {
     const [eventToModify, setEventToModify] = useState(-1);
@@ -19,10 +20,10 @@ export function MyOrganizedEvents() {
     }
 
     function deleteEvent(e: any){
-        /* todo: delete in the database */
+        /* TODO: delete in the database */
         let newEvents = events.filter((event: { id: any }) => event.id !== e);
         console.log(newEvents)
-        alert("deleted: " + e);
+        NotificationManager.success("Event deleted: " + e);
     }
 
     return (

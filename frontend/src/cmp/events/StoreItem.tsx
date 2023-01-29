@@ -24,7 +24,7 @@ export function StoreItem({ id, title, author, category, date, description, imgU
     const quantity = getItemQuantity(id)
 
     return (
-        <Card className="h-100" >
+        <Card className="m-2" >
             <Card.Img
                 variant="top"
                 src={imgUrl}
