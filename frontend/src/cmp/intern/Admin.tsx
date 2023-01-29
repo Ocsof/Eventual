@@ -1,4 +1,3 @@
-import {MyOrganizedEvents} from "../events/MyOrganizedEvents";
 // @ts-ignore
 import users from "../../data/users.json"
 import {categoryGenerator} from "../../utilities/validator";

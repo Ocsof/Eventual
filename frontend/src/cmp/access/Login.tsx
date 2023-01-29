@@ -6,7 +6,8 @@ import {Button} from "react-bootstrap";
 
 export function Login(){
     const navigate = useNavigate();
-    const {isLoggedIn, toggleLogin} = useLogin();
+    const {toggleLogin} = useLogin();
+    const isLoggedIn = Boolean(localStorage.getItem("logged"));
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -19,6 +20,7 @@ export function Login(){
             NotificationManager.success("Benvenuto: " + user.email)
             toggleLogin()
             localStorage.setItem('username', user.email)
+            localStorage.setItem('logged', String(isLoggedIn))
             navigate("/events")
         } else {
             NotificationManager.error('Email o password non corretta');
@@ -29,6 +31,7 @@ export function Login(){
         e.preventDefault()
         NotificationManager.success("Logout")
         toggleLogin()
+        localStorage.removeItem('logged')
     }
 
     return (

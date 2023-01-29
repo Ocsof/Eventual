@@ -14,7 +14,7 @@ export type EventCardProps = {
 export function Event({id, title, author, category, date, description, imgUrl}:EventCardProps){
 
     return (
-        <Card>
+        <Card key={id}>
             <Card.Img
                 variant="top"
                 src={imgUrl}

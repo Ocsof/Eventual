@@ -1,10 +1,9 @@
 import {MyEvents} from "./events/MyEvents";
 import {MyOrganizedEvents} from "./events/MyOrganizedEvents";
-import {useLogin} from "./access/LoginContext";
 import {Link} from "react-router-dom";
 
 export function Events(){
-    const {isLoggedIn} = useLogin();
+    const isLoggedIn = Boolean(localStorage.getItem("logged"));
 
     return (
         isLoggedIn ? (
