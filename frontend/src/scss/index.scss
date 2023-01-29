@@ -18,6 +18,10 @@
   @include media("≥phone", "≤tablet") {
     line-height: 1.5;
   }
+  @media (max-width: 767px) {
+    height: 70vh;
+    overflow: scroll;
+  }
 }
 
 .App-nav, footer {
@@ -26,33 +30,29 @@
   color: $second-color;
 }
 
-.App-nav > * {
+.nav-item {
   text-decoration: none;
   color: $second-color;
-  margin: 0 auto;
-  //padding: 1%;
   &:hover {
     color: $third-color;
-  }
-  .search {
-    width: 30%;
-    height: 25px;
   }
 }
 
 .App-content {
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  min-height: 85vh;
+  min-height: 83vh;
+
 }
 
 .logo {
   font-size: larger;
   font-weight: bold;
+  text-decoration: none !important;
+  color: $second-color !important;
 }
 
 .error {
@@ -72,13 +72,23 @@
   background: $text-color;
 }
 
-.h-custom {
-  height: calc(100% - 73px);
-}
-
 @media (max-width: 450px) {
   .h-custom {
     height: 100%;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .App{
+    width: 90%;
+    padding: 10px;
+  }
+  .h-custom{
+    height: 100vh;
+    overflow-y: scroll;
+  }
+  .App-content {
+    overflow-y: scroll;
   }
 }
 
@@ -95,4 +105,8 @@
 
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: linear-gradient(to right, $primary-color, $second-color)
+}
+
+.navbar-collapse.in {
+  display: block !important;
 }

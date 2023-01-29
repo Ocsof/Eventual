@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 export function EditProfile(){
     const navigate = useNavigate()
     const email = localStorage.getItem("username")
-    const [user, setUser] = useState({...users.find( (u:EditUserProps) => u.email == email)})
+    const [user, setUser] = useState({...users.find( (u:EditUserProps) => u.email === email)})
 
     /*todo: extract info by email from database of the user*/
 

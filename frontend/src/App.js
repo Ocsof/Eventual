@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Routes, NavLink, Link} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes, NavLink} from "react-router-dom";
 import SignUp from "./cmp/access/SignUp";
 import Home from "./cmp/Home";
 import {Login} from "./cmp/access/Login";
@@ -6,7 +6,7 @@ import Notifications from "./cmp/Notifications";
 import {Admin} from "./cmp/intern/Admin";
 import React, {useRef, useState} from "react";
 import * as PropTypes from 'prop-types';
-import {Button, Navbar} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import {useShoppingCart} from "./cmp/events/ShoppingCartContext";
 import {Store} from "./cmp/events/Store";
 import 'react-notifications/lib/notifications.css';
@@ -30,22 +30,39 @@ function App() {
     return (
       <div className="App" ref={ref}>
           <Router >
-              <Navbar className="App-nav position-sticky">
-                  <NavLink to="/" className="logo">Eventual </NavLink>
-                  <NavLink to="/login">Login </NavLink>
-                  <NavLink to="/signup">Sign Up </NavLink>
-                  <NavLink to="/store_events">Events </NavLink>
-                  <NavLink to="/events">My Events </NavLink>
-                  <div className="d-flex">
-                      <input type="search" className="form-control rounded" placeholder="Search..." aria-label="Search"
-                             aria-describedby="search-addon" onChange={(e) => setSearchInput(e.target.value)}/>
-                      <span className="input-group-text border-0 mx-1" id="search-addon" onClick={handleSearch}>
-                        <i className="fas fa-search"></i>
-                      </span>
+              <nav className="App-nav navbar navbar-expand-lg px-4">
+                  <NavLink to="/" className="logo navbar-brand">Eventual </NavLink>
+                  <button className="navbar-toggler" type="button" data-toggle="collapse"
+                          data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                          aria-expanded="false" aria-label="Toggle navigation">
+                      <span className="navbar-toggler-icon"></span>
+                  </button>
+                  <div className="collapse navbar-collapse" id="navbarToggleExternalContent">
+                      <ul className="navbar-nav mr-auto d-flex justify-content-between">
+                          <li className="nav-item px-2">
+                              <NavLink to="/login" className="nav-item active">Login </NavLink>
+                          </li>
+                          <li className="nav-item px-2">
+                              <NavLink to="/signup" className="nav-item active">Sign Up </NavLink>
+                          </li>
+                          <li className="nav-item px-2">
+                              <NavLink to="/store_events" className="nav-item active">Events </NavLink>
+                          </li>
+                          <li className="nav-item px-2">
+                              <NavLink to="/events" className="nav-item active">My Events </NavLink>
+                          </li>
+                      </ul>
+                      <div className="d-flex mx-5">
+                          <input type="search" className="form-control rounded" placeholder="Search..." aria-label="Search"
+                                 aria-describedby="search-addon" onChange={(e) => setSearchInput(e.target.value)}/>
+                          <span className="input-group-text border-0 mx-1" id="search-addon" onClick={handleSearch}>
+                                <i className="fas fa-search"></i>
+                          </span>
+                      </div>
                   </div>
-                  <Link to="/notify" >
+                  <NavLink to="/notify" className="d-flex m-4">
                       <img src={"img/notification.svg"} alt="notifications" className="link-icon" />
-                  </Link>
+                  </NavLink>
                   <Button
                       onClick={openCart}
                       className="rounded-circle border border-white btn btn-outline-light"
@@ -54,12 +71,12 @@ function App() {
                   >
                       <img  src={"img/shopping-cart.svg"} alt="shopping cart" className="link-icon" />
                       <div className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
-                      style={{color: "white", width:"1.5rem", height: "1.5rem", position: "absolute", bottom: 0, right: 0,
-                      transform:"translate(25%, 25%)"}}>
+                           style={{color: "white", width:"1.5rem", height: "1.5rem", position: "absolute", bottom: 0, right: 0,
+                               transform:"translate(25%, 25%)"}}>
                           {cartQuantity}
                       </div>
                   </Button>
-              </Navbar>
+              </nav>
 
               <div className="App-content">
                   <Routes>
@@ -78,7 +95,7 @@ function App() {
                   <NotificationContainer />
               </div>
           </Router>
-          <footer>
+          <footer className="my_footer">
               Copyright 2022 - Francesco Foschini, Alessia Rocco
           </footer>
       </div>
