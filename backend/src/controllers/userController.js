@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const UserModel = require('../models/userModel')(mongoose)
 
 exports.sign_user = (req,res)=>{
-    const { name, surname, email, phone, password, birthdayOfUser, category} = req.body;
+    const { name, surname, email, phone, password, birthday, category} = req.body;
     // controllo se l'email è già presente nel database
     UserModel.findOne({"email": email}, (err, user) => {
         if (err) {
@@ -23,14 +23,17 @@ exports.sign_user = (req,res)=>{
                 email,
                 phone,
                 password: hash,
-                birthday: new Date(birthdayOfUser),
+                birthday,
                 category,
                 inscriptions: [],
                 my_organizations: []
             });
+            //newUser.birthday = new Date(birthday)
             newUser.save((err) => {
                 if (err) {
-                    res.send("Salvataggio non possibile, alcuni campi non sono stati compilati");
+                    //res.send("Salvataggio non possibile, alcuni campi non sono stati compilati");
+                    res.send(birthdayOfUser)
+                    res.json(err)
                 }
                 res.send(`User per ${name} ${surname} creato`);
             });
@@ -70,6 +73,27 @@ exports.update_user = (req,res)=>{
         }
         res.json(doc);
     })
+}
+
+/**** Elimanare uno specifico utente. Solo admin può farlo****/
+exports.delete_user = (req,res)=>{
+    const idUser = mongoose.Types.ObjectId(req.params._id)
+    UserModel.findById(idUser,(err,user)=>{
+        if(err) res.send(err);
+        if (!user) return res.status(404).send('User non trovato');
+        if (user.category === 'a') return res.status(400).send('Admin non pùò essere eliminato');
+        user.remove((err, doc) =>{
+            if (err) res.send(err);
+            res.send('User successfully deleted.');
+        });
+    })
+}
+
+exports.read_allusers = (req, res)=>{
+    UserModel.find({}, (err, users)=>{
+        if (err) return res.send(err);
+        res.send(users);
+    });
 }
 
 /** leggere gli eventi a cui si è registrato un utente **/
