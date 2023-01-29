@@ -75,6 +75,27 @@ exports.update_user = (req,res)=>{
     })
 }
 
+/**** Elimanare uno specifico utente. Solo admin può farlo****/
+exports.delete_user = (req,res)=>{
+    const idUser = mongoose.Types.ObjectId(req.params._id)
+    UserModel.findById(idUser,(err,user)=>{
+        if(err) res.send(err);
+        if (!user) return res.status(404).send('User non trovato');
+        if (user.category === 'a') return res.status(400).send('Admin non pùò essere eliminato');
+        user.remove((err, doc) =>{
+            if (err) res.send(err);
+            res.send('User successfully deleted.');
+        });
+    })
+}
+
+exports.read_allusers = (req, res)=>{
+    UserModel.find({}, (err, users)=>{
+        if (err) return res.send(err);
+        res.send(users);
+    });
+}
+
 /** leggere gli eventi a cui si è registrato un utente **/
 exports.read_myinscriptions = (req, res) => {
     const idUser = mongoose.Types.ObjectId(req.params._id) //per castare l'id passato come parametro in objectid
