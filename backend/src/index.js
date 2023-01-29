@@ -28,6 +28,8 @@ mongoose.connection.on('open', function () {
 
 const express = require('express');
 const server = express()
+const bodyParser = require('body-parser') //todo l'ho dovuta scaricare per il test con Postman, verificare se serve anche per frontend
+server.use(bodyParser.json())
 
 const routesEvent = require('./routes/eventRoute.js');
 routesEvent(server);

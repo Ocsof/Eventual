@@ -5,9 +5,9 @@ const bcrypt = require('bcryptjs');
 const UserModel = require('../models/userModel')(mongoose)
 
 exports.sign_user = (req,res)=>{
-    const { name, surname, email, phone, password, birthday, category} = req.body;
+    const { name, surname, email, phone, password, birthdayOfUser, category} = req.body;
     // controllo se l'email è già presente nel database
-    UserModel.findOne(email, (err, user) => {
+    UserModel.findOne({"email": email}, (err, user) => {
         if (err) {
             res.status(500).send({error: 'Errore del server'});
         } else if (user != null) {
@@ -23,9 +23,10 @@ exports.sign_user = (req,res)=>{
                 email,
                 phone,
                 password: hash,
-                birthday,
+                birthday: new Date(birthdayOfUser),
                 category,
-                events: []
+                inscriptions: [],
+                my_organizations: []
             });
             newUser.save((err) => {
                 if (err) {
@@ -39,7 +40,8 @@ exports.sign_user = (req,res)=>{
 
 /*** se tutto va a buon fine restiruisco user cosi lato frontend ha tutte le info dell'utente appena loggato ***/
 exports.log_user = (req, res)=> {
-    UserModel.findOne(req.body.email, (err, user) => {
+
+    UserModel.findOne({"email": req.body.email}, (err, user) => {
         if (err){
             res.status(500).send(err);
         }
@@ -61,7 +63,8 @@ exports.log_user = (req, res)=> {
 
 /*** per aggiornare l'utente, es: iscrizione ad un evento **/
 exports.update_user = (req,res)=>{
-    UserModel.findByIdAndUpdate(req.params.id,req.body,{new: true},(err,doc)=>{
+    const idUser = mongoose.Types.ObjectId(req.params._id) //per castare l'id passato come parametro in objectid
+    UserModel.findByIdAndUpdate(idUser,req.body,{new: true},(err,doc)=>{
         if(err){
             res.send(err);
         }
@@ -71,26 +74,28 @@ exports.update_user = (req,res)=>{
 
 /** leggere gli eventi a cui si è registrato un utente **/
 exports.read_myinscriptions = (req, res) => {
-    UserModel.findOne({id: req.params.id})
+    const idUser = mongoose.Types.ObjectId(req.params._id) //per castare l'id passato come parametro in objectid
+    UserModel.findById(idUser)
         .populate('inscriptions')
         .exec((err, user) => {
             if(err){
                 res.send(err);
             }
-            console.log(user.events[0].title)
-            res.json(user.events);
+            console.log(user.inscriptions[0].title)
+            res.json(user.inscriptions);
         })
 }
 
 exports.read_myorganizations = (req, res) => {
-    UserModel.findOne({id: req.params.id})
+    const idUser = mongoose.Types.ObjectId(req.params._id) //per castare l'id passato come parametro in objectid
+    UserModel.findById(idUser)
         .populate('my_organizations')
         .exec((err, user) => {
             if(err){
                 res.send(err);
             }
-            console.log(user.events[0].title)
-            res.json(user.events);
+            console.log(user.my_organizations[0].title)
+            res.json(user.my_organizations);
         })
 }
 
