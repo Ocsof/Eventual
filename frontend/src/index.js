@@ -6,14 +6,17 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import {ShoppingCartProvider} from "./cmp/events/ShoppingCartContext";
 import 'react-notifications/lib/notifications.css';
+import {LoginProvider} from "./cmp/access/LoginContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-      <ShoppingCartProvider>
-          <App />
-      </ShoppingCartProvider>
+      <LoginProvider>
+          <ShoppingCartProvider>
+              <App />
+          </ShoppingCartProvider>
+      </LoginProvider>
   </React.StrictMode>
 );
 

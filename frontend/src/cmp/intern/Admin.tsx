@@ -4,6 +4,7 @@ import users from "../../data/users.json"
 import {categoryGenerator} from "../../utilities/validator";
 import {useState} from "react";
 import {EditUserProps, EditUser} from "./EditUser";
+import {AllEvents} from "./AllEvents";
 
 export function Admin(){
     const [editUser, setEditUser] = useState(false)
@@ -68,7 +69,7 @@ export function Admin(){
                         </tbody>
                     </table>
                 <h1>Events Settings</h1>
-                <MyOrganizedEvents />
+                <AllEvents />
             </>) : (
                 <EditUser {...users.find((u: EditUserProps)=> u.id === userID)}/>
         )

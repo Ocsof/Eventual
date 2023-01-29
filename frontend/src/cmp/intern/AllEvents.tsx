@@ -4,17 +4,16 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 // @ts-ignore
 import events from "../../data/events_organized.json"
-import {Event, EventCardProps} from "./Event";
 import {Button} from "react-bootstrap";
-import {EditEvent} from "./EditEvent";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {NotificationManager} from "react-notifications";
+import {EditEvent} from "../events/EditEvent";
+import {Event, EventCardProps} from "../events/Event";
 
-export function MyOrganizedEvents() {
+export function AllEvents() {
     const [eventToModify, setEventToModify] = useState(-1);
-    const navigate = useNavigate();
-
+    useNavigate();
     function modifyEvent(id: number){
         setEventToModify(id);
     }
@@ -29,12 +28,6 @@ export function MyOrganizedEvents() {
     return (
         eventToModify === -1 ? (
         <>
-            <div className="align-items-center d-flex">
-                <h1>Events {localStorage.getItem('username')} organizes: </h1>
-                <Button className="btn btn-secondary btn-outline-dark mx-4"  onClick={() => navigate("/new_event")}>
-                    <i className="fa-solid fa-square-plus" />
-                </Button>
-            </div>
             <Container className="m-auto mb-2">
                 <Row md={2} xs={1} lg={3} className="g-3">
                     {events.map((item: JSX.IntrinsicAttributes & {

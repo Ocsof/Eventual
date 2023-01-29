@@ -101,9 +101,7 @@ class SignupForm extends React.Component {
 
                                         <p className="text-center h1 fw-bold mb-2 mx-1 mx-md-2 mt-2">Sign up</p>
 
-
-                                        <form className="small" onSubmit={this.handleSubmit} onReset={this.handleReset} >
-
+                                        <form className="small" onSubmit={this.handleSubmit} onReset={this.handleReset} autoComplete="new-password">
                                             <div className="d-flex flex-row align-items-center mb-4">
                                                 <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                                                 <div className="form-outline flex-fill mb-0">
@@ -210,7 +208,6 @@ class SignupForm extends React.Component {
                                                 </div>
                                             </div>
 
-
                                             <div className="form-check d-flex justify-content-center mb-5">
                                                 <input className="form-check-input me-2" type="checkbox" id="terms" required={true}/>
                                                 <label className="form-check-label" htmlFor="terms">
@@ -228,11 +225,9 @@ class SignupForm extends React.Component {
                                         </form>
 
                                     </div>
-                                    <div
-                                        className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                                        <img
-                                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                                            className="img-fluid" alt="Sample signup" />
+                                    <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                                             className="img-fluid" alt="Sample signup" />
                                     </div>
                                 </div>
                             </div>

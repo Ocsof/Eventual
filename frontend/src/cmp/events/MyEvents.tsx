@@ -9,7 +9,7 @@ import {Event} from "./Event";
 export function MyEvents() {
     return (
         <>
-            <h1>My Events</h1>
+            <h1>Events {localStorage.getItem('username')} participates: </h1>
             <Container className="m-auto">
                 <Row md={2} xs={1} lg={3} className="g-3">
                     {events.map((item: JSX.IntrinsicAttributes & {

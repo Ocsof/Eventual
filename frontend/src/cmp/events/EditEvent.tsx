@@ -21,7 +21,7 @@ export function EditEvent({id, title, author, category, date, description, imgUr
     function handleSave(){
         NotificationManager.success("Event modified!");
         console.log(event);
-        navigate(0);
+        navigate(-1)
     }
 
     return (
