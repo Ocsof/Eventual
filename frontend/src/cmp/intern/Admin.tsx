@@ -1,9 +1,9 @@
-// @ts-ignore
-import users from "../../data/users.json"
 import {categoryGenerator} from "../../utilities/validator";
 import {useState} from "react";
 import {EditUserProps, EditUser} from "./EditUser";
 import {AllEvents} from "./AllEvents";
+// @ts-ignore
+import users from "../../data/users.json"
 
 export function Admin(){
     const [editUser, setEditUser] = useState(false)

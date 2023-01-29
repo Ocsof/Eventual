@@ -1,0 +1,21 @@
+// main: index.scss
+
+.intro {
+  height: 100%;
+}
+
+@media (min-height: 300px) and (max-height: 450px) {
+  .intro {
+    height: auto;
+  }
+}
+
+.fas.fa-laptop {
+  font-size: 19rem;
+}
+
+@media (max-width: 991px) {
+  .fas.fa-laptop {
+    font-size: 12rem;
+  }
+};
