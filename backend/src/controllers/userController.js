@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const UserModel = require('../models/userModel')(mongoose)
 
 exports.sign_user = (req,res)=>{
-    const { name, surname, email, phone, password, birthdayOfUser, category} = req.body;
+    const { name, surname, email, phone, password, birthday, category} = req.body;
     // controllo se l'email è già presente nel database
     UserModel.findOne({"email": email}, (err, user) => {
         if (err) {
@@ -23,14 +23,17 @@ exports.sign_user = (req,res)=>{
                 email,
                 phone,
                 password: hash,
-                birthday: new Date(birthdayOfUser),
+                birthday,
                 category,
                 inscriptions: [],
                 my_organizations: []
             });
+            //newUser.birthday = new Date(birthday)
             newUser.save((err) => {
                 if (err) {
-                    res.send("Salvataggio non possibile, alcuni campi non sono stati compilati");
+                    //res.send("Salvataggio non possibile, alcuni campi non sono stati compilati");
+                    res.send(birthdayOfUser)
+                    res.json(err)
                 }
                 res.send(`User per ${name} ${surname} creato`);
             });

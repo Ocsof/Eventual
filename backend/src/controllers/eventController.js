@@ -53,8 +53,6 @@ exports.read_event = (req, res)=>{
 exports.update_event = (req, res)=>{
     const idEvent = mongoose.Types.ObjectId(req.params._id)
     const event = req.body
-    const date = new Date(event.date)
-    event.date = date
     EventModel.findByIdAndUpdate(idEvent,event,{new: true},(err,doc)=>{
         if(err){
             res.send(err);
@@ -84,7 +82,6 @@ exports.read_eventsByCategory = (req, res) => {
     EventModel.find({category: category, date:{$gte: new Date()}},
         (err, events) => {
             if (err) {
-                res.json(events)
                 res.status(500).json({error: err});
             } else {
                 res.json(events);
