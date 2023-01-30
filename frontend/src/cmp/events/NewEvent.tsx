@@ -31,6 +31,9 @@ export function NewEvent() {
                 height="200px"
                 style={{ objectFit: "cover" }}
             />
+            <Card.Title>
+                <h3>New Event</h3>
+            </Card.Title>
             <Card.Body className="d-flex flex-column">
                 <label className="form-label" htmlFor="newEventImg">Event image: </label>
                 <input style={{width: "100%"}} type="file" className="form-control" id="newEventImg" onChange={(e) => setEvent({...event, imgUrl: e.target.value})}/>

@@ -33,6 +33,9 @@ export function EditEvent({id, title, author, category, date, description, imgUr
                 height="200px"
                 style={{ objectFit: "cover" }}
             />
+            <Card.Title>
+                <h3 hidden={true}>{event.title}</h3>
+            </Card.Title>
             <Card.Body className="d-flex flex-column">
                 <Card.Title className="d-flex justify-content-between align-items-baseline">
                     <input style={{width: "50%"}} className="fs-2 m-1" type="text"  placeholder={event.title} value={event.title} onChange={(e) => setEvent({...event, title: e.target.value})} />
