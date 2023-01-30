@@ -21,6 +21,10 @@ module.exports =  (mongoose)=>{
             type: String,
             required: true
         },
+        price:{
+            type: Number,
+            required: false
+        },
         users: [{ type: Schema.Types.ObjectId, ref: 'Users' }]
     })
     return mongoose.model('Events',eventSchema)

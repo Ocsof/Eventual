@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {NotificationManager} from "react-notifications";
 import axios from 'axios';
+import {categoryGeneratorForDatabase} from "../../utilities/validator";
 
 class SignupForm extends React.Component {
 
@@ -51,7 +52,7 @@ class SignupForm extends React.Component {
     }
 
     handleCategoryChange(event) {
-        this.setState({category: event.target.value})
+        this.setState({category: categoryGeneratorForDatabase(event.target.value)})
     }
 
     handleBirthdayChange(event){
@@ -77,10 +78,10 @@ class SignupForm extends React.Component {
                 }
             })
             .catch(error => {
+                console.error(error)
                 if(error.response.status === 409){
                     NotificationManager.error("Utente già registrato con questa email")
                 }
-                console.error(error)
             });
 
     }

@@ -30,7 +30,7 @@ export function MyOrganizedEvents() {
         eventToModify === -1 ? (
         <>
             <div className="align-items-center d-flex">
-                <h3>Events {localStorage.getItem('username')} organizes: </h3>
+                <h3>Events {JSON.parse(localStorage.getItem('user')).name} organizes: </h3>
                 <br />
                 <Button className="btn btn-secondary btn-outline-dark mx-4" id="newEvent" onClick={() => navigate("/new_event")}>
                     <i className="fa-solid fa-square-plus" />
@@ -45,6 +45,7 @@ export function MyOrganizedEvents() {
                         category: string,
                         date: string,
                         description: string,
+                        price: number,
                         imgUrl: string
                     }) => (
                     <Col key={item.id}>

@@ -37,6 +37,7 @@ export function AllEvents() {
                         category: string,
                         date: string,
                         description: string,
+                        price: number,
                         imgUrl: string
                     }) => (
                     <Col key={item.id}>

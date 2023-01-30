@@ -12,6 +12,7 @@ const randomEvents = [
         category: 'concert',
         date: new Date(2023, 0, 11),
         description: 'Description',
+        price: 75,
         users: []
     },
     {
@@ -21,6 +22,7 @@ const randomEvents = [
         category: 'birthday',
         date: new Date(2023, 0, 12),
         description: 'Description',
+        price: 90.50,
         users: []
     },
 
@@ -31,6 +33,7 @@ const randomEvents = [
         category: 'party',
         date: new Date(2023, 0, 13),
         description: 'Description',
+        price: 0,
         users: []
     },
     {
@@ -40,6 +43,7 @@ const randomEvents = [
         category: 'concert',
         date: new Date(2023, 1, 14),
         description: 'Description',
+        price: 100.99,
         users: []
     },
 
@@ -50,6 +54,7 @@ const randomEvents = [
         category: 'birthday',
         date: new Date(2023, 1, 15),
         description: 'Description',
+        price: 0,
         users: []
     },
     {
@@ -59,6 +64,7 @@ const randomEvents = [
         category: 'party',
         date: new Date(2023, 2, 16),
         description: 'Description',
+        price: 24.50,
         users: []
     },
 
@@ -69,6 +75,7 @@ const randomEvents = [
         category: 'concert',
         date: new Date(2023, 2, 17),
         description: 'Description',
+        price: 56.98,
         users: []
     },
     {
@@ -78,6 +85,7 @@ const randomEvents = [
         category: 'birthday',
         date: new Date(2023, 2, 18),
         description: 'Description',
+        price: 9.98,
         users: []
     },
 
@@ -88,6 +96,7 @@ const randomEvents = [
         category: 'concert',
         date: new Date(2023, 3, 19),
         description: 'Description',
+        price: 20,
         users: []
     },
     {
@@ -97,6 +106,7 @@ const randomEvents = [
         category: 'party',
         date: new Date(2023, 4, 20),
         description: 'Description',
+        price: 0,
         users: []
     },
 
@@ -107,6 +117,7 @@ const randomEvents = [
         category: 'birthday',
         date: new Date(2023, 5, 21),
         description: 'Description',
+        price: 0,
         users: []
     },
     {
@@ -116,6 +127,7 @@ const randomEvents = [
         category: 'party',
         date: new Date(2023, 6, 22),
         description: 'Description',
+        price: 0,
         users: []
     },
     {
@@ -125,6 +137,7 @@ const randomEvents = [
         category: 'birthday',
         date: new Date(2023, 7, 22),
         description: 'Description',
+        price: 0,
         users: []
     },
     {
@@ -134,6 +147,7 @@ const randomEvents = [
         category: 'concert',
         date: new Date(2023, 8, 12),
         description: 'Description',
+        price: 98.99,
         users: []
     },
     {
@@ -143,6 +157,7 @@ const randomEvents = [
         category: 'concert',
         date: new Date(2023, 8, 8),
         description: 'Description',
+        price: 10,
         users: []
     },
     {
@@ -152,6 +167,7 @@ const randomEvents = [
         category: 'birthday',
         date: new Date(2023, 4, 9),
         description: 'Description',
+        price: 0,
         users: []
     },
     {
@@ -161,6 +177,7 @@ const randomEvents = [
         category: 'party',
         date: new Date(2023, 5, 11),
         description: 'Description',
+        price: 0,
         users: []
     },
     // Add more events here

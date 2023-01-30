@@ -29,10 +29,11 @@ export function Home(){
                             category: string,
                             date: string,
                             description: string,
+                            price: number,
                             imgUrl: string
                         }) => (
                             <Col key={event.id}>
-                                <Event key={event.id} {...event}/>
+                                <Event {...event}/>
                             </Col>
                         ))
                         }

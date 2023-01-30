@@ -26,7 +26,7 @@ export function Login(){
                 if(response.status === 200){
                     NotificationManager.success("Benvenuto: " + response.data.name)
                     toggleLogin()
-                    localStorage.setItem('username', user.email)
+                    localStorage.setItem('user', JSON.stringify(response.data))
                     localStorage.setItem('logged', String(isLoggedIn))
                     navigate("/events")
                 }
@@ -47,6 +47,7 @@ export function Login(){
         NotificationManager.success("Logout")
         toggleLogin()
         localStorage.removeItem('logged')
+        localStorage.removeItem('user')
     }
 
     return (
