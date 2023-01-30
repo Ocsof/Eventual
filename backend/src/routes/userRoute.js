@@ -7,7 +7,7 @@ module.exports =  (server)=>{
 
     //esempio di richiesta http, nel body van messi solo email e password ----> localhost:8082/login
     server.route('/login')
-        .get(controller.log_user)
+        .post(controller.log_user)
 
     //esempio di richiesta http: id user come parametro, tutti gli altri campi nel body
     // ----> localhost:8082/user/63d52785ded7e6aac542fe64
