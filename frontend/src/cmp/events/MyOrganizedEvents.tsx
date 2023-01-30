@@ -30,8 +30,9 @@ export function MyOrganizedEvents() {
         eventToModify === -1 ? (
         <>
             <div className="align-items-center d-flex">
-                <h1>Events {localStorage.getItem('username')} organizes: </h1>
-                <Button className="btn btn-secondary btn-outline-dark mx-4"  onClick={() => navigate("/new_event")}>
+                <h3>Events {localStorage.getItem('username')} organizes: </h3>
+                <br />
+                <Button className="btn btn-secondary btn-outline-dark mx-4" id="newEvent" onClick={() => navigate("/new_event")}>
                     <i className="fa-solid fa-square-plus" />
                 </Button>
             </div>
