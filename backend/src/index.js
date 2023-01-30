@@ -4,10 +4,6 @@ const hostname = 'localhost'//'HOSTNAME' in env ? env.HOSTNAME : 'localhost'
 
 const mongoHost = "mongodb"//'MONGO_HOST' in env ? env.MONGO_HOST : "localhost"
 const mongoPort = 27017 //'MONGO_PORT' in env ? env.MONGO_PORT : 27017
-//const mongoUser = "admin" //'MONGO_USER' in env ? env.MONGO_USER : "admin"
-//const mongoPassword = "admin" //'MONGO_PASSWORD' in env ? env.MONGO_PASSWORD : "admin"
-//const mongoConnection = `mongodb://${mongoUser}:${mongoPassword}@${mongoHost}:${mongoPort}/test`;
-//const mongoConnection = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${mongoHost}:${mongoPort}/test`;
 const mongoConnection = `mongodb://${mongoHost}:${mongoPort}/test`
 
 //const mongClient = new MongoClient(mongoConnection);
