@@ -67,6 +67,27 @@ class SignupForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        const axios = require('axios');
+        axios.post('http://localhost:8082/signup', {
+            name: this.state.name,
+            surname: this.state.surname,
+            email: this.state.email,
+            phone: this.state.phone,
+            password: this.state.password,
+            birthday: this.state.birthday,
+            category: this.state.category,
+            inscriptions: [],
+            my_organizations: []
+        })
+            .then(response => {
+                if (response.data.success) {
+                    console.log('Login successful!');
+                    alert(JSON.stringify(response.data));
+                } else {
+                    console.error('Login failed!');
+                }
+            })
+            .catch(error => console.error(error));
         console.log(JSON.stringify(this.state, null, 2));
         NotificationManager.success("Signup ok!")
         /*TODO: inviare con post "/signup" il json */

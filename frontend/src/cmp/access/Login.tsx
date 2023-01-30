@@ -12,19 +12,35 @@ export function Login(){
         email: "",
         password: ""
     });
+    const axios = require('axios');
 
     function handleSubmit(e) {
         e.preventDefault()
+
+        axios.get('http://localhost:8082/login', {
+            email: user.email,
+            password: user.password
+        })
+            .then(response => {
+                if (response.data.success) {
+                    console.log('Login successful!');
+                    alert(JSON.stringify(response.data));
+                } else {
+                    console.error('Login failed!');
+                }
+            })
+            .catch(error => console.error(error));
+
         /*todo: change with check in the database*/
-        if(user.email !== "" && user.password !== ""){
-            NotificationManager.success("Benvenuto: " + user.email)
-            toggleLogin()
-            localStorage.setItem('username', user.email)
-            localStorage.setItem('logged', String(isLoggedIn))
-            navigate("/events")
-        } else {
-            NotificationManager.error('Email o password non corretta');
-        }
+        // if(user.email !== "" && user.password !== ""){
+        //     NotificationManager.success("Benvenuto: " + user.email)
+        //     toggleLogin()
+        //     localStorage.setItem('username', user.email)
+        //     localStorage.setItem('logged', String(isLoggedIn))
+        //     navigate("/events")
+        // } else {
+        //     NotificationManager.error('Email o password non corretta');
+        // }
     }
 
     function handleLogout(e) {
