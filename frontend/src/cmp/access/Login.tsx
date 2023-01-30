@@ -22,25 +22,24 @@ export function Login(){
             password: user.password
         })
             .then(response => {
-                if (response.data.success) {
-                    console.log('Login successful!');
-                    alert(JSON.stringify(response.data));
-                } else {
-                    console.error('Login failed!');
+                console.log(response.data);
+                if(response.status === 200){
+                    NotificationManager.success("Benvenuto: " + response.data.name)
+                    toggleLogin()
+                    localStorage.setItem('username', user.email)
+                    localStorage.setItem('logged', String(isLoggedIn))
+                    navigate("/events")
                 }
             })
-            .catch(error => console.error(error));
-
-        /*todo: change with check in the database*/
-        // if(user.email !== "" && user.password !== ""){
-        //     NotificationManager.success("Benvenuto: " + user.email)
-        //     toggleLogin()
-        //     localStorage.setItem('username', user.email)
-        //     localStorage.setItem('logged', String(isLoggedIn))
-        //     navigate("/events")
-        // } else {
-        //     NotificationManager.error('Email o password non corretta');
-        // }
+            .catch(error => {
+                if( error.response.status === 404) {
+                    NotificationManager.error('Email inesistente')
+                } else if(error.response.status === 401) {
+                    NotificationManager.error('Email o password errate')
+                } else if(error.response.status === 500){
+                    NotificationManager.error('General server error')
+                }
+            });
     }
 
     function handleLogout(e) {

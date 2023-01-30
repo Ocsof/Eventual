@@ -9,35 +9,36 @@ exports.sign_user = (req,res)=>{
     // controllo se l'email è già presente nel database
     UserModel.findOne({"email": email}, (err, user) => {
         if (err) {
-            res.status(500).send({error: 'Errore del server'});
+             res.status(500).send({error: 'Errore del server'});
         } else if (user != null) {
             res.status(409).send({error: 'Email utente già in uso'});
-        }
-        bcrypt.hash(password, 10, (err, hash) => { //10 numero di round di cifratura
-            if (err) {
-                res.status(500).send(err);
-            }
-            const newUser = new UserModel({
-                name,
-                surname,
-                email,
-                phone,
-                password: hash,
-                birthday,
-                category,
-                inscriptions: [],
-                my_organizations: []
-            });
-            //newUser.birthday = new Date(birthday)
-            newUser.save((err) => {
+        } else {
+            bcrypt.hash(password, 10, (err, hash) => { //10 numero di round di cifratura
                 if (err) {
-                    //res.send("Salvataggio non possibile, alcuni campi non sono stati compilati");
-                    res.send(birthdayOfUser)
-                    res.json(err)
+                    res.status(500).send(err);
                 }
-                res.send(`User per ${name} ${surname} creato`);
-            });
-        })
+                const newUser = new UserModel({
+                    name,
+                    surname,
+                    email,
+                    phone,
+                    password: hash,
+                    birthday,
+                    category,
+                    inscriptions: [],
+                    my_organizations: []
+                });
+                //newUser.birthday = new Date(birthday)
+                newUser.save((err) => {
+                    if (err) {
+                        //res.send("Salvataggio non possibile, alcuni campi non sono stati compilati");
+                        res.json(err)
+                    }
+                    res.status(200).send(`User per ${name} ${surname} creato`);
+
+                });
+            })
+        }
     })
 }
 
@@ -47,20 +48,20 @@ exports.log_user = (req, res)=> {
     UserModel.findOne({"email": req.body.email}, (err, user) => {
         if (err){
             res.status(500).send(err);
-        }
-        if (!user){
+        } else if (!user){
             res.status(404).send('Utente non trovato');
+        } else {
+            bcrypt.compare(req.body.password, user.password, (err, result) => {
+                if (err){
+                    res.status(500).send(err);
+                }
+                if (!result){
+                    res.status(401).send('Password errata');
+                }
+                //res.status(200).send(`Benvenuto ${user.name} ${user.surname}`);
+                res.status(200).json(user)
+            });
         }
-        bcrypt.compare(req.body.password, user.password, (err, result) => {
-            if (err){
-                res.status(500).send(err);
-            }
-            if (!result){
-                res.status(401).send('Password errata');
-            }
-            //res.status(200).send(`Benvenuto ${user.name} ${user.surname}`);
-            res.status(200).json(user)
-        });
     })
 }
 

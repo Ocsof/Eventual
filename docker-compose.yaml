@@ -38,7 +38,7 @@ services:
   eventual-backend:
     depends_on:
       - mongodb
-    image: foscofra/node-eventual
+    image: alessiarocco/node-eventual
     environment:
       #MONGO_USER: admin
       #MONGO_PASSWORD: admin

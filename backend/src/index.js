@@ -21,9 +21,13 @@ mongoose.connection.on('open', function () {
 });
 */
 
-
+const cors = require('cors');
 const express = require('express');
 const server = express()
+server.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true,
+}));
 const bodyParser = require('body-parser') //todo l'ho dovuta scaricare per il test con Postman, verificare se serve anche per frontend
 server.use(bodyParser.json())
 

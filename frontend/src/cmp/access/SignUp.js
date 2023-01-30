@@ -4,6 +4,7 @@ import {NotificationManager} from "react-notifications";
 import axios from 'axios';
 
 class SignupForm extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -16,10 +17,6 @@ class SignupForm extends React.Component {
             category: 'p',
             inscriptions: [],
             my_organizations: []
-        };
-
-        this.errors = {
-            email: ''
         };
 
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -43,11 +40,6 @@ class SignupForm extends React.Component {
 
     handleEmailChange(event) {
         this.setState({email: event.target.value});
-        if (!this.state.email) {
-            this.setErrors({email: 'Required'})
-        } else if (!/^[A-Z\d._%+-]+@[A-Z\d.-]+\.[A-Z]{2,4}$/i.test(this.state.email)) {
-            this.setErrors({email: 'Invalid email address'})
-        }
     }
 
     handlePhoneChange(event) {
@@ -67,7 +59,7 @@ class SignupForm extends React.Component {
     }
 
     handleSubmit(e) {
-        e.preventDefault();
+        e.preventDefault()
         axios.post('http://localhost:8082/signup', {
             name: this.state.name,
             surname: this.state.surname,
@@ -80,17 +72,17 @@ class SignupForm extends React.Component {
             my_organizations: []
         })
             .then(response => {
-                if (response.data.success) {
-                    console.log('Login successful!');
-                    alert(JSON.stringify(response.data));
-                } else {
-                    console.error('Login failed!');
+                if (response.status === 200) {
+                    NotificationManager.success("Signup ok!");
                 }
             })
-            .catch(error => console.error(error));
-        console.log(JSON.stringify(this.state, null, 2));
-        NotificationManager.success("Signup ok!")
-        /*TODO: inviare con post "/signup" il json */
+            .catch(error => {
+                if(error.response.status === 409){
+                    NotificationManager.error("Utente già registrato con questa email")
+                }
+                console.error(error)
+            });
+
     }
 
     handleReset() {
@@ -104,9 +96,6 @@ class SignupForm extends React.Component {
             category: 'p',
             inscriptions: [],
             my_organizations: []
-        })
-        this.setErrors({
-            email: ''
         })
     }
 
@@ -165,7 +154,6 @@ class SignupForm extends React.Component {
                                                         required={true}
                                                     />
                                                     <label className="form-label" htmlFor="SignupEmail">Email</label>
-                                                    {this.errors.email ? <div className="error">{this.errors.email}</div> : null}
                                                 </div>
                                             </div>
 
