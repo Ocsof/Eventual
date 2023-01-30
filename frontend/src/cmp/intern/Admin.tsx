@@ -1,13 +1,23 @@
 import {categoryGenerator} from "../../utilities/validator";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {EditUserProps, EditUser} from "./EditUser";
 import {AllEvents} from "./AllEvents";
 // @ts-ignore
 import users from "../../data/users.json"
+import axios from 'axios';
 
 export function Admin(){
     const [editUser, setEditUser] = useState(false)
     const [userID, setUserID] = useState(-1)
+    const [users, setUsers] = useState([])
+
+    useEffect(() => {
+        axios.get(" localhost:8082/users")
+            .then(res =>{
+                setUsers(res.data)
+            })
+            .catch(error => console.error(error))
+    }, [])
 
     return(
         editUser === false ? (

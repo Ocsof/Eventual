@@ -3,6 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {NotificationManager} from "react-notifications";
 import {useLogin} from "./LoginContext";
 import {Button} from "react-bootstrap";
+import axios from 'axios';
 
 export function Login(){
     const navigate = useNavigate();
@@ -12,12 +13,11 @@ export function Login(){
         email: "",
         password: ""
     });
-    const axios = require('axios');
 
     function handleSubmit(e) {
         e.preventDefault()
 
-        axios.get('http://localhost:8082/login', {
+        axios.post('http://localhost:8082/login', {
             email: user.email,
             password: user.password
         })

@@ -12,7 +12,6 @@ export type EventCardProps = {
 }
 
 export function Event({id, title, author, category, date, description, imgUrl}:EventCardProps){
-
     return (
         <Card key={id}>
             <Card.Img
@@ -31,7 +30,7 @@ export function Event({id, title, author, category, date, description, imgUrl}:E
                     <br/>
                     <span className="fs-4">{description}</span>
                     <br/>
-                    <input type="date" value={date} disabled={true}/>
+                    <input type="date" value={date.substring(0,10)} disabled={true}/>
                 </Card.Text>
             </Card.Body>
         </Card>

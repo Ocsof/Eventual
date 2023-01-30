@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Route, Routes, NavLink} from "react-router-dom";
 import SignUp from "./cmp/access/SignUp";
-import Home from "./cmp/Home";
+import {Home} from "./cmp/Home";
 import {Login} from "./cmp/access/Login";
 import Notifications from "./cmp/Notifications";
 import {Admin} from "./cmp/intern/Admin";

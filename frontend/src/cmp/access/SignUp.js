@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {NotificationManager} from "react-notifications";
+import axios from 'axios';
 
 class SignupForm extends React.Component {
     constructor(props) {
@@ -67,7 +68,6 @@ class SignupForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const axios = require('axios');
         axios.post('http://localhost:8082/signup', {
             name: this.state.name,
             surname: this.state.surname,
