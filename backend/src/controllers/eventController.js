@@ -6,7 +6,7 @@ exports.read_tenMostRecentEvents = (req, res) => {
         if (err) {
             res.status(500).json({ error: 'Errore del server' });
         } else {
-            res.json(events);
+            res.status(200).json(events);
         }
     });
 }
@@ -23,9 +23,9 @@ exports.new_event = (req,res)=>{
     })
     Event.save((err,doc)=>{
         if(err){
-            res.send(err);
+            res.status(500).json({ error: 'Errore del server' });
         }
-        res.send(doc)
+        res.status.json(doc)
     })
 }
 
@@ -35,7 +35,7 @@ exports.read_allevents = (req, res)=>{
         if (err) {
             res.status(500).json({ error: 'Errore del server' });
         } else {
-            res.json(events);
+            res.status(200).json(events);
         }
     });
 }
@@ -44,9 +44,9 @@ exports.read_event = (req, res)=>{
     const idEvent = mongoose.Types.ObjectId(req.params._id)
     EventModel.findById(idEvent).exec((err,doc)=>{
         if(err){
-            res.send(err);
+            res.status(500).json({ error: 'Errore del server' });
         }
-        res.json(doc);
+        res.status(200).json(doc);
     })
 }
 
@@ -55,9 +55,9 @@ exports.update_event = (req, res)=>{
     const event = req.body
     EventModel.findByIdAndUpdate(idEvent,event,{new: true},(err,doc)=>{
         if(err){
-            res.send(err);
+            res.status(500).json({ error: 'Errore del server' });
         }
-        res.json(doc);
+        res.status(200).json(doc);
     })
 }
 
@@ -65,9 +65,9 @@ exports.delete_event = (req, res)=>{
     const idEvent = mongoose.Types.ObjectId(req.params._id)
     EventModel.findByIdAndDelete(idEvent,(err,doc)=>{
         if(err){
-            res.send(err);
+            res.status(500).json({ error: 'Errore del server' });
         }
-        res.json("event deleted");
+        res.status(200).json(doc);
     })
 }
 
@@ -82,9 +82,9 @@ exports.read_eventsByCategory = (req, res) => {
     EventModel.find({category: category, date:{$gte: new Date()}},
         (err, events) => {
             if (err) {
-                res.status(500).json({error: err});
+                res.status(500).json({ error: 'Errore del server' });
             } else {
-                res.json(events);
+                res.status(200).json(events);
             }
         })
 }
@@ -97,9 +97,9 @@ exports.read_myUsers = (req, res) => {
         .populate('users')
         .exec((err, event) => {
             if(err){
-                res.send(err);
+                res.status(500).json({ error: 'Errore del server' });
             }
-            res.json(event.users);
+            res.status(200).json(event.users);
         })
 }
 

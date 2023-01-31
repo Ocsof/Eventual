@@ -18,12 +18,10 @@ module.exports =  (server)=>{
     server.route('/users')
         .get(controller.read_allusers)
 
-    //esempio di richiesta http: id user come parametro, tutti gli altri campi nel body
     // ----> localhost:8082/myinscriptions/63d52785ded7e6aac542fe64
     server.route('/myinscriptions/:_id') //Leggere tutte le iscrizioni di uno specifico utente passando l'id come parametro
         .get(controller.read_myinscriptions)
 
-    //esempio di richiesta http: id user come parametro, tutti gli altri campi nel body
     // ----> localhost:8082/myorganizations/63d52785ded7e6aac542fe64
     server.route('/myorganizations/:_id') //Leggere tutti gli eventi organizzati da uno specifico utente passando il suo id come parametro
         .get(controller.read_myorganizations)
