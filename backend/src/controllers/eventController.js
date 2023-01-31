@@ -19,13 +19,14 @@ exports.new_event = (req,res)=>{
         author: idAuthor,
         category: req.body.category,
         date: date,
+        price: req.body.price,
         description: req.body.description
     })
     Event.save((err,doc)=>{
         if(err){
             res.status(500).json({ error: 'Errore del server' });
         }
-        res.status.json(doc)
+        res.status(200).json(doc)
     })
 }
 

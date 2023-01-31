@@ -55,7 +55,7 @@ exports.log_user = (req, res)=> {
                     res.status(500).json({ error: 'Errore del server' });
                 }
                 if (!result){
-                    res.status(401).json('Password errata');
+                    res.status(401).json({error: 'Password errata'});
                 }
                 //res.status(200).send(`Benvenuto ${user.name} ${user.surname}`);
                 res.status(200).json({description: `Benvenuto ${user.name} ${user.surname}`})
@@ -85,7 +85,9 @@ exports.delete_user = (req,res)=>{
         if (!user) {
             res.status(404).json({ error: 'User non trovato'});
         }
-        if (user.category === 'a') return res.status(400).send('Admin non pùò essere eliminato');
+        if (user.category === 'a') {
+            res.status(400).json({error: 'Admin non pùò essere eliminato'});
+        }
         user.remove((err, doc) =>{
             if (err) {
                 res.status(500).json({ error: 'Errore del server' });
@@ -113,8 +115,7 @@ exports.read_myinscriptions = (req, res) => {
             if(err){
                 res.status(500).json({ error: 'Errore del server' });
             }
-            console.log(user.inscriptions[0].title)
-            res.status(200).json(user.inscriptions);
+            res.status(200).json({inscriptions: user.inscriptions});
         })
 }
 
@@ -126,8 +127,7 @@ exports.read_myorganizations = (req, res) => {
             if(err){
                 res.status(500).json({ error: 'Errore del server' });
             }
-            console.log(user.my_organizations[0].title)
-            res.status(200).json(user.my_organizations);
+            res.status(200).json({organizations: user.my_organizations});
         })
 }
 
