@@ -2,20 +2,33 @@ import * as React from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-// @ts-ignore
-import events from "../../data/events_organized.json"
 import {Event, EventCardProps} from "./Event";
 import {Button} from "react-bootstrap";
 import {EditEvent} from "./EditEvent";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {NotificationManager} from "react-notifications";
+import axios from "axios";
 
 export function MyOrganizedEvents() {
     const [eventToModify, setEventToModify] = useState(-1);
     const navigate = useNavigate();
+    const [events, setEvents] = useState([])
+
+    useEffect(() => {
+        const myEvents = JSON.parse(localStorage.getItem('user')).my_organizations;
+        myEvents.map((e)=>{
+            axios.get("http://localhost:8082/events/"+e)
+                .then(res =>{
+                    setEvents([...events, res.data])
+                })
+                .catch(error => console.error(error))
+        })
+
+    }, [])
 
     function modifyEvent(id: number){
+        /*todo: put in the database*/
         setEventToModify(id);
     }
 
@@ -39,20 +52,19 @@ export function MyOrganizedEvents() {
             <Container className="m-auto mb-2">
                 <Row md={2} xs={1} lg={3} className="g-3">
                     {events.map((item: JSX.IntrinsicAttributes & {
-                        id: number,
+                        _id: number,
                         title: string,
                         author: string,
                         category: string,
                         date: string,
                         description: string,
-                        price: number,
-                        imgUrl: string
+                        price: number
                     }) => (
-                    <Col key={item.id}>
+                    <Col key={item._id}>
                         <Event {...item}/>
                         <div className="align-items-center editing-buttons">
-                            <Button className="btn btn-warning mx-1" onClick={() => modifyEvent(item.id)}><i className="fa-solid fa-pen-to-square" /></Button>
-                            <Button className="btn btn-danger mx-1" onClick={() => deleteEvent(item.id)}><i className="fa-solid fa-trash" /></Button>
+                            <Button className="btn btn-warning mx-1" onClick={() => modifyEvent(item._id)}><i className="fa-solid fa-pen-to-square" /></Button>
+                            <Button className="btn btn-danger mx-1" onClick={() => deleteEvent(item._id)}><i className="fa-solid fa-trash" /></Button>
                         </div>
                     </Col>
                     ))}
@@ -62,7 +74,7 @@ export function MyOrganizedEvents() {
             <>
                 <h1>Modify Event: {eventToModify}</h1>
                 <Container className="m-auto mb-2">
-                    <EditEvent {...events.find((e: EventCardProps)=> e.id === eventToModify)}/>
+                    <EditEvent {...events.find((e: EventCardProps)=> e._id === eventToModify)}/>
                 </Container>
             </>
             )

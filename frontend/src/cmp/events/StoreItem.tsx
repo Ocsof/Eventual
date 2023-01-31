@@ -2,32 +2,44 @@ import * as React from "react";
 import {Button, Card} from "react-bootstrap";
 import {formatCurrency} from "../../utilities/formatCurrency";
 import {useShoppingCart} from "./ShoppingCartContext";
+import {dateStringFormatter, imgForCategoryFormatter} from "../../utilities/validator";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 type StoreItemProps = {
-    id: number,
+    _id: number,
     title: string,
     author: string,
     category: string,
     date: string,
     description: string,
-    imgUrl: string,
-    price: number
+    price: number,
+    imgUrl: string
 }
 
-export function StoreItem({ id, title, author, category, date, description, imgUrl, price} : StoreItemProps) {
+export function StoreItem({ _id, title, author, category, date, description, price, imgUrl} : StoreItemProps) {
     const {
         getItemQuantity,
         increaseCartQuantity,
         decreaseCartQuantity,
         removeFromCart
     } = useShoppingCart()
-    const quantity = getItemQuantity(id)
+    const quantity = getItemQuantity(_id)
+    const [authorName, setAuthorName] = useState('')
+
+    useEffect(() => {
+        axios.get('http://localhost:8082/user/'+ author)
+            .then(res =>{
+                setAuthorName(res.data.name)
+            })
+            .catch(error => console.error(error))
+    }, [])
 
     return (
         <Card className="m-2" >
             <Card.Img
                 variant="top"
-                src={imgUrl}
+                src={imgForCategoryFormatter(category)}
                 height="200px"
                 style={{ objectFit: "cover" }}
             />
@@ -37,17 +49,18 @@ export function StoreItem({ id, title, author, category, date, description, imgU
                     <span className="ms-2 text-muted">{formatCurrency(price)}</span>
                 </Card.Title>
                 <Card.Text className="justify-content-between">
-                    <span className="small">{author}</span>
+                    <span className="small">{authorName}</span>
                     <br/>
                     <span className="small">{category}</span>
                     <br/>
                     <span className="small">{description}</span>
-                    <input type="date" value={date} disabled={true} />
+                    <br />
+                    <input type="date" value={dateStringFormatter(date)} disabled={true} />
                 </Card.Text>
                 <div className="mt-auto">
                     {
                         quantity === 0 ? (
-                            <Button className="w-100" onClick={() => increaseCartQuantity(id)}>+ Add To Cart</Button>
+                            <Button className="w-100" onClick={() => increaseCartQuantity(_id)}>+ Add To Cart</Button>
                         ) : (
                             <div
                               className="d-flex align-items-center flex-column"
@@ -57,13 +70,13 @@ export function StoreItem({ id, title, author, category, date, description, imgU
                                     className="d-flex align-items-center justify-content-center"
                                     style={{gap: ".5rem"}}
                                 >
-                                    <Button onClick={() => decreaseCartQuantity(id)}>-</Button>
+                                    <Button onClick={() => decreaseCartQuantity(_id)}>-</Button>
                                     <div>
                                         <span className="fs-3">{quantity}</span> in cart
                                     </div>
-                                    <Button onClick={() => increaseCartQuantity(id)}>+</Button>
+                                    <Button onClick={() => increaseCartQuantity(_id)}>+</Button>
                                 </div>
-                                <Button variant="danger" size="sm" onClick={() => removeFromCart(id)}>Remove</Button>
+                                <Button variant="danger" size="sm" onClick={() => removeFromCart(_id)}>Remove</Button>
                             </div>
                         )
                     }

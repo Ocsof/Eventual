@@ -8,12 +8,13 @@ import {Button} from "react-bootstrap";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {NotificationManager} from "react-notifications";
-import {EditEvent} from "../events/EditEvent";
-import {Event, EventCardProps} from "../events/Event";
+import {EditEvent} from "./EditEvent";
+import {Event, EventCardProps} from "./Event";
 
 export function AllEvents() {
     const [eventToModify, setEventToModify] = useState(-1);
-    useNavigate();
+    const navigate = useNavigate();
+
     function modifyEvent(id: number){
         setEventToModify(id);
     }
@@ -30,21 +31,22 @@ export function AllEvents() {
         <>
             <Container className="m-auto mb-2">
                 <Row md={2} xs={1} lg={3} className="g-3">
+                    /* todo change events with all events from db */
                     {events.map((item: JSX.IntrinsicAttributes & {
-                        id: number,
+                        _id: number,
                         title: string,
                         author: string,
                         category: string,
                         date: string,
                         description: string,
-                        price: number,
-                        imgUrl: string
+                        price: number
                     }) => (
-                    <Col key={item.id}>
+                    <Col key={item._id}>
                         <Event {...item}/>
                         <div className="align-items-center editing-buttons">
-                            <Button className="btn btn-warning mx-1" onClick={() => modifyEvent(item.id)}><i className="fa-solid fa-pen-to-square" /></Button>
-                            <Button className="btn btn-danger mx-1" onClick={() => deleteEvent(item.id)}><i className="fa-solid fa-trash" /></Button>
+                            {/*todo in the database*/}
+                            <Button className="btn btn-warning mx-1" onClick={() => modifyEvent(item._id)}><i className="fa-solid fa-pen-to-square" /></Button>
+                            <Button className="btn btn-danger mx-1" onClick={() => deleteEvent(item._id)}><i className="fa-solid fa-trash" /></Button>
                         </div>
                     </Col>
                     ))}
@@ -54,7 +56,7 @@ export function AllEvents() {
             <>
                 <h1>Modify Event: {eventToModify}</h1>
                 <Container className="m-auto mb-2">
-                    <EditEvent {...events.find((e: EventCardProps)=> e.id === eventToModify)}/>
+                    <EditEvent {...events.find((e: EventCardProps)=> e._id === eventToModify)}/>
                 </Container>
             </>
             )

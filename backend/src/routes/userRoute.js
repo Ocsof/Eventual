@@ -12,6 +12,7 @@ module.exports =  (server)=>{
     //esempio di richiesta http: id user come parametro, tutti gli altri campi nel body
     // ----> localhost:8082/user/63d52785ded7e6aac542fe64
     server.route('/user/:_id') //modifica dell'utente, quando ad esempio iscrizione a evento
+        .get(controller.get_user)
         .put(controller.update_user)
         .delete(controller.delete_user) //solo admin, gli admin non possono essere eliminati, nel body http non ci va niente!!
 

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {NotificationManager} from "react-notifications";
 import {useNavigate} from "react-router-dom";
-import {categoryGeneratorForDatabase} from "../../utilities/validator";
+import {categoryGeneratorForDatabase, dateStringFormatter} from "../../utilities/validator";
 import axios from "axios";
 
 export function EditProfile(){
@@ -10,9 +10,10 @@ export function EditProfile(){
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
 
     function handleSave(e){
-        /*todo: check the error */
         e.preventDefault();
-        axios.put('http://localhost:8082/user/${' + user._id +'}', {
+        const usId = user._id;
+        console.log(usId)
+        axios.put('http://localhost:8082/user/'+usId, {
             _id: user._id,
             name: user.name,
             surname: user.surname,
@@ -28,7 +29,7 @@ export function EditProfile(){
                 console.log(response.data);
                 if(response.status === 200){
                     NotificationManager.success("Utente aggiornato")
-                    // localStorage.setItem('user', JSON.stringify(user))
+                    localStorage.setItem('user', JSON.stringify(user))
                     navigate("/login")
                 }
             })
@@ -124,8 +125,8 @@ export function EditProfile(){
                                                        id="SignUpBirthday"
                                                        onChange={(e) => setUser({...user, birthday:e.target.value})}
                                                        className="form-control"
-                                                       defaultValue={user.birthday.substring(0,10)}
-                                                       placeholder={user.birthday.substring(0,10)}
+                                                       defaultValue={dateStringFormatter(user.birthday)}
+                                                       placeholder={dateStringFormatter(user.birthday)}
                                                 />
                                                     <label className="form-label" htmlFor="SignUpBirthday">Birthday</label>
                                                 </div>

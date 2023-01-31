@@ -2,8 +2,9 @@ import {Offcanvas, Stack} from "react-bootstrap";
 import {useShoppingCart} from "./ShoppingCartContext";
 import {CartItem} from "./CartItem";
 import {formatCurrency} from "../../utilities/formatCurrency";
-// @ts-ignore
-import storeItems from '../../data/events_onsell.json'
+import {useEffect, useState} from "react";
+import axios from "axios";
+
 
 type ShoppingCartProps = {
     isOpen: boolean
@@ -11,6 +12,15 @@ type ShoppingCartProps = {
 
 export function ShoppingCart ( {isOpen}: ShoppingCartProps ) {
     const {closeCart, cartItems} = useShoppingCart()
+    const [allEvents, setAllEvents] = useState([])
+
+    useEffect(() => {
+        axios.get("http://localhost:8082/allevents")
+            .then(res =>{
+                setAllEvents(res.data)
+            })
+            .catch(error => console.error(error))
+    }, [])
 
     return (
         <Offcanvas show={isOpen} onHide={closeCart} placement="end">
@@ -20,11 +30,11 @@ export function ShoppingCart ( {isOpen}: ShoppingCartProps ) {
             <Offcanvas.Body>
                 <Stack gap={3}>
                     {cartItems.map(item => (
-                        <CartItem key={item.id}{...item} />
+                        <CartItem key={item._id}{...item} />
                     ))}
                     <div className="ms-auto fw-bold fs-5">
                         Total {formatCurrency(cartItems.reduce((total, cartItem) => {
-                            const item = storeItems.find((i: { id: number; }) => i.id === cartItem.id)
+                            const item = allEvents.find((i: { _id: number; }) => i._id === cartItem._id)
                         return total + (item?.price || 0) * cartItem.quantity
                     }, 0))}
                     </div>

@@ -18,6 +18,7 @@ export function NewEvent() {
     })
 
     function handleSave(){
+        /*todo post in the database*/
         NotificationManager.success("Event created");
         console.log(event);
         navigate("/events");
