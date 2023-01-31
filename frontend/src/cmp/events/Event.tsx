@@ -1,5 +1,6 @@
 import {Card} from "react-bootstrap";
 import * as React from "react";
+import {formatCurrency} from "../../utilities/formatCurrency";
 
 export type EventCardProps = {
     id: number,
@@ -8,10 +9,11 @@ export type EventCardProps = {
     category: string,
     date: string,
     description: string,
+    price: number,
     imgUrl: string
 }
 
-export function Event({id, title, author, category, date, description, imgUrl}:EventCardProps){
+export function Event({id, title, author, category, date, description, price, imgUrl}:EventCardProps){
     return (
         <Card key={id}>
             <Card.Img
@@ -28,10 +30,10 @@ export function Event({id, title, author, category, date, description, imgUrl}:E
                 <Card.Text className="mt-auto">
                     <span className="fs-2">{category}</span>
                     <br/>
-                    <span className="fs-4">{description}</span>
+                    <span className="fs-2">{description}</span>
                     <br/>
                     <input type="date" value={date.substring(0,10)} disabled={true}/>
-                </Card.Text>
+                    <span className="fs-2">{formatCurrency(price)}</span>                </Card.Text>
             </Card.Body>
         </Card>
     )

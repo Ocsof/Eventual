@@ -1,21 +1,40 @@
 import React, {useState} from "react";
-
-// @ts-ignore
-import users from "../../data/users.json"
-import {EditUserProps} from "../intern/EditUser";
+import {NotificationManager} from "react-notifications";
 import {useNavigate} from "react-router-dom";
+import {categoryGeneratorForDatabase} from "../../utilities/validator";
+import axios from "axios";
 
 export function EditProfile(){
     const navigate = useNavigate()
-    const email = localStorage.getItem("username")
-    const [user, setUser] = useState({...users.find( (u:EditUserProps) => u.email === email)})
 
-    /*todo: extract info by email from database of the user*/
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
 
-    function handleSave(){
-        /*todo: update user in the database*/
-        console.log(JSON.stringify(user))
-        navigate("/login")
+    function handleSave(e){
+        /*todo: check the error */
+        e.preventDefault();
+        axios.put('http://localhost:8082/user/${' + user._id +'}', {
+            _id: user._id,
+            name: user.name,
+            surname: user.surname,
+            email: user.email,
+            phone: user.phone,
+            password: user.password,
+            birthday: user.birthday,
+            category: user.category,
+            inscriptions: user.inscriptions,
+            my_organizations: user.my_organizations
+        })
+            .then(response => {
+                console.log(response.data);
+                if(response.status === 200){
+                    NotificationManager.success("Utente aggiornato")
+                    // localStorage.setItem('user', JSON.stringify(user))
+                    navigate("/login")
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            });
     }
 
     return (
@@ -92,7 +111,7 @@ export function EditProfile(){
                                                     type="password"
                                                     id="SignUpPassword"
                                                     className="form-control"
-                                                    placeholder={user.password}
+                                                    value={user.password}
                                                     disabled={true}
                                                 />
                                                     <label className="form-label" htmlFor="SignUpPassword">Password</label>
@@ -105,8 +124,8 @@ export function EditProfile(){
                                                        id="SignUpBirthday"
                                                        onChange={(e) => setUser({...user, birthday:e.target.value})}
                                                        className="form-control"
-                                                       defaultValue={user.birthday}
-                                                       placeholder={user.birthday}
+                                                       defaultValue={user.birthday.substring(0,10)}
+                                                       placeholder={user.birthday.substring(0,10)}
                                                 />
                                                     <label className="form-label" htmlFor="SignUpBirthday">Birthday</label>
                                                 </div>
@@ -117,6 +136,7 @@ export function EditProfile(){
                                             <select
                                                 id="category"
                                                 name="category"
+                                                onChange={(e) => setUser({...user, category: categoryGeneratorForDatabase(e.target.value)})}
                                             >
                                                 <option value="p">Client / Participant</option>
                                                 <option value="o">Organizer</option>

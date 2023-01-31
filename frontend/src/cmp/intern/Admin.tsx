@@ -2,8 +2,6 @@ import {categoryGenerator} from "../../utilities/validator";
 import {useEffect, useState} from "react";
 import {EditUserProps, EditUser} from "./EditUser";
 import {AllEvents} from "./AllEvents";
-// @ts-ignore
-import users from "../../data/users.json"
 import axios from 'axios';
 
 export function Admin(){
@@ -12,18 +10,19 @@ export function Admin(){
     const [users, setUsers] = useState([])
 
     useEffect(() => {
-        axios.get(" localhost:8082/users")
+        axios.get("http://localhost:8082/users")
             .then(res =>{
                 setUsers(res.data)
+                console.log(users)
             })
             .catch(error => console.error(error))
-    }, [])
+    }, [users])
 
     return(
         editUser === false ? (
             <>
                 <h1>Users Settings</h1>
-                <table className="table align-middle mb-0 bg-white ">
+                <table className="table table-responsive align-middle m-2 bg-white" >
                         <thead className="bg-light">
                         <tr>
                             <th>Name</th>
@@ -61,10 +60,10 @@ export function Admin(){
                                         <div className="d-flex align-items-center"><p className="mb-1">{user.phone}</p></div>
                                     </td>
                                     <td>
-                                        <div className="d-flex align-items-center"><p className="mb-1">{user.password}</p></div>
+                                        <div className="d-flex align-items-center" style={{overflowX: "scroll", width: "80px"}}><p className="mb-1">{user.password}</p></div>
                                     </td>
                                     <td>
-                                        <div className="d-flex align-items-center"><p className="mb-1">{user.birthday}</p></div>
+                                        <div className="d-flex align-items-center"><p className="mb-1">{user.birthday.substring(0,10)}</p></div>
                                     </td>
                                     <td>
                                         <div className="d-flex align-items-center"><p className="mb-1">{categoryGenerator(user.category)}</p></div>
