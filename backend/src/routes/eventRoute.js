@@ -21,7 +21,7 @@ module.exports =  (server)=>{
         .get(controller.read_eventsByCategory)
 
 
-    server.route('myusers/:_id')
+    server.route('/myusers/:_id')
         .get(controller.read_myUsers)
 
 }
