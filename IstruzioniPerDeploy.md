@@ -8,4 +8,5 @@
 - Inizializzare modalità docker swarm con il comando: docker swarm init
 - Deploy dell'applicazione: docker stack deploy eventual -c docker-compose.yaml
 - Per vedere i servizi attualmente attivi e su quali porte: docker service ls
+- Per popolare il db andare nella cartella del progetto backend e eseguire il comando: npm run seed
 - Per "spegnere" i container uscire dalla modalità swarm: docker swarm leave --force

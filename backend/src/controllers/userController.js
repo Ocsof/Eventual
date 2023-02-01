@@ -67,11 +67,19 @@ exports.log_user = (req, res)=> {
 /*** per aggiornare l'utente, es: iscrizione ad un evento **/
 exports.update_user = (req,res)=>{
     const idUser = mongoose.Types.ObjectId(req.params._id) //per castare l'id passato come parametro in objectid
-    UserModel.findByIdAndUpdate(idUser,req.body,{new: true},(err,doc)=>{
-        if(err){
-            res.status(500).json({ error: 'Errore del server' });
+    const user = req.body
+    //bisogna rihashare la password
+    bcrypt.hash(req.body.password, 10, (err, hash) => { //10 numero di round di cifratura
+        if (err) {
+            res.status(500).json({error: 'Errore del server'});
         }
-        res.status(200).json(doc);
+        user.password = hash
+        UserModel.findByIdAndUpdate(idUser,user,{new: true},(err,doc)=>{
+            if(err){
+                res.status(500).json({ error: 'Errore del server' });
+            }
+            res.status(200).json(doc);
+        })
     })
 }
 
