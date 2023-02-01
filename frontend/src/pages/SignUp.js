@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {NotificationManager} from "react-notifications";
 import axios from 'axios';
-import {categoryGeneratorForDatabase} from "../../utilities/validator";
+import {categoryGeneratorForDatabase} from "../utilities/validator";
 
 class SignupForm extends React.Component {
 

@@ -41,7 +41,7 @@ exports.sign_user = (req,res)=>{
     })
 }
 
-/*** se tutto va a buon fine restiruisco user cosi lato frontend ha tutte le info dell'utente appena loggato ***/
+/*** se tutto va a buon fine restituisco user cosi lato frontend ha tutte le info dell'utente appena loggato ***/
 exports.log_user = (req, res)=> {
 
     UserModel.findOne({"email": req.body.email}, (err, user) => {
@@ -58,7 +58,7 @@ exports.log_user = (req, res)=> {
                     res.status(401).json({error: 'Password errata'});
                 }
                 //res.status(200).send(`Benvenuto ${user.name} ${user.surname}`);
-                res.status(200).json({description: `Benvenuto ${user.name} ${user.surname}`})
+                res.status(200).json(user);
             });
         }
     })
@@ -83,7 +83,7 @@ exports.update_user = (req,res)=>{
     })
 }
 
-/**** Elimanare uno specifico utente. Solo admin può farlo****/
+/**** Eliminare uno specifico utente. Solo admin può farlo****/
 exports.delete_user = (req,res)=>{
     const idUser = mongoose.Types.ObjectId(req.params._id)
     UserModel.findById(idUser,(err,user)=>{
@@ -139,4 +139,15 @@ exports.read_myorganizations = (req, res) => {
         })
 }
 
+exports.get_user = (req, res) =>{
+    const idUser = mongoose.Types.ObjectId(req.params._id) //per castare l'id passato come parametro in objectid
+    console.log(idUser)
+    UserModel.findById(idUser)
+        .exec((err, user) => {
+            if(err){
+                res.status(500).json({ error: 'Errore del server' });
+            }
+            res.status(200).json(user)
+        })
+}
 

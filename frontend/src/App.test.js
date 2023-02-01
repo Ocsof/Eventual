@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import Notifications from "./cmp/Notifications";
+import Notifications from "./pages/Notifications";
 import {NewEvent} from "./cmp/events/NewEvent";
 import {BrowserRouter, Link} from "react-router-dom";
-import SignUp from "./cmp/access/SignUp";
+import SignUp from "./pages/SignUp";
 import renderer from 'react-test-renderer';
-import {Login} from "./cmp/access/Login";
+import {Login} from "./pages/Login";
 import {EditEvent} from "./cmp/events/EditEvent";
 import events from "./data/events.json";
 

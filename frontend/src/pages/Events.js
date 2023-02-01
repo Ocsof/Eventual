@@ -1,5 +1,5 @@
-import {MyEvents} from "./events/MyEvents";
-import {MyOrganizedEvents} from "./events/MyOrganizedEvents";
+import {MyEvents} from "../cmp/events/MyEvents";
+import {MyOrganizedEvents} from "../cmp/events/MyOrganizedEvents";
 import {Link} from "react-router-dom";
 
 export function Events(){

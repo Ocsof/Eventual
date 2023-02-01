@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {categoryGenerator, categoryGeneratorForDatabase} from "../../utilities/validator";
+import {categoryGenerator, categoryGeneratorForDatabase, dateStringFormatter} from "../../utilities/validator";
 import {Button} from "react-bootstrap";
 
 export type EditUserProps = {
@@ -57,7 +57,7 @@ export function EditUser({id, name, surname, email, phone, password, birthday, c
             </div>
 
             <div className="d-flex align-items-center">
-                <input type="date" className="mb-1" placeholder={user.birthday.substring(0,10)} value={user.birthday.substring(0,10)} onChange={(e) => setUser({...user, birthday: e.target.value})} />
+                <input type="date" className="mb-1" placeholder={dateStringFormatter(user.birthday)} value={dateStringFormatter(user.birthday)} onChange={(e) => setUser({...user, birthday: e.target.value})} />
             </div>
 
             <div className="d-flex align-items-center">

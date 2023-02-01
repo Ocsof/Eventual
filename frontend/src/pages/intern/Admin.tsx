@@ -1,7 +1,7 @@
-import {categoryGenerator} from "../../utilities/validator";
+import {categoryGenerator, dateStringFormatter} from "../../utilities/validator";
 import {useEffect, useState} from "react";
-import {EditUserProps, EditUser} from "./EditUser";
-import {AllEvents} from "./AllEvents";
+import {EditUserProps, EditUser} from "../../cmp/access/EditUser";
+import {AllEvents} from "../../cmp/events/AllEvents";
 import axios from 'axios';
 
 export function Admin(){
@@ -63,12 +63,13 @@ export function Admin(){
                                         <div className="d-flex align-items-center" style={{overflowX: "scroll", width: "80px"}}><p className="mb-1">{user.password}</p></div>
                                     </td>
                                     <td>
-                                        <div className="d-flex align-items-center"><p className="mb-1">{user.birthday.substring(0,10)}</p></div>
+                                        <div className="d-flex align-items-center"><p className="mb-1">{dateStringFormatter(user.birthday)}</p></div>
                                     </td>
                                     <td>
                                         <div className="d-flex align-items-center"><p className="mb-1">{categoryGenerator(user.category)}</p></div>
                                     </td>
                                     <td>
+                                        {/*todo post, put in the database*/}
                                         <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {setEditUser(true); setUserID(user.id)}}>Edit</button>
                                         <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {alert("User: "+ user.id)}}>Deactivate</button>
                                     </td>
