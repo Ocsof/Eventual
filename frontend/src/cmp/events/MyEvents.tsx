@@ -19,7 +19,7 @@ export function MyEvents() {
                 .catch(error => console.error(error))
         })
 
-    })
+    }, [])
 
     return (
         <>

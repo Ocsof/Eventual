@@ -24,7 +24,7 @@ export function Event({_id, title, author, category, date, description, price}:E
                 setAuthorName(res.data.name)
             })
             .catch(error => console.error(error))
-    })
+    }, [])
 
     return (
         <Card key={_id}>
@@ -45,7 +45,6 @@ export function Event({_id, title, author, category, date, description, price}:E
                     <span className="fs-2">{description}</span>
                     <br/>
                     <input type="date" value={dateStringFormatter(date)} disabled={true}/>
-                    <br/>
                     <span className="fs-2">{formatCurrency(price)}</span>
                 </Card.Text>
             </Card.Body>

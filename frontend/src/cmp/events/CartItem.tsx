@@ -1,4 +1,6 @@
 import {useShoppingCart} from "./ShoppingCartContext";
+// @ts-ignore
+import storeItems from '../../data/events_onsell.json'
 import {Button, Stack} from "react-bootstrap";
 import {formatCurrency} from "../../utilities/formatCurrency";
 import {useEffect, useState} from "react";
@@ -17,11 +19,11 @@ export function CartItem({ _id, quantity }:CartItemProps){
 
     useEffect(() => {
         axios.get("http://localhost:8082/allevents")
-            .then(res => {
+            .then(res =>{
                 setAllEvents(res.data)
             })
             .catch(error => console.error(error))
-    })
+    }, [])
 
     const item = allEvents.find((i: { _id: number; }) => i._id === _id)
 
