@@ -8,6 +8,8 @@ module.exports =  (server)=>{
     server.route('/allevents')
         .get(controller.read_allevents)
 
+    server.route('/alleventsadmin')
+        .get(controller.read_allevents_admin)
 
     server.route('/events/:_id')
         //esempio di richiesta http: id user come parametro, tutti gli altri campi nel body

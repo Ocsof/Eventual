@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {ShoppingCartProvider} from "./cmp/events/ShoppingCartContext";
 import 'react-notifications/lib/notifications.css';
 import {LoginProvider} from "./cmp/access/LoginContext";
+import {BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -14,7 +15,9 @@ root.render(
   <React.StrictMode>
       <LoginProvider>
           <ShoppingCartProvider>
-              <App />
+              <BrowserRouter>
+                  <App />
+              </BrowserRouter>
           </ShoppingCartProvider>
       </LoginProvider>
   </React.StrictMode>

@@ -15,7 +15,7 @@ export function AllEvents() {
     const [allEvents, setAllEvents] = useState([])
 
     useEffect(() => {
-        axios.get("http://localhost:8082/allevents")
+        axios.get("http://localhost:8082/alleventsadmin")
             .then(res =>{
                 setAllEvents(res.data)
             })
@@ -52,7 +52,6 @@ export function AllEvents() {
                     <Col key={item._id}>
                         <Event {...item}/>
                         <div className="align-items-center editing-buttons">
-                            {/*todo in the database*/}
                             <Button className="btn btn-warning mx-1" onClick={() => modifyEvent(item._id)}><i className="fa-solid fa-pen-to-square" /></Button>
                             <Button className="btn btn-danger mx-1" onClick={() => deleteEvent(item._id)}><i className="fa-solid fa-trash" /></Button>
                         </div>

@@ -6,38 +6,34 @@ import {Event, EventCardProps} from "./Event";
 import {Button} from "react-bootstrap";
 import {EditEvent} from "./EditEvent";
 import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {NotificationManager} from "react-notifications";
 import axios from "axios";
 
 export function MyOrganizedEvents() {
     const [eventToModify, setEventToModify] = useState(-1);
-    const navigate = useNavigate();
     const [events, setEvents] = useState([])
 
     useEffect(() => {
-        const myEvents = JSON.parse(localStorage.getItem('user')).my_organizations;
-        myEvents.map((e)=>{
-            return axios.get("http://localhost:8082/events/"+e)
+        axios.get("http://localhost:8082/myorganizations/" + JSON.parse(localStorage.getItem('user'))._id)
                 .then(res =>{
-                   events.push(res.data)
-                    console.log(events)
+                    setEvents(res.data)
                 })
                 .catch(error => console.error(error))
-        })
-
     }, [events])
 
     function modifyEvent(id: number){
-        /*todo: put in the database*/
         setEventToModify(id);
     }
 
-    function deleteEvent(e: any){
-        /* TODO: delete in the database */
-        let newEvents = events.filter((event: { id: any }) => event.id !== e);
-        console.log(newEvents)
-        NotificationManager.success("Event deleted: " + e);
+    function deleteEvent(e){
+        axios.delete("http://localhost:8082/events/" + e)
+            .then(res =>{
+                console.log(res.data)
+                NotificationManager.success("Event deleted: " + e);
+            })
+            .catch(error => console.error(error))
+        /*todo: eliminare id dall'array my_organizations*/
     }
 
     return (
@@ -46,9 +42,9 @@ export function MyOrganizedEvents() {
             <div className="align-items-center d-flex">
                 <h3>Events {JSON.parse(localStorage.getItem('user')).name} organizes: </h3>
                 <br />
-                <Button className="btn btn-secondary btn-outline-dark mx-4" id="newEvent" onClick={() => navigate("/new_event")}>
+                <Link to="/new_event" className="btn btn-secondary btn-outline-dark mx-4" id="newEvent">
                     <i className="fa-solid fa-square-plus" />
-                </Button>
+                </Link>
             </div>
             <Container className="m-auto mb-2">
                 <Row md={2} xs={1} lg={3} className="g-3">

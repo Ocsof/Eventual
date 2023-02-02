@@ -41,6 +41,16 @@ exports.read_allevents = (req, res)=>{
     });
 }
 
+exports.read_allevents_admin = (req, res)=>{
+    EventModel.find().sort({ date: 1 }).exec((err, events) => {
+        if (err) {
+            res.status(500).json({ error: 'Errore del server' });
+        } else {
+            res.status(200).json(events);
+        }
+    });
+}
+
 exports.read_event = (req, res)=>{
     const idEvent = mongoose.Types.ObjectId(req.params._id)
     EventModel.findById(idEvent).exec((err,doc)=>{

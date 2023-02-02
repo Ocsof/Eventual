@@ -123,7 +123,7 @@ exports.read_myinscriptions = (req, res) => {
             if(err){
                 res.status(500).json({ error: 'Errore del server' });
             }
-            res.status(200).json({inscriptions: user.inscriptions});
+            res.status(200).json(user.inscriptions);
         })
 }
 
@@ -135,7 +135,7 @@ exports.read_myorganizations = (req, res) => {
             if(err){
                 res.status(500).json({ error: 'Errore del server' });
             }
-            res.status(200).json({organizations: user.my_organizations});
+            res.status(200).json(user.my_organizations);
         })
 }
 

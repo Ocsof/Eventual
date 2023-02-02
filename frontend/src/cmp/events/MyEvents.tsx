@@ -10,16 +10,12 @@ export function MyEvents() {
     const [events, setEvents] = useState([])
 
     useEffect(() => {
-        const myEvents = JSON.parse(localStorage.getItem('user')).inscriptions;
-        myEvents.map((e)=>{
-            axios.get("http://localhost:8082/events/"+e)
-                .then(res =>{
-                    setEvents([...events, res.data])
-                })
-                .catch(error => console.error(error))
-        })
-
-    }, [])
+        axios.get("http://localhost:8082/myinscriptions/" + JSON.parse(localStorage.getItem('user'))._id)
+            .then(res =>{
+                setEvents(res.data)
+            })
+            .catch(error => console.error(error))
+    }, [events])
 
     return (
         <>

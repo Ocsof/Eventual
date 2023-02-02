@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Routes, NavLink} from "react-router-dom";
+import {Route, Routes, NavLink, useNavigate} from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import {Home} from "./pages/Home";
 import {Login} from "./pages/Login";
@@ -14,22 +14,24 @@ import {NotificationContainer, NotificationManager} from "react-notifications";
 import {Events} from "./pages/Events";
 import {NewEvent} from "./cmp/events/NewEvent";
 import {EditProfile} from "./cmp/access/EditProfile";
+import {SearchEvents} from "./cmp/events/SearchEvents";
 Routes.propTypes = {children: PropTypes.node};
 
 function App() {
     const ref= useRef(null);
     const { openCart, cartQuantity } = useShoppingCart();
     const [searchInput, setSearchInput] = useState("");
+    const navigate = useNavigate();
 
     const handleSearch = (e) => {
         e.preventDefault();
         NotificationManager.info("Research for: " + searchInput);
-        /*todo: chiamata al database*/
+        localStorage.setItem('category', searchInput);
+        navigate('/search_events')
     };
     
     return (
       <div className="App" ref={ref}>
-          <Router >
               <nav className="App-nav navbar navbar-expand-lg px-4">
                   <NavLink to="/" className="logo navbar-brand">Eventual </NavLink>
                   <button className="navbar-toggler" type="button" data-toggle="collapse"
@@ -55,9 +57,9 @@ function App() {
                       <div className="d-flex mx-5">
                           <input type="search" className="form-control rounded" placeholder="Search..." aria-label="Search"
                                  aria-describedby="search-addon" onChange={(e) => setSearchInput(e.target.value)}/>
-                          <span className="input-group-text border-0 mx-1" id="search-addon" onClick={handleSearch}>
+                          <button className="input-group-text border-0 mx-1" id="search-addon" onClick={handleSearch}>
                                 <i className="fas fa-search"></i>
-                          </span>
+                          </button>
                       </div>
                   </div>
                   <NavLink to="/notify" className="d-flex m-4">
@@ -88,13 +90,13 @@ function App() {
                       <Route exact path="/new_event" element={<NewEvent />} />
                       <Route exact path="/notify" element={<Notifications />} />
                       <Route exact path="/edit_profile" element={<EditProfile />} />
+                      <Route exact path="/search_events" element={<SearchEvents />} />
 
                       <Route exact path="/admin" element={<Admin />} />
                       {/*<Route exact path="/passwordRecover" element={<PasswordRecover />} />*/}
                   </Routes>
                   <NotificationContainer />
               </div>
-          </Router>
           <footer className="my_footer">
               Copyright 2022 - Francesco Foschini, Alessia Rocco
           </footer>

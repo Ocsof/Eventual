@@ -69,7 +69,6 @@ export function Admin(){
                                         <div className="d-flex align-items-center"><p className="mb-1">{categoryGenerator(user.category)}</p></div>
                                     </td>
                                     <td>
-                                        {/*todo post, put in the database*/}
                                         <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {setEditUser(true); setUserID(user.id)}}>Edit</button>
                                         <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {alert("User: "+ user.id)}}>Deactivate</button>
                                     </td>
