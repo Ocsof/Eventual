@@ -5,6 +5,7 @@ import {EventCardProps} from "./Event";
 import {useNavigate} from "react-router-dom";
 import { NotificationManager } from "react-notifications";
 import {dateStringFormatter, imgForCategoryFormatter} from "../../utilities/validator";
+import axios from "axios";
 
 export function EditEvent({_id, title, author, category, date, description}:EventCardProps) {
     const navigate = useNavigate();
@@ -19,11 +20,13 @@ export function EditEvent({_id, title, author, category, date, description}:Even
     })
 
     function handleSave(){
-        /*todo:put in the database*/
-        NotificationManager.success("Event modified!");
-        alert(JSON.stringify(event))
-        console.log(event);
-        navigate(0)
+        axios.put('http://localhost:8082/events/' + event._id, event)
+            .then(res =>{
+                console.log(res.data)
+                NotificationManager.success("Event modified!");
+                navigate(0)
+            })
+            .catch(error => console.error(error))
     }
 
     return (

@@ -12,7 +12,7 @@ export function MyEvents() {
     useEffect(() => {
         const myEvents = JSON.parse(localStorage.getItem('user')).inscriptions;
         myEvents.map((e)=>{
-            return axios.get("http://localhost:8082/events/"+e)
+            axios.get("http://localhost:8082/events/"+e)
                 .then(res =>{
                     setEvents([...events, res.data])
                 })

@@ -19,17 +19,25 @@ export function AllEvents() {
                 setEvents(res.data)
             })
             .catch(error => console.error(error))
-    }, [])
+    }, [events])
 
     function modifyEvent(id: number){
         setEventToModify(id);
     }
 
-    function deleteEvent(e: any){
-        /* TODO: delete in the database */
-        let newEvents = events.filter((event: { id: any }) => event.id !== e);
-        console.log(newEvents)
-        NotificationManager.success("Event deleted: " + e);
+    function deleteEvent(_id){
+        axios.delete('http://localhost:8082/events/' + _id)
+            .then(res =>{
+                console.log(res.data)
+                // setEvents(res.data)
+            })
+            .catch(error => console.error(error))
+        NotificationManager.success("Event deleted: " + _id);
+        axios.get('http://localhost:8082/allevents')
+            .then(res =>{
+                setEvents(res.data)
+            })
+            .catch(error => console.error(error))
     }
 
     return (
@@ -49,7 +57,6 @@ export function AllEvents() {
                     <Col key={item._id}>
                         <Event {...item}/>
                         <div className="align-items-center editing-buttons">
-                            {/*todo in the database*/}
                             <Button className="btn btn-warning mx-1" onClick={() => modifyEvent(item._id)}><i className="fa-solid fa-pen-to-square" /></Button>
                             <Button className="btn btn-danger mx-1" onClick={() => deleteEvent(item._id)}><i className="fa-solid fa-trash" /></Button>
                         </div>
