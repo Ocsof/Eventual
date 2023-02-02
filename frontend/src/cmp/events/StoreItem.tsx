@@ -13,10 +13,11 @@ type StoreItemProps = {
     category: string,
     date: string,
     description: string,
-    price: number
+    price: number,
+    imgUrl: string
 }
 
-export function StoreItem({ _id, title, author, category, date, description, price} : StoreItemProps) {
+export function StoreItem({ _id, title, author, category, date, description, price, imgUrl} : StoreItemProps) {
     const {
         getItemQuantity,
         increaseCartQuantity,
@@ -32,7 +33,7 @@ export function StoreItem({ _id, title, author, category, date, description, pri
                 setAuthorName(res.data.name)
             })
             .catch(error => console.error(error))
-    }, [author])
+    }, [])
 
     return (
         <Card className="m-2" >
