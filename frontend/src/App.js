@@ -15,6 +15,7 @@ import {Events} from "./pages/Events";
 import {NewEvent} from "./cmp/events/NewEvent";
 import {EditProfile} from "./cmp/access/EditProfile";
 import {SearchEvents} from "./cmp/events/SearchEvents";
+import {PasswordRecovery} from "./cmp/access/PasswordRecovery";
 Routes.propTypes = {children: PropTypes.node};
 
 function App() {
@@ -55,8 +56,18 @@ function App() {
                           </li>
                       </ul>
                       <div className="d-flex mx-5">
-                          <input type="search" className="form-control rounded" placeholder="Search..." aria-label="Search"
-                                 aria-describedby="search-addon" onChange={(e) => setSearchInput(e.target.value)}/>
+                          <select
+                              className="form-control rounded"
+                              placeholder="Search by category..."
+                              id="category"
+                              onChange={(e) => setSearchInput(e.target.value)}
+                              value={searchInput}
+                          >
+                              <option default>Search by category...</option>
+                              <option value="party">Party</option>
+                              <option value="concert">Concert</option>
+                              <option value="birthday">Birthday</option>
+                          </select>
                           <button className="input-group-text border-0 mx-1" id="search-addon" onClick={handleSearch}>
                                 <i className="fas fa-search"></i>
                           </button>
@@ -91,6 +102,7 @@ function App() {
                       <Route exact path="/notify" element={<Notifications />} />
                       <Route exact path="/edit_profile" element={<EditProfile />} />
                       <Route exact path="/search_events" element={<SearchEvents />} />
+                      <Route exact path="/password_recovery" element={<PasswordRecovery />} />
 
                       <Route exact path="/admin" element={<Admin />} />
                   </Routes>

@@ -121,7 +121,7 @@ export function Login(){
                                                id="remember"/>
                                         <label className="form-check-label small" htmlFor="remember">Remember me</label>
                                     </div>
-                                    <Link to="/passwordRecover" className="link-danger small">Forgot password?</Link>
+                                    <Link to="/password_recovery" className="link-danger small">Forgot password?</Link>
                                 </div>
 
                                 <div className="text-center text-lg-start mt-4 pt-2">
@@ -129,7 +129,7 @@ export function Login(){
                                         Login
                                     </button>
                                     <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account?
-                                        <Link to="/signup" className="text-body mx-1">Register</Link>
+                                        <Link to="/signup" className="mylogin text-body mx-1" >Register</Link>
                                     </p>
                                 </div>
                             </form>

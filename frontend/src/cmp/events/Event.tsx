@@ -45,8 +45,7 @@ export function Event({_id, title, author, category, date, description, price}:E
                     <span className="fs-2">{description}</span>
                     <br/>
                     <input type="date" value={dateStringFormatter(date)} disabled={true}/>
-                    <br/>
-                    <span className="fs-2">{formatCurrency(price)}</span>
+                    <span className="ms-2 text-muted">{formatCurrency(price)}</span>
                 </Card.Text>
             </Card.Body>
         </Card>

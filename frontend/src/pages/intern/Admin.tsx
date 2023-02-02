@@ -99,7 +99,7 @@ export function Admin(){
             </>) : (
                 <EditUser {...users.find((u: EditUserProps)=> u._id === userID)}/>
         ) ) :(
-            <span className="alert-danger"> Non hai autorizzazione ad accedere a questa pagina (Admin area) </span>
+            <span className="alert-danger"> User not authorized to access this page (Admin area) </span>
         )
 
     )

@@ -2,7 +2,6 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {NotificationManager} from "react-notifications";
 import axios from 'axios';
-import {categoryGeneratorForDatabase} from "../utilities/validator";
 
 class SignupForm extends React.Component {
 
@@ -52,7 +51,7 @@ class SignupForm extends React.Component {
     }
 
     handleCategoryChange(event) {
-        this.setState({category: categoryGeneratorForDatabase(event.target.value)})
+        this.setState({category: event.target.value})
     }
 
     handleBirthdayChange(event){
@@ -75,6 +74,7 @@ class SignupForm extends React.Component {
             .then(response => {
                 if (response.status === 200) {
                     NotificationManager.success("Signup ok!");
+                    this.handleReset()
                 }
             })
             .catch(error => {
