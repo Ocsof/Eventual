@@ -17,15 +17,15 @@ export function MyOrganizedEvents() {
 
     useEffect(() => {
         const myEvents = JSON.parse(localStorage.getItem('user')).my_organizations;
-        myEvents.map((e)=>{
-            axios.get("http://localhost:8082/events/"+e)
+        myEvents.map((e) => {
+            return axios.get("http://localhost:8082/events/"+e)
                 .then(res =>{
                     setEvents([...events, res.data])
                 })
                 .catch(error => console.error(error))
         })
 
-    }, [])
+    }, [events])
 
     function modifyEvent(id: number){
         /*todo: put in the database*/

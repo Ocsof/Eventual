@@ -24,7 +24,7 @@ export function Event({_id, title, author, category, date, description, price}:E
                 setAuthorName(res.data.name)
             })
             .catch(error => console.error(error))
-    }, [])
+    })
 
     return (
         <Card key={_id}>

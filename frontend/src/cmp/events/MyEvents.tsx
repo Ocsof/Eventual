@@ -12,14 +12,14 @@ export function MyEvents() {
     useEffect(() => {
         const myEvents = JSON.parse(localStorage.getItem('user')).inscriptions;
         myEvents.map((e)=>{
-            axios.get("http://localhost:8082/events/"+e)
+            return axios.get("http://localhost:8082/events/"+e)
                 .then(res =>{
                     setEvents([...events, res.data])
                 })
                 .catch(error => console.error(error))
         })
 
-    }, [])
+    })
 
     return (
         <>
