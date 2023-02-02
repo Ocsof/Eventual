@@ -4,14 +4,14 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import {Button} from "react-bootstrap";
 import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
 import {NotificationManager} from "react-notifications";
 import {EditEvent} from "./EditEvent";
 import {Event, EventCardProps} from "./Event";
-import axios from "axios";
+import axios from 'axios';
 
 export function AllEvents() {
     const [eventToModify, setEventToModify] = useState(-1);
+
     const [allEvents, setAllEvents] = useState([])
 
     useEffect(() => {
@@ -29,6 +29,7 @@ export function AllEvents() {
     function deleteEvent(e: any){
         axios.delete("http://localhost:8082/events/" + e)
             .then(res =>{
+                console.log(res.data)
                 NotificationManager.success("Event deleted: " + e);
             })
             .catch(error => console.error(error))
