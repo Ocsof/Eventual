@@ -83,7 +83,13 @@ export function ShoppingCart ( {isOpen}: ShoppingCartProps ) {
                         return total + (item?.price || 0) * cartItem.quantity
                     }, 0))}
                     </div>
-                    <div className="btn btn-success btn-lg btn-block" onClick={handleInscription}>Proceed to payment</div>
+                    {localStorage.getItem('user') !== null ? (<button className="btn btn-success btn-lg btn-block" onClick={handleInscription}>Proceed to payment</button>):(
+                        <>
+                            <button className="btn btn-success btn-lg btn-block" disabled={true}>Proceed to payment</button>
+                            <button className="btn btn-danger btn-lg btn-block" disabled={true}>Log in to pay</button>
+                        </>
+                    )}
+
                 </Stack>
             </Offcanvas.Body>
         </Offcanvas>

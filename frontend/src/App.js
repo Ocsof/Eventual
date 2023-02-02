@@ -1,4 +1,4 @@
-import {Route, Routes, NavLink, useNavigate, useLocation} from "react-router-dom";
+import {Route, Routes, NavLink, useNavigate} from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import {Home} from "./pages/Home";
 import {Login} from "./pages/Login";
@@ -22,7 +22,6 @@ function App() {
     const { openCart, cartQuantity } = useShoppingCart();
     const [searchInput, setSearchInput] = useState("");
     const navigate = useNavigate();
-    const location = useLocation();
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -43,16 +42,16 @@ function App() {
                   <div className="collapse navbar-collapse" id="navbarToggleExternalContent">
                       <ul className="navbar-nav mr-auto d-flex justify-content-between">
                           <li className="nav-item px-2">
-                              <NavLink exact to="/login" className="nav-item" activeClassName="active">Login </NavLink>
+                              <NavLink to="/login" className="nav-item" activeClassName="active">Login </NavLink>
                           </li>
                           <li className="nav-item px-2">
-                              <NavLink exact to="/signup" className="nav-item" activeClassName="active">Sign Up </NavLink>
+                              <NavLink to="/signup" className="nav-item" activeClassName="active">Sign Up </NavLink>
                           </li>
                           <li className="nav-item px-2">
-                              <NavLink exact to="/store_events" className="nav-item" activeClassName="active" >Events </NavLink>
+                              <NavLink to="/store_events" className="nav-item" activeClassName="active" >Events </NavLink>
                           </li>
                           <li className="nav-item px-2">
-                              <NavLink exact to="/events" className="nav-item" activeClassName="active">My Events </NavLink>
+                              <NavLink to="/events" className="nav-item" activeClassName="active">My Events </NavLink>
                           </li>
                       </ul>
                       <div className="d-flex mx-5">
@@ -94,7 +93,6 @@ function App() {
                       <Route exact path="/search_events" element={<SearchEvents />} />
 
                       <Route exact path="/admin" element={<Admin />} />
-                      {/*<Route exact path="/passwordRecover" element={<PasswordRecover />} />*/}
                   </Routes>
                   <NotificationContainer />
               </div>

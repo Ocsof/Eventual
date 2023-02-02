@@ -32,7 +32,7 @@ export function StoreItem({ _id, title, author, category, date, description, pri
                 setAuthorName(res.data.name)
             })
             .catch(error => console.error(error))
-    }, [])
+    })
 
     return (
         <Card className="m-2" >
