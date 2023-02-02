@@ -3,6 +3,8 @@ import * as React from "react";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import { NotificationManager } from "react-notifications";
+import axios from "axios";
+import {imgForCategoryFormatter} from "../../utilities/validator";
 
 export function NewEvent() {
     const navigate = useNavigate();
@@ -10,17 +12,20 @@ export function NewEvent() {
     const [event, setEvent] = useState({
         id: -1,
         title: '',
-        author: '',
+        author: JSON.parse(localStorage.getItem('user'))._id.toString(),
         category: '',
         date: '',
         description: '',
-        imgUrl: ''
     })
 
     function handleSave(){
         /*todo post in the database*/
-        NotificationManager.success("Event created");
-        console.log(event);
+        axios.post("http://localhost:8082/events", event)
+            .then(res =>{
+                console.log(res.data);
+                NotificationManager.success("Event added: " + res.data._id);
+            })
+            .catch(error => console.error(error))
         navigate("/events");
     }
 
@@ -28,7 +33,7 @@ export function NewEvent() {
         <Card className="m-4 h-100 w-75">
             <Card.Img
                 variant="top"
-                src={event.imgUrl}
+                src={imgForCategoryFormatter(event.category)}
                 height="200px"
                 style={{ objectFit: "cover" }}
             />
@@ -37,7 +42,7 @@ export function NewEvent() {
             </Card.Title>
             <Card.Body className="d-flex flex-column">
                 <label className="form-label" htmlFor="newEventImg">Event image: </label>
-                <input style={{width: "100%"}} type="file" className="form-control" id="newEventImg" onChange={(e) => setEvent({...event, imgUrl: e.target.value})}/>
+                <input style={{width: "100%"}} type="file" className="form-control" id="newEventImg" />
                 <label className="form-label" htmlFor="newEventTitle">title: </label>
                 <input style={{width: "100%"}} type="text" className="form-control" id="newEventTitle" onChange={(e) => setEvent({...event, title: e.target.value})}/>
                 <label className="form-label" htmlFor="newEventAuthor">author: </label>
