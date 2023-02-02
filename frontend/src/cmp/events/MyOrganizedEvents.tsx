@@ -40,7 +40,7 @@ export function MyOrganizedEvents() {
         eventToModify === -1 ? (
         <>
             <div className="align-items-center d-flex">
-                <h3>Events {JSON.parse(localStorage.getItem('user')).name} organizes: </h3>
+                <h3>Events <strong>{JSON.parse(localStorage.getItem('user')).name}</strong> organizes: </h3>
                 <br />
                 <Link to="/new_event" className="btn btn-secondary btn-outline-dark mx-4" id="newEvent">
                     <i className="fa-solid fa-square-plus" />

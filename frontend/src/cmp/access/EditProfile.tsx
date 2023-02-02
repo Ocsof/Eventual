@@ -113,7 +113,8 @@ export function EditProfile(){
                                                     id="SignUpPassword"
                                                     className="form-control"
                                                     value={user.password}
-                                                    disabled={true}
+                                                    onChange={(e) => setUser({...user, password:e.target.value})}
+                                                    disabled={false}
                                                 />
                                                     <label className="form-label" htmlFor="SignUpPassword">Password</label>
                                                 </div>

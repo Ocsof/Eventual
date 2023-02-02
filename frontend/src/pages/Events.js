@@ -1,15 +1,21 @@
 import {MyEvents} from "../cmp/events/MyEvents";
 import {MyOrganizedEvents} from "../cmp/events/MyOrganizedEvents";
 import {Link} from "react-router-dom";
+import {Admin} from "./intern/Admin";
 
 export function Events(){
     const isLoggedIn = Boolean(localStorage.getItem("logged"))
 
     return (
         isLoggedIn ? (
+
             <>
-                <MyEvents />
-                { JSON.parse(localStorage.getItem('user')).category === 'o' ? (<MyOrganizedEvents />) : (<div></div>) }
+                {JSON.parse(localStorage.getItem('user')).category === 'a' ? (<Admin />) : (
+                    <>
+                        <MyEvents />
+                        { JSON.parse(localStorage.getItem('user')).category === 'o' ? (<MyOrganizedEvents />) : (<div></div>) }
+                    </>
+                )}
             </>
         ) : (
             <>

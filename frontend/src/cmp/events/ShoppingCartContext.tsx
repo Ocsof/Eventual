@@ -13,6 +13,7 @@ type ShoppingCartContextType = {
     increaseCartQuantity: (id: number) => void
     decreaseCartQuantity: (id: number) => void
     removeFromCart: (id: number) => void
+    clearCart: () => void
     cartQuantity: number
     cartItems: CartItem[]
 }
@@ -36,6 +37,10 @@ export function ShoppingCartProvider( { children }: ShoppingCartProviderProps) {
 
     const openCart = () => setIsOpen(true)
     const closeCart = () => setIsOpen(false)
+
+    function clearCart(){
+        setCartItems([])
+    }
 
     function getItemQuantity(_id: number) {
         return cartItems.find(item => item._id ===_id)?.quantity || 0
@@ -88,6 +93,7 @@ export function ShoppingCartProvider( { children }: ShoppingCartProviderProps) {
                 removeFromCart,
                 openCart,
                 closeCart,
+                clearCart,
                 cartItems,
                 cartQuantity
         }}>

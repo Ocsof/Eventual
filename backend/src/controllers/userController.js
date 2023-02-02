@@ -51,13 +51,15 @@ exports.log_user = (req, res)=> {
             res.status(404).json({error: 'Utente non trovato'});
         } else {
             bcrypt.compare(req.body.password, user.password, (err, result) => {
+                const clearPassword = req.body.password;
+
                 if (err){
                     res.status(500).json({ error: 'Errore del server' });
                 }
                 if (!result){
                     res.status(401).json({error: 'Password errata'});
                 }
-                //res.status(200).send(`Benvenuto ${user.name} ${user.surname}`);
+                user.password = clearPassword;
                 res.status(200).json(user);
             });
         }

@@ -19,7 +19,7 @@ export function MyEvents() {
 
     return (
         <>
-            <h3>Events {JSON.parse(localStorage.getItem('user')).name} participates: </h3>
+            <h3><strong>{JSON.parse(localStorage.getItem('user')).name}</strong>'s tickets: </h3>
             <Container className="m-auto">
                 <Row md={2} xs={1} lg={3} className="g-3">
                     {events.map((item: JSX.IntrinsicAttributes & {
