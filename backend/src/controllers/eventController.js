@@ -114,7 +114,15 @@ exports.read_myUsers = (req, res) => {
         })
 }
 
-
+exports.search_by_name = (req, res) => {
+    const nameRegex = new RegExp(req.params.search, 'i');
+    EventModel.find({ title: nameRegex }, (err, events) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        return res.send(events);
+    });
+}
 
 
 

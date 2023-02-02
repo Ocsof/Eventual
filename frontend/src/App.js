@@ -16,12 +16,14 @@ import {NewEvent} from "./cmp/events/NewEvent";
 import {EditProfile} from "./cmp/access/EditProfile";
 import {SearchEvents} from "./cmp/events/SearchEvents";
 import {PasswordRecovery} from "./cmp/access/PasswordRecovery";
+import {SearchEventsTitle} from "./cmp/events/SearchEventsTitle";
 Routes.propTypes = {children: PropTypes.node};
 
 function App() {
     const ref= useRef(null);
     const { openCart, cartQuantity } = useShoppingCart();
     const [searchInput, setSearchInput] = useState("");
+    const [searchTitleInput, setSearchTitleInput] = useState("");
     const navigate = useNavigate();
 
     const handleSearch = (e) => {
@@ -30,6 +32,13 @@ function App() {
         localStorage.setItem('category', searchInput);
         navigate('/search_events')
     };
+
+    const handleTitleSearch = (e) => {
+        e.preventDefault();
+        NotificationManager.info("Research for: " + searchTitleInput);
+        localStorage.setItem('titleSearch', searchTitleInput);
+        navigate('/search_events_title')
+    }
     
     return (
       <div className="App" ref={ref}>
@@ -72,6 +81,12 @@ function App() {
                                 <i className="fas fa-search"></i>
                           </button>
                       </div>
+                      <div className="d-flex mx-5">
+                          <input className="form-control rounded" placeholder="Search by title..." id="searchTitle" onChange={(e) => setSearchTitleInput(e.target.value)} value={searchTitleInput}/>
+                          <button className="input-group-text border-0 mx-1" id="search-title" onClick={handleTitleSearch}>
+                              <i className="fas fa-search"></i>
+                          </button>
+                      </div>
                   </div>
                   <NavLink to="/notify" className="d-flex m-4">
                       <img src={"img/notification.svg"} alt="notifications" className="link-icon" />
@@ -102,6 +117,7 @@ function App() {
                       <Route exact path="/notify" element={<Notifications />} />
                       <Route exact path="/edit_profile" element={<EditProfile />} />
                       <Route exact path="/search_events" element={<SearchEvents />} />
+                      <Route exact path="/search_events_title" element={<SearchEventsTitle />} />
                       <Route exact path="/password_recovery" element={<PasswordRecovery />} />
 
                       <Route exact path="/admin" element={<Admin />} />

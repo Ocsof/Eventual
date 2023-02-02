@@ -22,8 +22,9 @@ module.exports =  (server)=>{
     server.route('/categories/:category')
         .get(controller.read_eventsByCategory)
 
-
     server.route('/myusers/:_id')
         .get(controller.read_myUsers)
 
+    server.route('/search/:search')
+        .get(controller.search_by_name)
 }
