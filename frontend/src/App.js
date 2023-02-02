@@ -1,4 +1,4 @@
-import {Route, Routes, NavLink, useNavigate} from "react-router-dom";
+import {Route, Routes, NavLink, useNavigate, useLocation} from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import {Home} from "./pages/Home";
 import {Login} from "./pages/Login";
@@ -22,6 +22,7 @@ function App() {
     const { openCart, cartQuantity } = useShoppingCart();
     const [searchInput, setSearchInput] = useState("");
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -33,7 +34,7 @@ function App() {
     return (
       <div className="App" ref={ref}>
               <nav className="App-nav navbar navbar-expand-lg px-4">
-                  <NavLink to="/" className="logo navbar-brand">Eventual </NavLink>
+                  <NavLink to="/" activeStyle={{ color:'#F57536' }} className="logo navbar-brand">Eventual </NavLink>
                   <button className="navbar-toggler" type="button" data-toggle="collapse"
                           data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
                           aria-expanded="false" aria-label="Toggle navigation">
@@ -42,16 +43,16 @@ function App() {
                   <div className="collapse navbar-collapse" id="navbarToggleExternalContent">
                       <ul className="navbar-nav mr-auto d-flex justify-content-between">
                           <li className="nav-item px-2">
-                              <NavLink to="/login" className="nav-item active">Login </NavLink>
+                              <NavLink exact to="/login" className="nav-item" activeClassName="active">Login </NavLink>
                           </li>
                           <li className="nav-item px-2">
-                              <NavLink to="/signup" className="nav-item active">Sign Up </NavLink>
+                              <NavLink exact to="/signup" className="nav-item" activeClassName="active">Sign Up </NavLink>
                           </li>
                           <li className="nav-item px-2">
-                              <NavLink to="/store_events" className="nav-item active">Events </NavLink>
+                              <NavLink exact to="/store_events" className="nav-item" activeClassName="active" >Events </NavLink>
                           </li>
                           <li className="nav-item px-2">
-                              <NavLink to="/events" className="nav-item active">My Events </NavLink>
+                              <NavLink exact to="/events" className="nav-item" activeClassName="active">My Events </NavLink>
                           </li>
                       </ul>
                       <div className="d-flex mx-5">
