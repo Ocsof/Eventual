@@ -221,7 +221,7 @@ class SignupForm extends React.Component {
                                             <div className="form-check d-flex justify-content-center mb-5">
                                                 <input className="form-check-input me-2" type="checkbox" id="terms" required={true}/>
                                                 <label className="form-check-label" htmlFor="terms">
-                                                    I agree all statements in <a href="https://www.google.com">Terms of service</a>
+                                                    I agree all statements in <Link to="/terms_conditions">Terms of service</Link>
                                                 </label>
                                             </div>
 

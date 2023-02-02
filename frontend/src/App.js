@@ -17,6 +17,7 @@ import {EditProfile} from "./cmp/access/EditProfile";
 import {SearchEvents} from "./cmp/events/SearchEvents";
 import {PasswordRecovery} from "./cmp/access/PasswordRecovery";
 import {SearchEventsTitle} from "./cmp/events/SearchEventsTitle";
+import TermsAndConditions from "./pages/intern/TermsConditions";
 Routes.propTypes = {children: PropTypes.node};
 
 function App() {
@@ -64,7 +65,7 @@ function App() {
                               <NavLink to="/events" className="nav-item" activeClassName="active">My Events </NavLink>
                           </li>
                       </ul>
-                      <div className="d-flex mx-5">
+                      <div className="d-flex mx-5 mb-2">
                           <select
                               className="form-control rounded"
                               placeholder="Search by category..."
@@ -118,9 +119,10 @@ function App() {
                       <Route exact path="/edit_profile" element={<EditProfile />} />
                       <Route exact path="/search_events" element={<SearchEvents />} />
                       <Route exact path="/search_events_title" element={<SearchEventsTitle />} />
-                      <Route exact path="/password_recovery" element={<PasswordRecovery />} />
+                      <Route exact path="/terms_conditions" element={<TermsAndConditions />} />
 
                       <Route exact path="/admin" element={<Admin />} />
+                      <Route exact path="/password_recovery" element={<PasswordRecovery />} />
                   </Routes>
                   <NotificationContainer />
               </div>

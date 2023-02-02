@@ -18,7 +18,7 @@ export function SearchEvents(){
                 setEvents(res.data)
             })
             .catch(error => console.error(error))
-    }, [events])
+    }, [events, category])
 
     return(
             <>
