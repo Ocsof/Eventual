@@ -7,7 +7,7 @@ import axios from "axios";
 import {NotificationManager} from "react-notifications";
 
 export type EditUserProps = {
-    id: number,
+    _id: number,
     name: string,
     surname: string,
     email: string,
@@ -17,11 +17,11 @@ export type EditUserProps = {
     category: string
 }
 
-export function EditUser({id, name, surname, email, phone, password, birthday, category}:EditUserProps) {
+export function EditUser({_id, name, surname, email, phone, password, birthday, category}:EditUserProps) {
     const navigate = useNavigate();
 
     const [user, setUser] = useState({
-        id: id,
+        _id: _id,
         name: name,
         surname: surname,
         email: email,
@@ -32,14 +32,12 @@ export function EditUser({id, name, surname, email, phone, password, birthday, c
     })
 
     function handleSave(){
-        /*todo: put in the database*/
-        axios.put('http://localhost:8082/user/'+ user.id, user)
+        axios.put('http://localhost:8082/user/'+ user._id, user)
             .then(response => {
                 console.log(response.data);
                 if(response.status === 200){
                     NotificationManager.success("Utente aggiornato")
                     localStorage.setItem('user', JSON.stringify(user))
-                    navigate("/login")
                 }
             })
             .catch(error => {
@@ -50,7 +48,7 @@ export function EditUser({id, name, surname, email, phone, password, birthday, c
 
     return (
         <>
-            <h1>Edit User: {user.id}</h1>
+            <h1>Edit User: {user._id}</h1>
 
             <div className="d-flex align-items-center">
                 <input className="mb-1" placeholder={user.name} value={user.name} onChange={(e) => setUser({...user, name: e.target.value})} />

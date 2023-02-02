@@ -19,7 +19,6 @@ export function NewEvent() {
     })
 
     function handleSave(){
-        /*todo post in the database*/
         axios.post("http://localhost:8082/events", event)
             .then(res =>{
                 console.log(res.data);

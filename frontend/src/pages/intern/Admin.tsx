@@ -1,8 +1,9 @@
 import {categoryGenerator, dateStringFormatter} from "../../utilities/validator";
 import {useEffect, useState} from "react";
-import {EditUserProps, EditUser} from "../../cmp/access/EditUser";
 import {AllEvents} from "../../cmp/events/AllEvents";
 import axios from 'axios';
+import {NotificationManager} from "react-notifications";
+import {EditUser, EditUserProps} from "../../cmp/access/EditUser";
 
 export function Admin(){
     const [editUser, setEditUser] = useState(false)
@@ -13,13 +14,29 @@ export function Admin(){
         axios.get("http://localhost:8082/users")
             .then(res =>{
                 setUsers(res.data)
-                console.log(users)
             })
             .catch(error => console.error(error))
     }, [users])
 
+    function handleDelete(user){
+        if(user.category !== 'a'){
+            axios.delete('http://localhost:8082/user/'+ user._id)
+                .then(response => {
+                    console.log(response.data);
+                    if(response.status === 200){
+                        NotificationManager.success("Utente eliminato")
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+        } else {
+            alert("Non puoi eliminare un admin!")
+        }
+    }
+
     return(
-        JSON.parse(localStorage.getItem('user')).category === 'a'? (
+        localStorage.getItem('user')!== null && JSON.parse(localStorage.getItem('user')).category === 'a'? (
         editUser === false ? (
             <>
                 <h1>Users Settings</h1>
@@ -38,7 +55,7 @@ export function Admin(){
                         </thead>
                         <tbody>
                         {users.map((user: JSX.IntrinsicAttributes & {
-                            id: number,
+                            _id: number,
                             name: number,
                             surname: string,
                             email: string,
@@ -47,7 +64,7 @@ export function Admin(){
                             birthday: string,
                             category: string
                         }) => (
-                                <tr key={user.id}>
+                                <tr key={user._id}>
                                     <td>
                                         <div className="d-flex align-items-center"><p className="mb-1">{user.name}</p></div>
                                     </td>
@@ -70,8 +87,8 @@ export function Admin(){
                                         <div className="d-flex align-items-center"><p className="mb-1">{categoryGenerator(user.category)}</p></div>
                                     </td>
                                     <td>
-                                        <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {setEditUser(true); setUserID(user.id)}}>Edit</button>
-                                        <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {alert("User: "+ user.id)}}>Deactivate</button>
+                                        <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {setEditUser(true); setUserID(user._id)}}>Edit</button>
+                                        <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {handleDelete(user)}}>Delete</button>
                                     </td>
                                 </tr>
                             ))}
@@ -80,7 +97,7 @@ export function Admin(){
                 <h1>Events Settings</h1>
                 <AllEvents />
             </>) : (
-                <EditUser {...users.find((u: EditUserProps)=> u.id === userID)}/>
+                <EditUser {...users.find((u: EditUserProps)=> u._id === userID)}/>
         ) ) :(
             <span className="alert-danger"> Non hai autorizzazione ad accedere a questa pagina (Admin area) </span>
         )
