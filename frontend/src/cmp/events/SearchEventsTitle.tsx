@@ -6,23 +6,22 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-
-export function SearchEvents(){
+export function SearchEventsTitle(){
     const[events, setEvents] = useState([])
-    const category = localStorage.getItem('category')
+    const title = localStorage.getItem('titleSearch')
 
     useEffect(() => {
-        axios.get("http://localhost:8082/categories/" + category)
+        axios.get("http://localhost:8082/search/" + title)
             .then(res =>{
                 console.log(res.data)
                 setEvents(res.data)
             })
             .catch(error => console.error(error))
-    }, [events, category])
+    }, [events, title])
 
     return(
             <>
-                <h3>Results of research: {category}</h3>
+                <h3>Results of research: {title}</h3>
                 <Container className="m-2">
                     <Row md={2} xs={1} lg={3} className="g-3">
                         {events.map((event: JSX.IntrinsicAttributes & {

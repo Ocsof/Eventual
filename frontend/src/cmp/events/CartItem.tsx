@@ -1,6 +1,4 @@
 import {useShoppingCart} from "./ShoppingCartContext";
-// @ts-ignore
-import storeItems from '../../data/events_onsell.json'
 import {Button, Stack} from "react-bootstrap";
 import {formatCurrency} from "../../utilities/formatCurrency";
 import {useEffect, useState} from "react";

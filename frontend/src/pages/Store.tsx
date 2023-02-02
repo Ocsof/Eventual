@@ -3,8 +3,6 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import {StoreItem} from "../cmp/events/StoreItem"
-// @ts-ignore
-import storeItems from '../data/events_onsell.json'
 import {useEffect, useState} from "react";
 import axios from "axios";
 
