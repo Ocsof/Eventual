@@ -33,7 +33,6 @@ export function MyOrganizedEvents() {
                 NotificationManager.success("Event deleted: " + e);
             })
             .catch(error => console.error(error))
-        /*todo: eliminare id dall'array my_organizations*/
     }
 
     return (
