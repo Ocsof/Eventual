@@ -1,10 +1,12 @@
 import * as React from 'react'
+import {useEffect, useState} from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import {Event} from "./Event";
-import {useEffect, useState} from "react";
 import axios from "axios";
+import {Button} from "react-bootstrap";
+import {NotificationManager} from "react-notifications";
 
 export function MyEvents() {
     const [events, setEvents] = useState([])
@@ -16,6 +18,27 @@ export function MyEvents() {
             })
             .catch(error => console.error(error))
     }, [events])
+
+    function deleteEvent(id){
+        alert("Are you sure you wanna unregister from this event? (You can ask a refund)")
+
+        const user =  JSON.parse(localStorage.getItem('user'))
+        user.inscriptions = user.inscriptions.filter(element => element !== id)
+        console.log(user.inscriptions)
+
+        axios.put('http://localhost:8082/user/'+ user._id, user)
+            .then(response => {
+                console.log(response.data);
+                if(response.status === 200){
+                    console.log(response.data)
+                    localStorage.setItem('user', JSON.stringify(user))
+                    NotificationManager.warning("Unregistered!")
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
 
     return (
         <>
@@ -33,6 +56,9 @@ export function MyEvents() {
                     }) => (
                     <Col key={item._id}>
                         <Event {...item}/>
+                        <div className="align-items-center editing-buttons">
+                            <Button className="btn btn-danger mx-1" onClick={(e) => {e.preventDefault(); deleteEvent(item._id)}}><i className="fa-solid fa-trash" /></Button>
+                        </div>
                     </Col>
                     ))}
                 </Row>
