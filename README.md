@@ -5,7 +5,6 @@
  
 
 ## Descrizione del progetto:
-
 Eventual è un servizio web per la gestione di eventi, simil TicketOne. Ci si può registrare al sito come organizzatore o come utente che vuole partecipare ad un evento.
 
 ### Funzionalità relative all’utente non organizzatore:
