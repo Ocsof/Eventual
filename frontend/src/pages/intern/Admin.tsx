@@ -19,6 +19,7 @@ export function Admin(){
     }, [users])
 
     return(
+        JSON.parse(localStorage.getItem('user')).category === 'a'? (
         editUser === false ? (
             <>
                 <h1>Users Settings</h1>
@@ -80,6 +81,8 @@ export function Admin(){
                 <AllEvents />
             </>) : (
                 <EditUser {...users.find((u: EditUserProps)=> u.id === userID)}/>
+        ) ) :(
+            <span className="alert-danger"> Non hai autorizzazione ad accedere a questa pagina (Admin area) </span>
         )
 
     )

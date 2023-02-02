@@ -3,6 +3,8 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {categoryGenerator, categoryGeneratorForDatabase, dateStringFormatter} from "../../utilities/validator";
 import {Button} from "react-bootstrap";
+import axios from "axios";
+import {NotificationManager} from "react-notifications";
 
 export type EditUserProps = {
     id: number,
@@ -31,8 +33,18 @@ export function EditUser({id, name, surname, email, phone, password, birthday, c
 
     function handleSave(){
         /*todo: put in the database*/
-        alert("User modified");
-        console.log(user);
+        axios.put('http://localhost:8082/user/'+ user.id, user)
+            .then(response => {
+                console.log(response.data);
+                if(response.status === 200){
+                    NotificationManager.success("Utente aggiornato")
+                    localStorage.setItem('user', JSON.stringify(user))
+                    navigate("/login")
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            });
         navigate(0);
     }
 
