@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Application Routes renders correctly 1`] = `
+Array [
+  <a
+    href="/"
+    onClick={[Function]}
+  >
+    Home
+  </a>,
+  <a
+    href="/new_event"
+    onClick={[Function]}
+  >
+    NewEvent
+  </a>,
+  <a
+    href="/login"
+    onClick={[Function]}
+  >
+    Login
+  </a>,
+  <a
+    href="/admin"
+    onClick={[Function]}
+  >
+    Admin
+  </a>,
+]
+`;

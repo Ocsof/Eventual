@@ -1,0 +1,124 @@
+@import 'variables';
+@import 'mixins';
+@import 'events';
+@import 'include-media';
+
+@font-face {
+  font-family: myFirstFont;
+}
+
+.App {
+  color: $text-color;
+  @include responsive-height(16,9);
+  /* Inclusive and exclusive operators for a finer control over the intervals */
+  @include media(">phone", "<=tablet") {
+    width: 50%;
+  }
+  /* Use ligatured operators if you fancy a slicker declaration */
+  @include media("≥phone", "≤tablet") {
+    line-height: 1.5;
+  }
+  @media (max-width: 767px) {
+    height: 70vh;
+    overflow: scroll;
+  }
+}
+
+.App-nav, footer {
+  text-align: center;
+  background-color: $primary-color;
+  color: $second-color;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: $second-color;
+  &:hover {
+    color: $third-color;
+  }
+}
+
+.App-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  min-height: 83vh;
+
+}
+
+.logo {
+  font-size: larger;
+  font-weight: bold;
+  text-decoration: none !important;
+  color: $second-color !important;
+}
+
+.error {
+  color: darkred;
+  font-size: x-small;
+}
+
+.link-icon {
+  height: 3vh;
+  alignment: center;
+}
+
+.divider:after, .divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: $text-color;
+}
+
+@media (max-width: 450px) {
+  .h-custom {
+    height: 100%;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .App{
+    width: 90%;
+    padding: 10px;
+  }
+  .h-custom{
+    height: 100vh;
+    overflow-y: scroll;
+  }
+  .App-content {
+    overflow-y: scroll;
+  }
+
+  #newEvent {
+    width: 40px;
+  }
+}
+
+.cover {
+  @include responsive-height(16,9);
+}
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: $primary-color;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, $primary-color, $second-color);
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, $primary-color, $second-color)
+}
+
+.navbar-collapse.in {
+  display: block !important;
+}
+
+.active {
+  color: $third-color !important;
+}
+
+mylogin{
+  color: rgb(11, 94, 215) !important;
+}
