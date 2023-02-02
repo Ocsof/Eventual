@@ -9,7 +9,7 @@ export function Events(){
         isLoggedIn ? (
             <>
                 <MyEvents />
-                <MyOrganizedEvents />
+                { JSON.parse(localStorage.getItem('user')).category === 'o' ? (<MyOrganizedEvents />) : (<div></div>) }
             </>
         ) : (
             <>

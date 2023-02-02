@@ -13,11 +13,10 @@ type StoreItemProps = {
     category: string,
     date: string,
     description: string,
-    price: number,
-    imgUrl: string
+    price: number
 }
 
-export function StoreItem({ _id, title, author, category, date, description, price, imgUrl} : StoreItemProps) {
+export function StoreItem({ _id, title, author, category, date, description, price} : StoreItemProps) {
     const {
         getItemQuantity,
         increaseCartQuantity,
