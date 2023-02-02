@@ -15,7 +15,7 @@ export function Home(){
                 setEvents(res.data)
             })
             .catch(error => console.error(error))
-    }, [])
+    }, [events])
 
     return(
             <>

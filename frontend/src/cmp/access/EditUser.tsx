@@ -30,6 +30,7 @@ export function EditUser({id, name, surname, email, phone, password, birthday, c
     })
 
     function handleSave(){
+        /*todo: put in the database*/
         alert("User modified");
         console.log(user);
         navigate(0);

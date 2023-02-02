@@ -1,11 +1,9 @@
 import {MyEvents} from "../cmp/events/MyEvents";
 import {MyOrganizedEvents} from "../cmp/events/MyOrganizedEvents";
-import {Link, useNavigate} from "react-router-dom";
-import {useEffect} from "react";
+import {Link} from "react-router-dom";
 
 export function Events(){
     const isLoggedIn = Boolean(localStorage.getItem("logged"))
-    const navigate = useNavigate()
 
     return (
         isLoggedIn ? (
