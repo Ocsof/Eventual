@@ -32,3 +32,9 @@ Eventual è un servizio web per la gestione di eventi, simil TicketOne. Ci si pu
 ### Tecnologie utilizzate:
 L’applicazione verrà sviluppata utilizzando lo stack MERN: sarà quindi utilizzato React per lo sviluppo dell'applicativo di frontend e bootstrap e SCSS per la grafica. Per il deploy dell'applicazione si sfrutterà il supporto docker.
 Eventuali altre tecnologie e funzionalità che in fase d’opera verranno ritenute necessarie saranno inserite nella relazione finale.
+
+
+## Prerequisiti 
+Per utilizzare correttamente l'applicazione occorre:
+- Docker Desktop: https://www.docker.com/
+- Nodejs: https://nodejs.org/en/download/
