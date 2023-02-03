@@ -4,8 +4,8 @@
 - Andare nella cartella "frontend" e lanciare il comando npm install per installare tutte le dipendenze dall'applicativo frontend
 - Andare nella cartella "backend" e lanciare il comando npm install per installare tutte le dipendenze dall'applicativo backend
 - Creazioni immagini in locale dell'applicativo frontend e dell'applicativo backend
-- docker build  -t usernameDockerHub/react-eventual:latest .
-- docker build  -t usernameDockerHub/node-eventual:latest .
+- docker build  -t react-eventual:latest .
+- docker build  -t node-eventual:latest .
 
 A questo punto è possibile eseguire l'applicazione in due modi:
 
