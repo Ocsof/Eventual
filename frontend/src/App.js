@@ -65,7 +65,7 @@ function App() {
                               <NavLink to="/events" className="nav-item" activeClassName="active">My Events </NavLink>
                           </li>
                       </ul>
-                      <div className="d-flex mx-5 mb-2">
+                      <div className="d-flex mx-5">
                           <select
                               className="form-control rounded"
                               placeholder="Search by category..."
