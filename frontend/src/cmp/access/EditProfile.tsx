@@ -28,7 +28,7 @@ export function EditProfile(){
             .then(response => {
                 console.log(response.data);
                 if(response.status === 200){
-                    NotificationManager.success("Utente aggiornato")
+                    NotificationManager.success("User updated!")
                     localStorage.setItem('user', JSON.stringify(user))
                     navigate("/login")
                 }

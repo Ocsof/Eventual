@@ -24,7 +24,7 @@ export function Login(){
             .then(response => {
                 console.log(response.data);
                 if(response.status === 200){
-                    NotificationManager.success("Benvenuto: " + response.data.name)
+                    NotificationManager.success("Welcome: " + response.data.name)
                     toggleLogin()
                     localStorage.setItem('user', JSON.stringify(response.data))
                     console.log(localStorage.getItem('user'))
@@ -34,9 +34,9 @@ export function Login(){
             })
             .catch(error => {
                 if( error.response.status === 404) {
-                    NotificationManager.error('Email inesistente')
+                    NotificationManager.error('Email not existing')
                 } else if(error.response.status === 401) {
-                    NotificationManager.error('Email o password errate')
+                    NotificationManager.error('Email or password are wrong')
                 } else if(error.response.status === 500){
                     NotificationManager.error('General server error')
                 }

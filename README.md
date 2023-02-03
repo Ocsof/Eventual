@@ -35,6 +35,13 @@ Eventuali altre tecnologie e funzionalità che in fase d’opera verranno ritenu
 
 ---
 
+## Prerequisiti 
+Per utilizzare correttamente l'applicazione occorre:
+- Docker Desktop: https://www.docker.com/
+- Nodejs: https://nodejs.org/en/download/
+
+---
+
 ## Istruzioni per deploy Eventual
 - Importare le immagini in locale di mongo e mongo-express
 - docker pull mongo

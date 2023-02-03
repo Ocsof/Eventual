@@ -27,7 +27,7 @@ const TermsAndConditions = () => {
                 vel velit vel magna fringilla varius. Sed euismod auctor ipsum, a
                 pulvinar risus luctus in.
             </p>
-            <Link to="/signup" >OK</Link>
+            <Link to="/signup" >Accept</Link>
         </div>
     );
 };

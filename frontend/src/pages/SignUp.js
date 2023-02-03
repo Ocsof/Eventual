@@ -80,7 +80,7 @@ class SignupForm extends React.Component {
             .catch(error => {
                 console.error(error)
                 if(error.response.status === 409){
-                    NotificationManager.error("Utente già registrato con questa email")
+                    NotificationManager.error("User already registered with this email.")
                 }
             });
 

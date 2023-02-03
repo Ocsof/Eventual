@@ -1,4 +1,5 @@
-// A custom validation macros.
+// A custom validation macros lists.
+
 export function categoryGenerator(category: string){
     switch (category) {
         case 'o':

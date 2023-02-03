@@ -36,7 +36,7 @@ export function EditUser({_id, name, surname, email, phone, password, birthday, 
             .then(response => {
                 console.log(response.data);
                 if(response.status === 200){
-                    NotificationManager.success("Utente aggiornato")
+                    NotificationManager.success("User updated!")
                     localStorage.setItem('user', JSON.stringify(user))
                 }
             })
