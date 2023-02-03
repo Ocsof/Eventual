@@ -4,17 +4,10 @@
 
 Once the service is running, you may query it by either:
 - browsing to http://localhost:8080 in your browser
-- run `curl http://localhost:8080`
+- run `curl http://localhost:8082`
 - run the `poll-localhost.sh` script as follows:
     ```bash
-    ../poll-localhost.sh 8080
-    
-- in this way the service can be replicated many times, without affecting the presented to the user
-- for this reason, the service assumes a number of _environment_ variables to be set, namely:
-  +`MONGO_HOST` is a string identifying host name of the machine hosting MongoDB
-    + `MONGO_PORT` is a number identifying the port MongoDB is listening on
-    + `MONGO_USER` is the user identifier the service will exploit to interact with MongoDB
-    + `MONGO_PASSWORD` is the password corresponding to the MongoDB user above
+    ../poll-localhost.sh
 
 MongoDB instances can be started up with Docker, via ad-hoc images:
 - [`mongodb`](https://hub.docker.com/_/mongo) the actual No-SQL DBMS
