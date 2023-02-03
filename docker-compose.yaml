@@ -29,8 +29,6 @@ services:
     ports:
       - "8081:8081" # mongo bashboard port
     environment:
-      #ME_CONFIG_MONGODB_ADMINUSERNAME: admin # same mongo username as above
-      #ME_CONFIG_MONGODB_ADMINPASSWORD: admin # same mongo password as above
       ME_CONFIG_MONGODB_SERVER: mongodb #nome immagine che corrisponde all'IP grazie al dns di docker
       ME_CONFIG_MONGODB_PORT: 27017  #mongodb port
       ME_CONFIG_MONGODB_URL: mongodb://${ME_CONFIG_MONGODB_SERVER}:${ME_CONFIG_MONGODB_PORT}/
@@ -38,22 +36,20 @@ services:
   eventual-backend:
     depends_on:
       - mongodb
-    image: foscofra/node-eventual
+    image: node-eventual
     environment:
-      #MONGO_USER: admin
-      #MONGO_PASSWORD: admin
       MONGO_HOST: mongodb #nome immagine che corrisponde all'IP grazie al dns di docker
     ports:
       - "8082:8080"
     restart: always
-    deploy:
-      mode: replicated
-      replicas: 3
+    #deploy:
+      #mode: replicated
+      #replicas: 3
 
   eventual-frontend:
     depends_on:
       - eventual-backend
-    image: foscofra/react-eventual
+    image: react-eventual
     ports:
       - "3000:3000"
     restart: always
