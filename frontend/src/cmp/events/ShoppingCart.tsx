@@ -25,7 +25,7 @@ export function ShoppingCart ( {isOpen}: ShoppingCartProps ) {
 
     function handleInscription(){
         alert("Confirm your payment")
-        // my_iscription array updating and reposting
+        // my_inscription array updating and reposting
         const user =  JSON.parse(localStorage.getItem('user'))
         const my_inscriptions = user.inscriptions
 

@@ -24,14 +24,14 @@ export function Admin(){
                 .then(response => {
                     console.log(response.data);
                     if(response.status === 200){
-                        NotificationManager.success("Utente eliminato")
+                        NotificationManager.success("User deleted!")
                     }
                 })
                 .catch(error => {
                     console.log(error)
                 });
         } else {
-            alert("Non puoi eliminare un admin!")
+            alert("An admin can't be deleted.")
         }
     }
 

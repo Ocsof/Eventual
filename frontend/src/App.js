@@ -73,7 +73,7 @@ function App() {
                               onChange={(e) => setSearchInput(e.target.value)}
                               value={searchInput}
                           >
-                              <option default>Search by category...</option>
+                              <option>Search by category...</option>
                               <option value="party">Party</option>
                               <option value="concert">Concert</option>
                               <option value="birthday">Birthday</option>
