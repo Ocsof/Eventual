@@ -38,7 +38,7 @@ services:
   eventual-backend:
     depends_on:
       - mongodb
-    image: alessiarocco/node-eventual
+    image: foscofra/node-eventual
     environment:
       #MONGO_USER: admin
       #MONGO_PASSWORD: admin
@@ -50,10 +50,10 @@ services:
       mode: replicated
       replicas: 3
 
-  #eventual-frontend:
-    #depends_on:
-     # - eventual-backend
-    #image: foscofra/react-eventual
-    #ports:
-     # - "3000:3000"
-    #restart: always
+  eventual-frontend:
+    depends_on:
+      - eventual-backend
+    image: foscofra/react-eventual
+    ports:
+      - "3000:3000"
+    restart: always
