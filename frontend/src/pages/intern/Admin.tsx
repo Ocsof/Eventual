@@ -4,11 +4,13 @@ import {AllEvents} from "../../cmp/events/AllEvents";
 import axios from 'axios';
 import {NotificationManager} from "react-notifications";
 import {EditUser, EditUserProps} from "../../cmp/access/EditUser";
+import {useNavigate} from "react-router-dom";
 
 export function Admin(){
     const [editUser, setEditUser] = useState(false)
     const [userID, setUserID] = useState(-1)
     const [users, setUsers] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get("http://localhost:8082/users")
@@ -25,6 +27,7 @@ export function Admin(){
                     console.log(response.data);
                     if(response.status === 200){
                         NotificationManager.success("User deleted!")
+                        navigate(0)
                     }
                 })
                 .catch(error => {
