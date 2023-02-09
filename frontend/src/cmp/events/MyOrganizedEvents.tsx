@@ -31,6 +31,11 @@ export function MyOrganizedEvents() {
             .then(res =>{
                 console.log(res.data)
                 NotificationManager.success("Event deleted: " + e);
+                axios.get("http://localhost:8082/myorganizations/" + JSON.parse(localStorage.getItem('user'))._id)
+                    .then(res =>{
+                        setEvents(res.data)
+                    })
+                    .catch(error => console.error(error))
             })
             .catch(error => console.error(error))
     }
