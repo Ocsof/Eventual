@@ -10,10 +10,8 @@ export function NewEvent() {
     const navigate = useNavigate();
 
     const [event, setEvent] = useState({
-        id: '',
         title: '',
-        author: '',
-        category: '',
+        category: 'party',
         date: '',
         description: '',
         price: ''
@@ -24,29 +22,48 @@ export function NewEvent() {
         const user =  JSON.parse(localStorage.getItem('user'))
         const my_organizations = user.my_organizations
 
-        axios.post("http://localhost:8082/events", event)
+        const newEvent = {
+            title: event.title,
+            author: user._id,
+            category: event.category,
+            date: event.date.substring(0,10),
+            description: event.description,
+            price: event.price,
+            users: []
+        }
+
+        axios.post("http://localhost:8082/events", newEvent)
             .then(res =>{
-                console.log(res.data);
-                my_organizations.push(res.data._id)
-                NotificationManager.success("Event added: " + res.data._id);
+                if(res.status === 200){
+                    my_organizations.push(res.data._id)
+                    NotificationManager.success("Event added: " + res.data._id)
+                    const updateUser = {
+                        _id: user._id,
+                        name: user.name,
+                        surname: user.surname,
+                        email: user.email,
+                        phone: user.phone,
+                        password: user.password,
+                        birthday: user.birthday,
+                        category: user.category,
+                        inscriptions: user.inscriptions,
+                        my_organizations: my_organizations
+                    }
+
+                    axios.put('http://localhost:8082/user/'+ user._id, updateUser)
+                        .then(response => {
+                            console.log(response.data);
+                            if(response.status === 200){
+                                console.log(response.data)
+                                localStorage.setItem('user', JSON.stringify(updateUser))
+                                navigate("/events");
+                            }
+                        })
+                        .catch(error => console.log(error))
+                }
+
             })
             .catch(error => console.error(error))
-
-        user.my_organizations = my_organizations
-        console.log(user.my_organizations)
-
-        axios.put('http://localhost:8082/user/'+ user._id, user)
-            .then(response => {
-                console.log(response.data);
-                if(response.status === 200){
-                    console.log(response.data)
-                    localStorage.setItem('user', JSON.stringify(user))
-                    navigate("/events");
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
     }
 
     return (
@@ -64,8 +81,6 @@ export function NewEvent() {
                 <form onSubmit={handleSave}>
                     <label className="form-label" htmlFor="newEventTitle">title: </label>
                     <input required style={{width: "100%"}} type="text" className="form-control" id="newEventTitle" onChange={(e) => setEvent({...event, title: e.target.value})}/>
-                    <label className="form-label" htmlFor="newEventAuthor">author: </label>
-                    <input required style={{width: "100%"}} type="text" className="form-control" id="newEventAuthor" onChange={(e) => setEvent({...event, author: e.target.value})}/>
                     <label className="form-label" htmlFor="newEventCategory">category: </label>
                     <select
                         className="form-control rounded"
