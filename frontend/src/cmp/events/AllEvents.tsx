@@ -8,11 +8,13 @@ import {NotificationManager} from "react-notifications";
 import {EditEvent} from "./EditEvent";
 import {Event, EventCardProps} from "./Event";
 import axios from 'axios';
+import {useNavigate} from "react-router-dom";
 
 export function AllEvents() {
     const [eventToModify, setEventToModify] = useState(-1);
 
     const [allEvents, setAllEvents] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get("http://localhost:8082/alleventsadmin")
@@ -31,6 +33,7 @@ export function AllEvents() {
             .then(res =>{
                 console.log(res.data)
                 NotificationManager.success("Event deleted: " + e);
+                navigate(0)
             })
             .catch(error => console.error(error))
     }
