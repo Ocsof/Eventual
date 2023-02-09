@@ -1,3 +1,13 @@
+# Eventual
+
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=Ocsof_Eventual&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=Ocsof_Eventual)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Ocsof_Eventual&metric=bugs)](https://sonarcloud.io/dashboard?id=Ocsof_Eventual)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Ocsof_Eventual&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=Ocsof_Eventual)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Ocsof_Eventual&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=Ocsof_Eventual)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Ocsof_Eventual&metric=security_rating)](https://sonarcloud.io/dashboard?id=Ocsof_Eventual)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Ocsof_Eventual&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=Ocsof_Eventual)
+
+
 ## Membri del gruppo:
 - Francesco Foschini (matricola 0001033912)
 - Alessia Rocco (matricola 0000983123)
