@@ -5,6 +5,7 @@ import {formatCurrency} from "../../utilities/formatCurrency";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {NotificationManager} from "react-notifications";
+import {Link} from "react-router-dom";
 
 
 type ShoppingCartProps = {
@@ -24,47 +25,51 @@ export function ShoppingCart ( {isOpen}: ShoppingCartProps ) {
     }, [])
 
     function handleInscription(){
-        alert("Confirm your payment")
-        // my_inscription array updating and reposting
-        const user =  JSON.parse(localStorage.getItem('user'))
-        const my_inscriptions = user.inscriptions
+       if(cartItems.length === 0 ){
+           alert("Your cart is empty, add something to proceed to payment!")
+       } else {
+           alert("Confirm your payment")
+           // my_inscription array updating and reposting
+           const user =  JSON.parse(localStorage.getItem('user'))
+           const my_inscriptions = user.inscriptions
 
-        cartItems.forEach( event => {
-            my_inscriptions.push(event._id)
-            //users array of each event updating and reposting
-            axios.get('http://localhost:8082/events/' + event._id)
-                .then(response => {
-                    const event = response.data
-                    event.users.push(user._id)
-                    axios.put('http://localhost:8082/events/' + event._id, event)
-                        .then(res => {
-                            console.log(res)
-                        })
-                        .catch(err => {
-                            console.log(err)
-                        })
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-        })
+           cartItems.forEach( event => {
+               my_inscriptions.push(event._id)
+               //users array of each event updating and reposting
+               axios.get('http://localhost:8082/events/' + event._id)
+                   .then(response => {
+                       const event = response.data
+                       event.users.push(user._id)
+                       axios.put('http://localhost:8082/events/' + event._id, event)
+                           .then(res => {
+                               console.log(res)
+                           })
+                           .catch(err => {
+                               console.log(err)
+                           })
+                   })
+                   .catch(error => {
+                       console.log(error)
+                   })
+           })
 
-        user.inscriptions = my_inscriptions
-        axios.put('http://localhost:8082/user/'+ user._id, user)
-            .then(response => {
-                console.log(response.data);
-                if(response.status === 200){
-                    console.log(response.data)
-                    localStorage.setItem('user', JSON.stringify(user))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
+           user.inscriptions = my_inscriptions
+           axios.put('http://localhost:8082/user/'+ user._id, user)
+               .then(response => {
+                   console.log(response.data);
+                   if(response.status === 200){
+                       console.log(response.data)
+                       localStorage.setItem('user', JSON.stringify(user))
+                   }
+               })
+               .catch(error => {
+                   console.log(error)
+               })
 
-        // restore cart after payments
-        clearCart()
-        NotificationManager.success("Payment confirmed!")
+           // restore cart after payments
+           clearCart()
+           NotificationManager.success("Payment confirmed!")
+       }
     }
 
     return (
@@ -86,7 +91,7 @@ export function ShoppingCart ( {isOpen}: ShoppingCartProps ) {
                     {localStorage.getItem('user') !== null ? (<button className="btn btn-success btn-lg btn-block" onClick={handleInscription}>Proceed to payment</button>):(
                         <>
                             <button className="btn btn-success btn-lg btn-block" disabled={true}>Proceed to payment</button>
-                            <button className="btn btn-danger btn-lg btn-block" disabled={true}>Log in to pay</button>
+                            <Link to="/login" className="btn btn-danger btn-lg btn-block" >Log in to pay</Link>
                         </>
                     )}
 
