@@ -1,0 +1,40 @@
+@startwbs
+* Sviluppo applicativo web EVENTUAL
+** Signup
+*** creazione componente form signup
+**** input per ogni dato anagrafico della persona
+*** salvataggio dati inseriti di signup nel db
+*** hash password nel db
+** Login
+*** creazione componente login 
+**** input per email e password
+*** richiesta al db di confronto login
+*** integrazione login con principali social
+*** creazione componente modifica profilo
+**** update profilo nel db
+** Eventi
+*** creazione di un evento
+**** creazione card per un evento
+**** salvataggio evento nel db
+*** metodo di gestione eventi
+**** modifica eventi
+**** update evento nel db
+**** eliminazione eventi
+**** eliminazione nel db
+*** ricerca per categoria di eventi
+*** visualizzazione top 10 eventi
+*** pagamento di un evento
+**** implementazione metodo di pagamento
+**** discrizione da un evento 
+** Admin
+*** controllo di tutti gli utenti
+**** consultazione tabella utenti nel db
+**** modifica utenti
+**** eliminazione utenti non admin
+**** manipolazione del db
+*** controllo di tutti gli eventi
+**** consultazione tabella eventi nel db
+**** modifica eventi
+**** eliminazione di eventi
+**** manipolazione del db
+@endwbs
